@@ -3,7 +3,7 @@
 	<title>Lucas P. Brígida</title>
 	<link href="http://lucasbrigida.github.io/atom.xml" rel="self"/>
 	<link href="http://lucasbrigida.github.io"/>
-	<updated>2013-09-10T09:38:31.490Z</updated>
+	<updated>2013-09-10T10:03:37.049Z</updated>
 	<id>http://lucasbrigida.github.io</id>
 	<author>
 		<name>Lucas P. Brígida</name>
@@ -90,6 +90,20 @@
 	&lt;h1&gt;This is a Goodbye Blog Post&lt;/h1&gt;
 	&lt;div class=&quot;post-content&quot;&gt;&lt;p&gt;This is a goodbye &lt;strong&gt;blog post&lt;/strong&gt;&lt;/p&gt;
 &lt;/div&gt;
+
+	&lt;!-- Disqus
+	--&gt;
+  &lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+      var disqus_shortname = 'lucaspereirabrigida'; // required: replace example with your forum shortname
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    &lt;/script&gt;
+    &lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;http://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+    &lt;a href=&quot;http://disqus.com&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;  
 &lt;/article&gt;
 
 &lt;footer&gt;
@@ -244,6 +258,20 @@ var inject = function(){
 	&lt;h1&gt;This is a Hello Blog Post&lt;/h1&gt;
 	&lt;div class=&quot;post-content&quot;&gt;&lt;p&gt;This is a hello &lt;strong&gt;blog post&lt;/strong&gt;&lt;/p&gt;
 &lt;/div&gt;
+
+	&lt;!-- Disqus
+	--&gt;
+  &lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+      var disqus_shortname = 'lucaspereirabrigida'; // required: replace example with your forum shortname
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    &lt;/script&gt;
+    &lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;http://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+    &lt;a href=&quot;http://disqus.com&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;  
 &lt;/article&gt;
 
 &lt;footer&gt;
