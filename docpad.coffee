@@ -12,37 +12,38 @@ docpadConfig = {
 		# Specify some site properties
 		site:
 			# The production url of our website
-			url: "http://website.com"
+			url: "http://lucasbrigida.github.io"
 
 			# Here are some old site urls that you would like to redirect from
-			oldUrls: [
-				'www.website.com',
-				'website.herokuapp.com'
-			]
+			#oldUrls: [
+			#	'www.website.com',
+			#	'website.herokuapp.com'
+			#]
 
 			# The default title of our website
-			title: "Your Website"
+			title: "Lucas P. Brígida"
 
 			# The website description (for SEO)
 			description: """
-				When your website appears in search results in say Google, the text here will be shown underneath your website's title.
+				Lucas P. Brígida personal website.
 				"""
 
 			# The website keywords (for SEO) separated by commas
 			keywords: """
-				place, your, website, keywoards, here, keep, them, related, to, the, content, of, your, website
+				It's place where I publish my ideas, codes, news and projects.
 				"""
 
 			# The website author's name
-			author: "Your Name"
+			author: "Lucas P. Brígida"
 
 			# The website author's email
-			email: "your@email.com"
+			email: "lucasbrigida@gmail.com"
 
 			# Styles
 			styles: [
 				"/styles/twitter-bootstrap.css"
 				"/styles/style.css"
+				"//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css"
 			]
 
 			# Scripts
@@ -89,7 +90,13 @@ docpadConfig = {
 			database.findAllLive({pageOrder: $exists: true}, [pageOrder:1,title:1])
 
 		posts: (database) ->
-			database.findAllLive({tags:$has:'post'}, [date:-1])
+			database.findAllLive({sections:$has:'blog'}, [date:-1])
+
+		experiences: (database) ->
+			database.findAllLive({sections:$has:'experiences'}, [date:-1])
+
+		codes: (database) ->
+			database.findAllLive({sections:$has:'codes'}, [date:-1])
 
 
 	# =================================

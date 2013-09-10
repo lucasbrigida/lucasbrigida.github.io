@@ -38,7 +38,7 @@
 </head>
 <body>
 	<!-- Menu -->
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -46,21 +46,15 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">Project name</a>
+				<a class="navbar-brand" href="/"><i class="icon-home"></i></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<% for document in @getCollection('pages').toJSON(): %>
-						<li
-							typeof="sioc:Page"
-							about="<%= document.url %>"
-							class="<%= 'active'	if @document.url is document.url %>"
-						>
-							<a href="<%= document.url %>" property="dc:title">
-								<%= document.title %>
-							</a>
-						</li>
-					<% end %>
+					<li><a href="/pages/about"><i class="icon-user"></i> About me</a></li>
+					<li><a href="/pages/blog"><i class="icon-pencil"></i> Blog</a></li>	
+					<li><a href="/pages/experiences"><i class="icon-beaker"></i> Experiences</a></li>	
+					<li><a href="/pages/codes"><i class="icon-terminal"></i> Tricks & codes</a></li>
+					<li><a href="//github.com/lucasbrigida" alt="github" target="_blank"><i class="icon-github-alt"></i></a></li>	
 				</ul>
 			</div><!--/.navbar-collapse -->
 		</div>
@@ -75,10 +69,6 @@
 
 		<!-- Footer -->
 		<footer>
-			<p class="pull-left">&copy; Company <%- (new Date()).getFullYear() %></p>
-			<p class="pull-right">
-				This website was last updated at <%= @site.date.toISOString() %>
-			</p>
 		</footer>
 	</div><!-- /container -->
 

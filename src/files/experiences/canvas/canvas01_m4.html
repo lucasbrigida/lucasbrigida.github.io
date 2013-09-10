@@ -1,0 +1,340 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="578" height="250"></canvas>
+    <script>
+      window.requestAnimFrame = new function(callback) {
+        return(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame);
+      };
+
+      /*
+       * Gear constructor
+       */
+      function Gear(config) {
+        var self = this;
+        this.x = config.x;
+        this.y = config.y;
+        this.outerRadius = config.outerRadius;
+        this.innerRadius = config.innerRadius;
+        this.midRadius = config.midRadius;
+        this.holeRadius = config.holeRadius;
+        this.numTeeth = config.numTeeth;
+        this.theta = config.theta;
+        this.thetaSpeed = config.thetaSpeed / 1000;
+        this.lightColor = config.lightColor;
+        this.darkColor = config.darkColor;
+        this.clockwise = config.clockwise;
+        this.cb = config.cb;
+      }
+
+      /*
+       * Gear draw method
+       */
+      Gear.prototype.draw = function() {
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+
+        context.save();
+        var numPoints = this.numTeeth * 2;
+        // draw gear teeth
+        context.beginPath();
+        context.lineJoin = 'bevel';
+        for(var n = 0; n < numPoints; n++) {
+
+          var radius = null;
+
+          if(n % 2 == 0) {
+            radius = this.outerRadius;
+          }
+          else {
+            radius = this.innerRadius;
+          }
+
+          var theta = this.theta;
+          theta += ((Math.PI * 2) / numPoints) * (n + 1);
+
+          var x = (radius * Math.sin(theta)) + this.x;
+          var y = (radius * Math.cos(theta)) + this.y;
+
+          if(n == 0) {
+            context.moveTo(x, y);
+          }
+          else {
+            context.lineTo(x, y);
+          }
+        }
+
+        context.closePath();
+        context.lineWidth = 5;
+        context.strokeStyle = this.darkColor;
+        context.stroke();
+
+        // draw gear body
+        context.beginPath();
+        context.arc(this.x, this.y, this.midRadius, 0, 2 * Math.PI, false);
+
+        var grd = context.createLinearGradient(this.x - 100, this.y - 100, this.x + 100, this.y + 100);
+        grd.addColorStop(0, this.lightColor);
+        grd.addColorStop(1, this.darkColor);
+        context.fillStyle = grd;
+        context.fill();
+        context.lineWidth = 5;
+        context.strokeStyle = this.darkColor;
+        context.stroke();
+
+        // draw gear hole
+        context.beginPath();
+        context.arc(this.x, this.y, this.holeRadius, 0, 2 * Math.PI, false);
+        context.fillStyle = 'white';
+        context.fill();
+        context.strokeStyle = this.darkColor;
+        context.stroke();
+        context.restore();
+      };
+
+      
+      /*
+       *  Gears
+       */
+      var gears = [];
+
+      // green gear
+      gears.push(new Gear({
+        x: 0,
+        y: 90,
+        outerRadius: 170,
+        innerRadius: 100,
+        midRadius: 160,
+        holeRadius: 10,
+        numTeeth: 48,
+        theta: 2,
+        thetaSpeed: 0.5,
+        lightColor: '#ab6',
+        darkColor: '#ac4',
+        clockwise: true,
+        cb: function(time){
+          if(!this.cbLastTime){ this.cbLastTime = Date.now(); return; }
+          
+          if(Date.now() - this.cbLastTime < 135) return;
+          else this.cbLastTime =  Date.now();
+
+          var d = this.darkColor.match('#') ? parseInt(this.darkColor.replace('#',''),16) : "aaa";
+          if(parseInt(d) < parseInt('fff', 16)){
+            d++; this.darkColor = '#' + d.toString(16);
+          } else this.darkColor = '#aaa';
+        }
+      }));
+
+      // orange gear
+      gears.push(new Gear({
+        x: 192,
+        y: 90,
+        outerRadius: 28,
+        innerRadius: 5,
+        midRadius: 18,
+        holeRadius: 7,
+        numTeeth: 6,
+        theta: 2,
+        thetaSpeed: 3,
+        lightColor: '#bfe',
+        darkColor: '#ba1',
+        clockwise: false,
+        cb: function(time){
+          if(!this.cbLastTime){ this.cbLastTime = Date.now(); return; }
+          
+          if(Date.now() - this.cbLastTime < 130) return;
+          else this.cbLastTime =  Date.now();
+
+          var d = this.darkColor.match('#') ? parseInt(this.darkColor.replace('#',''),16) : "aaa";
+          if(parseInt(d) < parseInt('fff', 16)){
+            d++; this.darkColor = '#' + d.toString(16);
+          } else this.darkColor = '#aaa';
+        }
+      }));
+
+      // red gear
+      gears.push(new Gear({
+        x: 265,
+        y: 90,
+        outerRadius: 50,
+        innerRadius: 15,
+        midRadius: 40,
+        holeRadius: 10,
+        numTeeth: 12,
+        theta: 0.1,
+        thetaSpeed: 2.2,
+        lightColor: '#cbe',
+        darkColor: '#cab',
+        clockwise: true,
+        cb: function(time){
+          if(!this.cbLastTime){ this.cbLastTime = Date.now(); return; }
+          
+          if(Date.now() - this.cbLastTime < 120) return;
+          else this.cbLastTime =  Date.now();
+
+          var d = this.darkColor.match('#') ? parseInt(this.darkColor.replace('#',''),16) : "aaa";
+          if(parseInt(d) < parseInt('fff', 16)){
+            d++; this.darkColor = '#' + d.toString(16);
+          } else this.darkColor = '#aaa';
+        }
+      }));
+
+      // blue gear
+      gears.push(new Gear({
+        x: 399,
+        y: 90,
+        outerRadius: 90,
+        innerRadius: 50,
+        midRadius: 80,
+        holeRadius: 10,
+        numTeeth: 24,
+        theta: 0.1,
+        thetaSpeed: 1.1,
+        lightColor: '#da1',
+        darkColor: '#da8',
+        clockwise: false,
+        cb: function(time){
+          if(!this.cbLastTime){ this.cbLastTime = Date.now(); return; }
+          
+          if(Date.now() - this.cbLastTime < 115) return;
+          else this.cbLastTime =  Date.now();
+
+          var d = this.darkColor.match('#') ? parseInt(this.darkColor.replace('#',''),16) : "aaa";
+          if(parseInt(d) < parseInt('fff', 16)){
+            d++; this.darkColor = '#' + d.toString(16);
+          } else this.darkColor = '#aaa';
+        }
+      }));
+
+      // black gear
+      gears.push(new Gear({
+        x: 215,
+        y: 230,
+        outerRadius: 90,
+        innerRadius: 50,
+        midRadius: 80,
+        holeRadius: 10,
+        numTeeth: 24,
+        theta: 0.22,
+        thetaSpeed: 1,
+        lightColor: '#efa',
+        darkColor: '#ea7',
+        clockwise: false,
+        cb: function(time){
+          if(!this.cbLastTime){ this.cbLastTime = Date.now(); return; }
+          
+          if(Date.now() - this.cbLastTime < 110) return;
+          else this.cbLastTime =  Date.now();
+
+          var d = this.darkColor.match('#') ? parseInt(this.darkColor.replace('#',''),16) : "aaa";
+          if(parseInt(d) < parseInt('fff', 16)){
+            d++; this.darkColor = '#' + d.toString(16);
+          } else this.darkColor = '#aaa';
+        }
+      }));
+
+      // multicolor gear
+      gears.push(new Gear({
+        x: 215,
+        y: 230,
+        outerRadius: 90,
+        innerRadius: 50,
+        midRadius: 80,
+        holeRadius: 10,
+        numTeeth: 24,
+        theta: 0.22,
+        thetaSpeed: 1,
+        lightColor: '#f1d',
+        darkColor: '#fad',
+        clockwise: false,
+        cb: function(time){
+          if(!this.cbLastTime){ this.cbLastTime = Date.now(); return; }
+          
+          if(Date.now() - this.cbLastTime < 105) return;
+          else this.cbLastTime =  Date.now();
+
+          var d = this.darkColor.match('#') ? parseInt(this.darkColor.replace('#',''),16) : "aaa";
+          if(parseInt(d) < parseInt('fff', 16)){
+            d++; this.darkColor = '#' + d.toString(16);
+          } else this.darkColor = '#aaa';
+        }
+      }));
+
+
+      // red gear
+      gears.push(new Gear({
+        x: 490,
+        y: 190,
+        outerRadius: 50,
+        innerRadius: 15,
+        midRadius: 40,
+        holeRadius: 10,
+        numTeeth: 12,
+        theta: 0.1,
+        thetaSpeed: 2.2,
+        lightColor: '#fea',
+        darkColor: '#fda',
+        clockwise: true,
+        cb: function(time){
+          if(!this.cbLastTime){ this.cbLastTime = Date.now(); return; }
+          
+          if(Date.now() - this.cbLastTime < 100) return;
+          else this.cbLastTime =  Date.now();
+
+          var d = this.darkColor.match('#') ? parseInt(this.darkColor.replace('#',''),16) : "aaa";
+          if(parseInt(d) < parseInt('fff', 16)){
+            d++; this.darkColor = '#' + d.toString(16);
+          } else this.darkColor = '#aaa';
+        }
+      }));
+
+      /*
+       *  Animate
+       */
+      (function animate(gears, lastTime) {
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+
+        // update
+        var time = (new Date()).getTime();
+        var timeDiff = time - lastTime;
+
+        for(var i = 0; i < gears.length; i++) {
+          var gear = gears[i];
+
+          if(gears[i].clockwise) {
+            gears[i].theta -= (gear.thetaSpeed * timeDiff);
+          }
+          else {
+            gears[i].theta += (gear.thetaSpeed * timeDiff);
+          }
+        }
+
+        // clear
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        // draw
+        for(var i = 0; i < gears.length; i++) {
+          gears[i].draw();
+
+          //update Properties
+          if(gears[i].cb) gears[i].cb(Date.now());
+        }
+        
+        // request new frame
+        //requestAnimFrame(function() { animate(gears, time); });
+        setTimeout(function() {
+          animate(gears, time);
+        }, 2000/60);
+      })(gears, (new Date()).getTime());
+    </script>
+  </body>
+</html>
