@@ -1,0 +1,66 @@
+---
+title: Playing with Canvas - Gears
+layout: experience
+sections: ['experiences']
+tags: ['canvas', 'gears']
+---
+<!-- Hide source codes -->
+<style type="text/css">.code{display: none;}</style>
+
+<h4>Exemplo</h4>
+<iframe src="/experiences/canvas/canvas01.html" class="col-lg-12" height="260" seamless></iframe>
+<p><a href="#gears0" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p></div>
+<div id="gears0" class="code"><pre><code class="lang-html"> <%- @include("experiences/canvas/canvas01.html") %></code></pre></div>
+
+<p>Developed by <a href="http://www.html5canvastutorials.com/labs/html5-canvas-gears/">html5canvastutorials</a></p>
+
+<h4>Modificando...</h4>
+<ol>
+  <li>Colocar as 4 engrenagens alinhadas e sincronizadas
+    <div class="row">
+      <div class="col-lg-12"><iframe src="/experiences/canvas/canvas01_m1.html" class="col-lg-12" height="270" seamless></iframe>
+        <p><a href="#gears1" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p></div>
+      <div id="gears1" class="col-lg-12 code"><pre><code class="lang-html"> <%- @include("experiences/canvas/canvas01_m1.html") %></code></pre></div>
+    </div>
+  </li>
+  <li>Alterar a ordem das engrenagens
+    <div class="row">
+      <div class="col-lg-12"><iframe src="/experiences/canvas/canvas01_m2.html" class="col-lg-12" height="270" seamless></iframe>
+        <p><a href="#gears2" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p></div>
+      <div id="gears2" class="col-lg-12 code"><pre><code class="lang-html"> <%- @include("experiences/canvas/canvas01_m2.html") %></code></pre></div>
+    </div>
+  </li>
+  <li>Inserir outras engrenagens não alinhadas
+    <div class="row">
+      <div class="col-lg-12"><iframe src="/experiences/canvas/canvas01_m3.html" class="col-lg-12" height="270" seamless></iframe>
+        <p><a href="#gears3" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p></div>
+      <div id="gears3" class="col-lg-12 code"><pre><code class="lang-html"> <%- @include("experiences/canvas/canvas01_m3.html") %></code></pre></div>
+    </div>
+  </li>
+  <li>Alterar a cor das engrenagens
+    <div class="row">
+      <div class="col-lg-12"><iframe src="/experiences/canvas/canvas01_m4.html" class="col-lg-12" height="270" seamless></iframe>
+      <p><a href="#gears4" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p></div>
+      <div id="gears4" class="col-lg-12 code"><pre><code class="lang-html"> <%- @include("experiences/canvas/canvas01_m4.html") %></code></pre></div>
+    </div>
+  </li>
+  <li>Alterar o tamanho de, pelo menos, uma engrenagem
+    <div class="row">
+      <div class="col-lg-12"><iframe src="/experiences/canvas/canvas01_m5.html" class="col-lg-12" height="270" seamless></iframe>
+        <p><a href="#gears5" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p>
+      </div>
+      <div id="gears5" class="col-lg-12 code"><pre><code class="lang-html"> <%- @include("experiences/canvas/canvas01_m5.html") %></code></pre></div>
+    </div>
+  </li>
+</ol>
+<script type="text/javascript">
+var btns = document.getElementsByClassName("show-code");
+for(var i=0; i< btns.length;i++){
+  btns[i].addEventListener("click", showCode, false);
+}
+
+function showCode(e){
+  var id = e.target.hash.replace('#','');
+  document.getElementById(id).style.display="block";
+}
+</script>

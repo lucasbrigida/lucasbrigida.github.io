@@ -41,9 +41,10 @@ docpadConfig = {
 
 			# Styles
 			styles: [
+				"//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css"
 				"/styles/twitter-bootstrap.css"
 				"/styles/style.css"
-				"//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css"
+				"/vendor/highlightjs/monokai_sublime.css"
 			]
 
 			# Scripts
