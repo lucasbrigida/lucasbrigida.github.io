@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Playing with Canvas - Gears | Lucas P. Brígida</title>
+	<meta name="description" content="Lucas P. Brígida personal website." />
+	<meta name="keywords" content="It's place where I publish my ideas, codes, news and projects." />
+	<meta name="author" content="Lucas P. Brígida" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.52.1" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+		<link rel="shortcut icon" href="images/icons/favicon.ico">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" /><link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/vendor/highlightjs/monokai_sublime.css" />
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><i class="icon-home"></i></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/pages/about"><i class="icon-user"></i> About me</a></li>
+					<li><a href="/pages/blog"><i class="icon-pencil"></i> Blog</a></li>	
+					<li><a href="/pages/experiences"><i class="icon-beaker"></i> Experiences</a></li>	
+					<li><a href="/pages/codes"><i class="icon-terminal"></i> Tricks & codes</a></li>
+					<li><a href="//github.com/lucasbrigida" alt="github" target="_blank"><i class="icon-github-alt"></i></a></li>	
+				</ul>
+			</div><!--/.navbar-collapse -->
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="post" class="post">
+	<h1>Playing with Canvas - Gears</h1>
+	<div class="post-content"><!-- Hide source codes -->
+<style type="text/css">.code{display: none;}</style>
+
+<h4>Exemplo</h4>
+<iframe src="/experiences/canvas/canvas01.html" class="col-lg-12" height="260" seamless></iframe>
+<p><a href="#gears0" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p></div>
+<div id="gears0" class="code"><pre class="highlighted"><code class="xml"> <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+      <span class="tag">body</span> <span class="rules">{
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+      <span class="rule">}</span></span>
+    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"myCanvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"250"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+      window.requestAnimFrame = (<span class="keyword">function</span>(callback) {
+        <span class="keyword">return</span> window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        <span class="keyword">function</span>(callback) {
+          window.setTimeout(callback, <span class="number">1000</span> / <span class="number">60</span>);
+        };
+      })();
+
+      <span class="comment">/*
+       * Gear constructor
+       */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">Gear</span><span class="params">(config)</span> {</span>
+        <span class="keyword">this</span>.x = config.x;
+        <span class="keyword">this</span>.y = config.y;
+        <span class="keyword">this</span>.outerRadius = config.outerRadius;
+        <span class="keyword">this</span>.innerRadius = config.innerRadius;
+        <span class="keyword">this</span>.midRadius = config.midRadius;
+        <span class="keyword">this</span>.holeRadius = config.holeRadius;
+        <span class="keyword">this</span>.numTeeth = config.numTeeth;
+        <span class="keyword">this</span>.theta = config.theta;
+        <span class="keyword">this</span>.thetaSpeed = config.thetaSpeed / <span class="number">1000</span>;
+        <span class="keyword">this</span>.lightColor = config.lightColor;
+        <span class="keyword">this</span>.darkColor = config.darkColor;
+        <span class="keyword">this</span>.clockwise = config.clockwise;
+      }
+      <span class="comment">/*
+       * Gear draw method
+       */</span>
+      Gear.prototype.draw = <span class="keyword">function</span>() {
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        context.save();
+        <span class="keyword">var</span> numPoints = <span class="keyword">this</span>.numTeeth * <span class="number">2</span>;
+        <span class="comment">// draw gear teeth</span>
+        context.beginPath();
+        context.lineJoin = <span class="string">'bevel'</span>;
+        <span class="keyword">for</span>(<span class="keyword">var</span> n = <span class="number">0</span>; n &lt; numPoints; n++) {
+
+          <span class="keyword">var</span> radius = <span class="literal">null</span>;
+
+          <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>) {
+            radius = <span class="keyword">this</span>.outerRadius;
+          }
+          <span class="keyword">else</span> {
+            radius = <span class="keyword">this</span>.innerRadius;
+          }
+
+          <span class="keyword">var</span> theta = <span class="keyword">this</span>.theta;
+          theta += ((Math.PI * <span class="number">2</span>) / numPoints) * (n + <span class="number">1</span>);
+
+          <span class="keyword">var</span> x = (radius * Math.sin(theta)) + <span class="keyword">this</span>.x;
+          <span class="keyword">var</span> y = (radius * Math.cos(theta)) + <span class="keyword">this</span>.y;
+
+          <span class="keyword">if</span>(n == <span class="number">0</span>) {
+            context.moveTo(x, y);
+          }
+          <span class="keyword">else</span> {
+            context.lineTo(x, y);
+          }
+        }
+
+        context.closePath();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear body</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.midRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+
+        <span class="keyword">var</span> grd = context.createLinearGradient(<span class="keyword">this</span>.x - <span class="number">100</span>, <span class="keyword">this</span>.y - <span class="number">100</span>, <span class="keyword">this</span>.x + <span class="number">100</span>, <span class="keyword">this</span>.y + <span class="number">100</span>);
+        grd.addColorStop(<span class="number">0</span>, <span class="keyword">this</span>.lightColor);
+        grd.addColorStop(<span class="number">1</span>, <span class="keyword">this</span>.darkColor);
+        context.fillStyle = grd;
+        context.fill();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear hole</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.holeRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+        context.fillStyle = <span class="string">'white'</span>;
+        context.fill();
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+        context.restore();
+      };
+      <span class="function"><span class="keyword">function</span> <span class="title">animate</span><span class="params">(gears, lastTime)</span> {</span>
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        <span class="comment">// update</span>
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        <span class="keyword">var</span> timeDiff = time - lastTime;
+
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          <span class="keyword">var</span> gear = gears[i];
+
+          <span class="keyword">if</span>(gears[i].clockwise) {
+            gears[i].theta -= (gear.thetaSpeed * timeDiff);
+          }
+          <span class="keyword">else</span> {
+            gears[i].theta += (gear.thetaSpeed * timeDiff);
+          }
+        }
+
+        <span class="comment">// clear</span>
+        context.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+
+        <span class="comment">// draw</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          gears[i].draw();
+        }
+
+        <span class="comment">// request new frame</span>
+        requestAnimFrame(<span class="keyword">function</span>() {
+          animate(gears, time);
+        });
+      }
+      <span class="keyword">var</span> gears = [];
+
+      <span class="comment">// blue gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">120</span>,
+        y: <span class="number">105</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0</span>,
+        thetaSpeed: <span class="number">1</span>,
+        lightColor: <span class="string">'#B1CCFF'</span>,
+        darkColor: <span class="string">'#3959CC'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// red gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">222</span>,
+        y: <span class="number">190</span>,
+        outerRadius: <span class="number">50</span>,
+        innerRadius: <span class="number">15</span>,
+        midRadius: <span class="number">40</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">12</span>,
+        theta: <span class="number">0.14</span>,
+        thetaSpeed: <span class="number">2</span>,
+        lightColor: <span class="string">'#FF9E9D'</span>,
+        darkColor: <span class="string">'#AD0825'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">// orage gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">272</span>,
+        y: <span class="number">142</span>,
+        outerRadius: <span class="number">28</span>,
+        innerRadius: <span class="number">5</span>,
+        midRadius: <span class="number">18</span>,
+        holeRadius: <span class="number">7</span>,
+        numTeeth: <span class="number">6</span>,
+        theta: <span class="number">0.14</span>,
+        thetaSpeed: <span class="number">4</span>,
+        lightColor: <span class="string">'#FFDD87'</span>,
+        darkColor: <span class="string">'#D25D00'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// green gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">463</span>,
+        y: <span class="number">144</span>,
+        outerRadius: <span class="number">170</span>,
+        innerRadius: <span class="number">100</span>,
+        midRadius: <span class="number">160</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">48</span>,
+        theta: <span class="number">0</span>,
+        thetaSpeed: <span class="number">0.5</span>,
+        lightColor: <span class="string">'#8AFF99'</span>,
+        darkColor: <span class="string">'#005C06'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+      animate(gears, time);
+
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div>
+
+<p>Developed by <a href="http://www.html5canvastutorials.com/labs/html5-canvas-gears/">html5canvastutorials</a></p>
+
+<h4>Modificando...</h4>
+<ol>
+  <li>Colocar as 4 engrenagens alinhadas e sincronizadas
+    <div class="row">
+      <div class="col-lg-12"><iframe src="/experiences/canvas/canvas01_m1.html" class="col-lg-12" height="270" seamless></iframe>
+        <p><a href="#gears1" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p></div>
+      <div id="gears1" class="col-lg-12 code"><pre class="highlighted"><code class="xml"> <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+      <span class="tag">body</span> <span class="rules">{
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+      <span class="rule">}</span></span>
+    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"myCanvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"250"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"start-btn"</span>&gt;</span>Start<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"stop-btn"</span>&gt;</span>Stop<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+      window.requestAnimFrame = (<span class="keyword">function</span>(callback) {
+        <span class="keyword">return</span> window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        <span class="keyword">function</span>(callback) {
+          window.setTimeout(callback, <span class="number">1000</span> / <span class="number">60</span>);
+        };
+      })();
+
+      <span class="comment">/*
+       * Gear constructor
+       */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">Gear</span><span class="params">(config)</span> {</span>
+        <span class="keyword">this</span>.x = config.x;
+        <span class="keyword">this</span>.y = config.y;
+        <span class="keyword">this</span>.outerRadius = config.outerRadius;
+        <span class="keyword">this</span>.innerRadius = config.innerRadius;
+        <span class="keyword">this</span>.midRadius = config.midRadius;
+        <span class="keyword">this</span>.holeRadius = config.holeRadius;
+        <span class="keyword">this</span>.numTeeth = config.numTeeth;
+        <span class="keyword">this</span>.theta = config.theta;
+        <span class="keyword">this</span>.thetaSpeed = config.thetaSpeed / <span class="number">1000</span>;
+        <span class="keyword">this</span>.lightColor = config.lightColor;
+        <span class="keyword">this</span>.darkColor = config.darkColor;
+        <span class="keyword">this</span>.clockwise = config.clockwise;
+      }
+      <span class="comment">/*
+       * Gear draw method
+       */</span>
+      Gear.prototype.draw = <span class="keyword">function</span>() {
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        context.save();
+        <span class="keyword">var</span> numPoints = <span class="keyword">this</span>.numTeeth * <span class="number">2</span>;
+        <span class="comment">// draw gear teeth</span>
+        context.beginPath();
+        context.lineJoin = <span class="string">'bevel'</span>;
+        <span class="keyword">for</span>(<span class="keyword">var</span> n = <span class="number">0</span>; n &lt; numPoints; n++) {
+
+          <span class="keyword">var</span> radius = <span class="literal">null</span>;
+
+          <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>) {
+            radius = <span class="keyword">this</span>.outerRadius;
+          }
+          <span class="keyword">else</span> {
+            radius = <span class="keyword">this</span>.innerRadius;
+          }
+
+          <span class="keyword">var</span> theta = <span class="keyword">this</span>.theta;
+          theta += ((Math.PI * <span class="number">2</span>) / numPoints) * (n + <span class="number">1</span>);
+
+          <span class="keyword">var</span> x = (radius * Math.sin(theta)) + <span class="keyword">this</span>.x;
+          <span class="keyword">var</span> y = (radius * Math.cos(theta)) + <span class="keyword">this</span>.y;
+
+          <span class="keyword">if</span>(n == <span class="number">0</span>) {
+            context.moveTo(x, y);
+          }
+          <span class="keyword">else</span> {
+            context.lineTo(x, y);
+          }
+        }
+
+        context.closePath();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear body</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.midRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+
+        <span class="keyword">var</span> grd = context.createLinearGradient(<span class="keyword">this</span>.x - <span class="number">100</span>, <span class="keyword">this</span>.y - <span class="number">100</span>, <span class="keyword">this</span>.x + <span class="number">100</span>, <span class="keyword">this</span>.y + <span class="number">100</span>);
+        grd.addColorStop(<span class="number">0</span>, <span class="keyword">this</span>.lightColor);
+        grd.addColorStop(<span class="number">1</span>, <span class="keyword">this</span>.darkColor);
+        context.fillStyle = grd;
+        context.fill();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear hole</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.holeRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+        context.fillStyle = <span class="string">'white'</span>;
+        context.fill();
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+        context.restore();
+      };
+
+
+      <span class="comment">/*
+       *  Animation
+       */</span> 
+      <span class="function"><span class="keyword">function</span> <span class="title">animate</span><span class="params">(gears, lastTime)</span> {</span>
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        <span class="comment">// update</span>
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        <span class="keyword">var</span> timeDiff = time - lastTime;
+
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          <span class="keyword">var</span> gear = gears[i];
+
+          <span class="keyword">if</span>(gears[i].clockwise) {
+            gears[i].theta -= (gear.thetaSpeed * timeDiff);
+          }
+          <span class="keyword">else</span> {
+            gears[i].theta += (gear.thetaSpeed * timeDiff);
+          }
+        }
+
+        <span class="comment">// clear</span>
+        context.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+
+        <span class="comment">// draw</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          gears[i].draw();
+        }
+
+        <span class="keyword">if</span>(_stopAnimation === <span class="literal">true</span>) <span class="keyword">return</span>;
+
+        <span class="comment">// request new frame</span>
+        requestAnimFrame(<span class="keyword">function</span>() {
+          animate(gears, time);
+        });
+      }
+      
+      <span class="keyword">var</span> gears = [];
+
+      <span class="comment">// blue gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">100</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0</span>,
+        thetaSpeed: <span class="number">1</span>,
+        lightColor: <span class="string">'#B1CCFF'</span>,
+        darkColor: <span class="string">'#3959CC'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// red gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">230</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">50</span>,
+        innerRadius: <span class="number">15</span>,
+        midRadius: <span class="number">40</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">12</span>,
+        theta: <span class="number">0.14</span>,
+        thetaSpeed: <span class="number">2</span>,
+        lightColor: <span class="string">'#FF9E9D'</span>,
+        darkColor: <span class="string">'#AD0825'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">// orage gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">300</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">28</span>,
+        innerRadius: <span class="number">5</span>,
+        midRadius: <span class="number">18</span>,
+        holeRadius: <span class="number">7</span>,
+        numTeeth: <span class="number">6</span>,
+        theta: <span class="number">1</span>,
+        thetaSpeed: <span class="number">4</span>,
+        lightColor: <span class="string">'#FFDD87'</span>,
+        darkColor: <span class="string">'#D25D00'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// green gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">492</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">170</span>,
+        innerRadius: <span class="number">100</span>,
+        midRadius: <span class="number">160</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">48</span>,
+        theta: <span class="number">2</span>,
+        thetaSpeed: <span class="number">0.5</span>,
+        lightColor: <span class="string">'#8AFF99'</span>,
+        darkColor: <span class="string">'#005C06'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">/*
+       *  Stop Animation
+       */</span>
+       <span class="keyword">var</span> _stopAnimation = <span class="literal">false</span>;
+
+       <span class="function"><span class="keyword">function</span> <span class="title">stopAnimation</span><span class="params">()</span>{</span>
+         _stopAnimation = <span class="literal">true</span>;
+       }
+
+     <span class="comment">/*
+      *  Start Animation
+      */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">startAnimation</span><span class="params">()</span>{</span>
+        _stopAnimation = <span class="literal">false</span>;
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        animate(gears, time);
+      }
+
+      document.getElementById(<span class="string">"start-btn"</span>).onclick = startAnimation;
+      document.getElementById(<span class="string">"stop-btn"</span>).onclick = stopAnimation;
+
+      (<span class="function"><span class="keyword">function</span> <span class="title">oneDraw</span><span class="params">()</span>{</span>
+        startAnimation();
+        stopAnimation();
+      })();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div>
+    </div>
+  </li>
+  <li>Alterar a ordem das engrenagens
+    <div class="row">
+      <div class="col-lg-12"><iframe src="/experiences/canvas/canvas01_m2.html" class="col-lg-12" height="270" seamless></iframe>
+        <p><a href="#gears2" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p></div>
+      <div id="gears2" class="col-lg-12 code"><pre class="highlighted"><code class="xml"> <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+      <span class="tag">body</span> <span class="rules">{
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+      <span class="rule">}</span></span>
+    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"myCanvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"250"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"start-btn"</span>&gt;</span>Start<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"stop-btn"</span>&gt;</span>Stop<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+      window.requestAnimFrame = (<span class="keyword">function</span>(callback) {
+        <span class="keyword">return</span> window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        <span class="keyword">function</span>(callback) {
+          window.setTimeout(callback, <span class="number">1000</span> / <span class="number">60</span>);
+        };
+      })();
+
+      <span class="comment">/*
+       * Gear constructor
+       */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">Gear</span><span class="params">(config)</span> {</span>
+        <span class="keyword">this</span>.x = config.x;
+        <span class="keyword">this</span>.y = config.y;
+        <span class="keyword">this</span>.outerRadius = config.outerRadius;
+        <span class="keyword">this</span>.innerRadius = config.innerRadius;
+        <span class="keyword">this</span>.midRadius = config.midRadius;
+        <span class="keyword">this</span>.holeRadius = config.holeRadius;
+        <span class="keyword">this</span>.numTeeth = config.numTeeth;
+        <span class="keyword">this</span>.theta = config.theta;
+        <span class="keyword">this</span>.thetaSpeed = config.thetaSpeed / <span class="number">1000</span>;
+        <span class="keyword">this</span>.lightColor = config.lightColor;
+        <span class="keyword">this</span>.darkColor = config.darkColor;
+        <span class="keyword">this</span>.clockwise = config.clockwise;
+      }
+      <span class="comment">/*
+       * Gear draw method
+       */</span>
+      Gear.prototype.draw = <span class="keyword">function</span>() {
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        context.save();
+        <span class="keyword">var</span> numPoints = <span class="keyword">this</span>.numTeeth * <span class="number">2</span>;
+        <span class="comment">// draw gear teeth</span>
+        context.beginPath();
+        context.lineJoin = <span class="string">'bevel'</span>;
+        <span class="keyword">for</span>(<span class="keyword">var</span> n = <span class="number">0</span>; n &lt; numPoints; n++) {
+
+          <span class="keyword">var</span> radius = <span class="literal">null</span>;
+
+          <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>) {
+            radius = <span class="keyword">this</span>.outerRadius;
+          }
+          <span class="keyword">else</span> {
+            radius = <span class="keyword">this</span>.innerRadius;
+          }
+
+          <span class="keyword">var</span> theta = <span class="keyword">this</span>.theta;
+          theta += ((Math.PI * <span class="number">2</span>) / numPoints) * (n + <span class="number">1</span>);
+
+          <span class="keyword">var</span> x = (radius * Math.sin(theta)) + <span class="keyword">this</span>.x;
+          <span class="keyword">var</span> y = (radius * Math.cos(theta)) + <span class="keyword">this</span>.y;
+
+          <span class="keyword">if</span>(n == <span class="number">0</span>) {
+            context.moveTo(x, y);
+          }
+          <span class="keyword">else</span> {
+            context.lineTo(x, y);
+          }
+        }
+
+        context.closePath();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear body</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.midRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+
+        <span class="keyword">var</span> grd = context.createLinearGradient(<span class="keyword">this</span>.x - <span class="number">100</span>, <span class="keyword">this</span>.y - <span class="number">100</span>, <span class="keyword">this</span>.x + <span class="number">100</span>, <span class="keyword">this</span>.y + <span class="number">100</span>);
+        grd.addColorStop(<span class="number">0</span>, <span class="keyword">this</span>.lightColor);
+        grd.addColorStop(<span class="number">1</span>, <span class="keyword">this</span>.darkColor);
+        context.fillStyle = grd;
+        context.fill();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear hole</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.holeRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+        context.fillStyle = <span class="string">'white'</span>;
+        context.fill();
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+        context.restore();
+      };
+      <span class="function"><span class="keyword">function</span> <span class="title">animate</span><span class="params">(gears, lastTime)</span> {</span>
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        <span class="comment">// update</span>
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        <span class="keyword">var</span> timeDiff = time - lastTime;
+
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          <span class="keyword">var</span> gear = gears[i];
+
+          <span class="keyword">if</span>(gears[i].clockwise) {
+            gears[i].theta -= (gear.thetaSpeed * timeDiff);
+          }
+          <span class="keyword">else</span> {
+            gears[i].theta += (gear.thetaSpeed * timeDiff);
+          }
+        }
+
+        <span class="comment">// clear</span>
+        context.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+
+        <span class="comment">// draw</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          gears[i].draw();
+        }
+
+        <span class="keyword">if</span>(_stopAnimation === <span class="literal">true</span>) <span class="keyword">return</span>;
+
+        <span class="comment">// request new frame</span>
+        requestAnimFrame(<span class="keyword">function</span>() {
+          animate(gears, time);
+        });
+      }
+      <span class="keyword">var</span> gears = [];
+
+      <span class="comment">// green gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">0</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">170</span>,
+        innerRadius: <span class="number">100</span>,
+        midRadius: <span class="number">160</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">48</span>,
+        theta: <span class="number">2</span>,
+        thetaSpeed: <span class="number">0.5</span>,
+        lightColor: <span class="string">'#8AFF99'</span>,
+        darkColor: <span class="string">'#005C06'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">// orange gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">192</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">28</span>,
+        innerRadius: <span class="number">5</span>,
+        midRadius: <span class="number">18</span>,
+        holeRadius: <span class="number">7</span>,
+        numTeeth: <span class="number">6</span>,
+        theta: <span class="number">2</span>,
+        thetaSpeed: <span class="number">3</span>,
+        lightColor: <span class="string">'#FFDD87'</span>,
+        darkColor: <span class="string">'#D25D00'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// red gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">265</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">50</span>,
+        innerRadius: <span class="number">15</span>,
+        midRadius: <span class="number">40</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">12</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">2.2</span>,
+        lightColor: <span class="string">'#FF9E9D'</span>,
+        darkColor: <span class="string">'#AD0825'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">// blue gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">399</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">1.1</span>,
+        lightColor: <span class="string">'#B1CCFF'</span>,
+        darkColor: <span class="string">'#3959CC'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">/*
+       *  Stop Animation
+       */</span>
+       <span class="keyword">var</span> _stopAnimation = <span class="literal">false</span>;
+
+       <span class="function"><span class="keyword">function</span> <span class="title">stopAnimation</span><span class="params">()</span>{</span>
+         _stopAnimation = <span class="literal">true</span>;
+       }
+
+     <span class="comment">/*
+      *  Start Animation
+      */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">startAnimation</span><span class="params">()</span>{</span>
+        _stopAnimation = <span class="literal">false</span>;
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        animate(gears, time);
+      }
+
+      document.getElementById(<span class="string">"start-btn"</span>).onclick = startAnimation;
+      document.getElementById(<span class="string">"stop-btn"</span>).onclick = stopAnimation;
+
+      (<span class="function"><span class="keyword">function</span> <span class="title">oneDraw</span><span class="params">()</span>{</span>
+        startAnimation();
+        stopAnimation();
+      })();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div>
+    </div>
+  </li>
+  <li>Inserir outras engrenagens não alinhadas
+    <div class="row">
+      <div class="col-lg-12"><iframe src="/experiences/canvas/canvas01_m3.html" class="col-lg-12" height="270" seamless></iframe>
+        <p><a href="#gears3" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p></div>
+      <div id="gears3" class="col-lg-12 code"><pre class="highlighted"><code class="xml"> <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+      <span class="tag">body</span> <span class="rules">{
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+      <span class="rule">}</span></span>
+    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"myCanvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"250"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"start-btn"</span>&gt;</span>Start<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"stop-btn"</span>&gt;</span>Stop<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+      window.requestAnimFrame = <span class="keyword">new</span> <span class="keyword">function</span>(callback) {
+        <span class="keyword">return</span>(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame);
+      };
+
+      <span class="comment">/*
+       * Gear constructor
+       */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">Gear</span><span class="params">(config)</span> {</span>
+        <span class="keyword">var</span> self = <span class="keyword">this</span>;
+        <span class="keyword">this</span>.x = config.x;
+        <span class="keyword">this</span>.y = config.y;
+        <span class="keyword">this</span>.outerRadius = config.outerRadius;
+        <span class="keyword">this</span>.innerRadius = config.innerRadius;
+        <span class="keyword">this</span>.midRadius = config.midRadius;
+        <span class="keyword">this</span>.holeRadius = config.holeRadius;
+        <span class="keyword">this</span>.numTeeth = config.numTeeth;
+        <span class="keyword">this</span>.theta = config.theta;
+        <span class="keyword">this</span>.thetaSpeed = config.thetaSpeed / <span class="number">1000</span>;
+        <span class="keyword">this</span>.lightColor = config.lightColor;
+        <span class="keyword">this</span>.darkColor = config.darkColor;
+        <span class="keyword">this</span>.clockwise = config.clockwise;
+        <span class="keyword">this</span>.cb = config.cb;
+      }
+
+      <span class="comment">/*
+       * Gear draw method
+       */</span>
+      Gear.prototype.draw = <span class="keyword">function</span>() {
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        context.save();
+        <span class="keyword">var</span> numPoints = <span class="keyword">this</span>.numTeeth * <span class="number">2</span>;
+        <span class="comment">// draw gear teeth</span>
+        context.beginPath();
+        context.lineJoin = <span class="string">'bevel'</span>;
+        <span class="keyword">for</span>(<span class="keyword">var</span> n = <span class="number">0</span>; n &lt; numPoints; n++) {
+
+          <span class="keyword">var</span> radius = <span class="literal">null</span>;
+
+          <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>) {
+            radius = <span class="keyword">this</span>.outerRadius;
+          }
+          <span class="keyword">else</span> {
+            radius = <span class="keyword">this</span>.innerRadius;
+          }
+
+          <span class="keyword">var</span> theta = <span class="keyword">this</span>.theta;
+          theta += ((Math.PI * <span class="number">2</span>) / numPoints) * (n + <span class="number">1</span>);
+
+          <span class="keyword">var</span> x = (radius * Math.sin(theta)) + <span class="keyword">this</span>.x;
+          <span class="keyword">var</span> y = (radius * Math.cos(theta)) + <span class="keyword">this</span>.y;
+
+          <span class="keyword">if</span>(n == <span class="number">0</span>) {
+            context.moveTo(x, y);
+          }
+          <span class="keyword">else</span> {
+            context.lineTo(x, y);
+          }
+        }
+
+        context.closePath();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear body</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.midRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+
+        <span class="keyword">var</span> grd = context.createLinearGradient(<span class="keyword">this</span>.x - <span class="number">100</span>, <span class="keyword">this</span>.y - <span class="number">100</span>, <span class="keyword">this</span>.x + <span class="number">100</span>, <span class="keyword">this</span>.y + <span class="number">100</span>);
+        grd.addColorStop(<span class="number">0</span>, <span class="keyword">this</span>.lightColor);
+        grd.addColorStop(<span class="number">1</span>, <span class="keyword">this</span>.darkColor);
+        context.fillStyle = grd;
+        context.fill();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear hole</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.holeRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+        context.fillStyle = <span class="string">'white'</span>;
+        context.fill();
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+        context.restore();
+      };
+
+      
+      <span class="comment">/*
+       *  Gears
+       */</span>
+      <span class="keyword">var</span> gears = [];
+
+      <span class="comment">// green gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">0</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">170</span>,
+        innerRadius: <span class="number">100</span>,
+        midRadius: <span class="number">160</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">48</span>,
+        theta: <span class="number">2</span>,
+        thetaSpeed: <span class="number">0.5</span>,
+        lightColor: <span class="string">'#8AFF99'</span>,
+        darkColor: <span class="string">'#005C06'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">// orange gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">192</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">28</span>,
+        innerRadius: <span class="number">5</span>,
+        midRadius: <span class="number">18</span>,
+        holeRadius: <span class="number">7</span>,
+        numTeeth: <span class="number">6</span>,
+        theta: <span class="number">2</span>,
+        thetaSpeed: <span class="number">3</span>,
+        lightColor: <span class="string">'#FFDD87'</span>,
+        darkColor: <span class="string">'#D25D00'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// red gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">265</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">50</span>,
+        innerRadius: <span class="number">15</span>,
+        midRadius: <span class="number">40</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">12</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">2.2</span>,
+        lightColor: <span class="string">'#FF9E9D'</span>,
+        darkColor: <span class="string">'#AD0825'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">// blue gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">399</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">1.1</span>,
+        lightColor: <span class="string">'#B1CCFF'</span>,
+        darkColor: <span class="string">'#3959CC'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// black gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">215</span>,
+        y: <span class="number">230</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0.22</span>,
+        thetaSpeed: <span class="number">1</span>,
+        lightColor: <span class="string">'rgb(121, 121, 121)'</span>,
+        darkColor: <span class="string">'#000000'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// multicolor gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">215</span>,
+        y: <span class="number">230</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0.22</span>,
+        thetaSpeed: <span class="number">1</span>,
+        lightColor: <span class="string">'rgb(148, 29, 153)'</span>,
+        darkColor: <span class="string">'rgb(103, 15, 107)'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+
+      <span class="comment">// red gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">490</span>,
+        y: <span class="number">190</span>,
+        outerRadius: <span class="number">50</span>,
+        innerRadius: <span class="number">15</span>,
+        midRadius: <span class="number">40</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">12</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">2.2</span>,
+        lightColor: <span class="string">'rgb(94,94,94)'</span>,
+        darkColor: <span class="string">'rgb(0,0,0)'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">/*
+       *  Animate
+       */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">animate</span><span class="params">(gears, lastTime)</span> {</span>
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        <span class="comment">// update</span>
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        <span class="keyword">var</span> timeDiff = time - lastTime;
+
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          <span class="keyword">var</span> gear = gears[i];
+
+          <span class="keyword">if</span>(gears[i].clockwise) {
+            gears[i].theta -= (gear.thetaSpeed * timeDiff);
+          }
+          <span class="keyword">else</span> {
+            gears[i].theta += (gear.thetaSpeed * timeDiff);
+          }
+        }
+
+        <span class="comment">// clear</span>
+        context.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+
+        <span class="comment">// draw</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          gears[i].draw();
+
+          <span class="comment">//update Properties</span>
+          <span class="keyword">if</span>(gears[i].cb) gears[i].cb(Date.now());
+        }
+        
+        <span class="keyword">if</span>(_stopAnimation === <span class="literal">true</span>) <span class="keyword">return</span>;
+        
+        <span class="comment">// request new frame</span>
+        <span class="comment">//requestAnimFrame(function() { animate(gears, time); });</span>
+        setTimeout(<span class="keyword">function</span>() {
+          animate(gears, time);
+        }, <span class="number">2000</span>/<span class="number">60</span>);
+      }
+
+      <span class="comment">/*
+       *  Stop Animation
+       */</span>
+       <span class="keyword">var</span> _stopAnimation = <span class="literal">false</span>;
+
+       <span class="function"><span class="keyword">function</span> <span class="title">stopAnimation</span><span class="params">()</span>{</span>
+         _stopAnimation = <span class="literal">true</span>;
+       }
+
+     <span class="comment">/*
+      *  Start Animation
+      */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">startAnimation</span><span class="params">()</span>{</span>
+        _stopAnimation = <span class="literal">false</span>;
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        animate(gears, time);
+      }
+
+      document.getElementById(<span class="string">"start-btn"</span>).onclick = startAnimation;
+      document.getElementById(<span class="string">"stop-btn"</span>).onclick = stopAnimation;
+    
+      (<span class="function"><span class="keyword">function</span> <span class="title">oneDraw</span><span class="params">()</span>{</span>
+        startAnimation();
+        stopAnimation();
+      })();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div>
+    </div>
+  </li>
+  <li>Alterar a cor das engrenagens
+    <div class="row">
+      <div class="col-lg-12"><iframe src="/experiences/canvas/canvas01_m4.html" class="col-lg-12" height="270" seamless></iframe>
+      <p><a href="#gears4" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p></div>
+      <div id="gears4" class="col-lg-12 code"><pre class="highlighted"><code class="xml"> <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+      <span class="tag">body</span> <span class="rules">{
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+      <span class="rule">}</span></span>
+    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"myCanvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"250"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"start-btn"</span>&gt;</span>Start<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"stop-btn"</span>&gt;</span>Stop<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+      window.requestAnimFrame = <span class="keyword">new</span> <span class="keyword">function</span>(callback) {
+        <span class="keyword">return</span>(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame);
+      };
+
+      <span class="comment">/*
+       * Gear constructor
+       */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">Gear</span><span class="params">(config)</span> {</span>
+        <span class="keyword">var</span> self = <span class="keyword">this</span>;
+        <span class="keyword">this</span>.x = config.x;
+        <span class="keyword">this</span>.y = config.y;
+        <span class="keyword">this</span>.outerRadius = config.outerRadius;
+        <span class="keyword">this</span>.innerRadius = config.innerRadius;
+        <span class="keyword">this</span>.midRadius = config.midRadius;
+        <span class="keyword">this</span>.holeRadius = config.holeRadius;
+        <span class="keyword">this</span>.numTeeth = config.numTeeth;
+        <span class="keyword">this</span>.theta = config.theta;
+        <span class="keyword">this</span>.thetaSpeed = config.thetaSpeed / <span class="number">1000</span>;
+        <span class="keyword">this</span>.lightColor = config.lightColor;
+        <span class="keyword">this</span>.darkColor = config.darkColor;
+        <span class="keyword">this</span>.clockwise = config.clockwise;
+        <span class="keyword">this</span>.cb = config.cb;
+      }
+
+      <span class="comment">/*
+       * Gear draw method
+       */</span>
+      Gear.prototype.draw = <span class="keyword">function</span>() {
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        context.save();
+        <span class="keyword">var</span> numPoints = <span class="keyword">this</span>.numTeeth * <span class="number">2</span>;
+        <span class="comment">// draw gear teeth</span>
+        context.beginPath();
+        context.lineJoin = <span class="string">'bevel'</span>;
+        <span class="keyword">for</span>(<span class="keyword">var</span> n = <span class="number">0</span>; n &lt; numPoints; n++) {
+
+          <span class="keyword">var</span> radius = <span class="literal">null</span>;
+
+          <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>) {
+            radius = <span class="keyword">this</span>.outerRadius;
+          }
+          <span class="keyword">else</span> {
+            radius = <span class="keyword">this</span>.innerRadius;
+          }
+
+          <span class="keyword">var</span> theta = <span class="keyword">this</span>.theta;
+          theta += ((Math.PI * <span class="number">2</span>) / numPoints) * (n + <span class="number">1</span>);
+
+          <span class="keyword">var</span> x = (radius * Math.sin(theta)) + <span class="keyword">this</span>.x;
+          <span class="keyword">var</span> y = (radius * Math.cos(theta)) + <span class="keyword">this</span>.y;
+
+          <span class="keyword">if</span>(n == <span class="number">0</span>) {
+            context.moveTo(x, y);
+          }
+          <span class="keyword">else</span> {
+            context.lineTo(x, y);
+          }
+        }
+
+        context.closePath();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear body</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.midRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+
+        <span class="keyword">var</span> grd = context.createLinearGradient(<span class="keyword">this</span>.x - <span class="number">100</span>, <span class="keyword">this</span>.y - <span class="number">100</span>, <span class="keyword">this</span>.x + <span class="number">100</span>, <span class="keyword">this</span>.y + <span class="number">100</span>);
+        grd.addColorStop(<span class="number">0</span>, <span class="keyword">this</span>.lightColor);
+        grd.addColorStop(<span class="number">1</span>, <span class="keyword">this</span>.darkColor);
+        context.fillStyle = grd;
+        context.fill();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear hole</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.holeRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+        context.fillStyle = <span class="string">'white'</span>;
+        context.fill();
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+        context.restore();
+      };
+
+      
+      <span class="comment">/*
+       *  Gears
+       */</span>
+      <span class="keyword">var</span> gears = [];
+
+      <span class="comment">// green gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">0</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">170</span>,
+        innerRadius: <span class="number">100</span>,
+        midRadius: <span class="number">160</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">48</span>,
+        theta: <span class="number">2</span>,
+        thetaSpeed: <span class="number">0.5</span>,
+        lightColor: <span class="string">'#ab6'</span>,
+        darkColor: <span class="string">'#ac4'</span>,
+        clockwise: <span class="literal">true</span>,
+        cb: <span class="keyword">function</span>(time){
+          <span class="keyword">if</span>(!<span class="keyword">this</span>.cbLastTime){ <span class="keyword">this</span>.cbLastTime = Date.now(); <span class="keyword">return</span>; }
+          
+          <span class="keyword">if</span>(Date.now() - <span class="keyword">this</span>.cbLastTime &lt; <span class="number">135</span>) <span class="keyword">return</span>;
+          <span class="keyword">else</span> <span class="keyword">this</span>.cbLastTime =  Date.now();
+
+          <span class="keyword">var</span> d = <span class="keyword">this</span>.darkColor.match(<span class="string">'#'</span>) ? parseInt(<span class="keyword">this</span>.darkColor.replace(<span class="string">'#'</span>,<span class="string">''</span>),<span class="number">16</span>) : <span class="string">"aaa"</span>;
+          <span class="keyword">if</span>(parseInt(d) &lt; parseInt(<span class="string">'fff'</span>, <span class="number">16</span>)){
+            d++; <span class="keyword">this</span>.darkColor = <span class="string">'#'</span> + d.toString(<span class="number">16</span>);
+          } <span class="keyword">else</span> <span class="keyword">this</span>.darkColor = <span class="string">'#aaa'</span>;
+        }
+      }));
+
+      <span class="comment">// orange gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">192</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">28</span>,
+        innerRadius: <span class="number">5</span>,
+        midRadius: <span class="number">18</span>,
+        holeRadius: <span class="number">7</span>,
+        numTeeth: <span class="number">6</span>,
+        theta: <span class="number">2</span>,
+        thetaSpeed: <span class="number">3</span>,
+        lightColor: <span class="string">'#bfe'</span>,
+        darkColor: <span class="string">'#ba1'</span>,
+        clockwise: <span class="literal">false</span>,
+        cb: <span class="keyword">function</span>(time){
+          <span class="keyword">if</span>(!<span class="keyword">this</span>.cbLastTime){ <span class="keyword">this</span>.cbLastTime = Date.now(); <span class="keyword">return</span>; }
+          
+          <span class="keyword">if</span>(Date.now() - <span class="keyword">this</span>.cbLastTime &lt; <span class="number">130</span>) <span class="keyword">return</span>;
+          <span class="keyword">else</span> <span class="keyword">this</span>.cbLastTime =  Date.now();
+
+          <span class="keyword">var</span> d = <span class="keyword">this</span>.darkColor.match(<span class="string">'#'</span>) ? parseInt(<span class="keyword">this</span>.darkColor.replace(<span class="string">'#'</span>,<span class="string">''</span>),<span class="number">16</span>) : <span class="string">"aaa"</span>;
+          <span class="keyword">if</span>(parseInt(d) &lt; parseInt(<span class="string">'fff'</span>, <span class="number">16</span>)){
+            d++; <span class="keyword">this</span>.darkColor = <span class="string">'#'</span> + d.toString(<span class="number">16</span>);
+          } <span class="keyword">else</span> <span class="keyword">this</span>.darkColor = <span class="string">'#aaa'</span>;
+        }
+      }));
+
+      <span class="comment">// red gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">265</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">50</span>,
+        innerRadius: <span class="number">15</span>,
+        midRadius: <span class="number">40</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">12</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">2.2</span>,
+        lightColor: <span class="string">'#cbe'</span>,
+        darkColor: <span class="string">'#cab'</span>,
+        clockwise: <span class="literal">true</span>,
+        cb: <span class="keyword">function</span>(time){
+          <span class="keyword">if</span>(!<span class="keyword">this</span>.cbLastTime){ <span class="keyword">this</span>.cbLastTime = Date.now(); <span class="keyword">return</span>; }
+          
+          <span class="keyword">if</span>(Date.now() - <span class="keyword">this</span>.cbLastTime &lt; <span class="number">120</span>) <span class="keyword">return</span>;
+          <span class="keyword">else</span> <span class="keyword">this</span>.cbLastTime =  Date.now();
+
+          <span class="keyword">var</span> d = <span class="keyword">this</span>.darkColor.match(<span class="string">'#'</span>) ? parseInt(<span class="keyword">this</span>.darkColor.replace(<span class="string">'#'</span>,<span class="string">''</span>),<span class="number">16</span>) : <span class="string">"aaa"</span>;
+          <span class="keyword">if</span>(parseInt(d) &lt; parseInt(<span class="string">'fff'</span>, <span class="number">16</span>)){
+            d++; <span class="keyword">this</span>.darkColor = <span class="string">'#'</span> + d.toString(<span class="number">16</span>);
+          } <span class="keyword">else</span> <span class="keyword">this</span>.darkColor = <span class="string">'#aaa'</span>;
+        }
+      }));
+
+      <span class="comment">// blue gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">399</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">1.1</span>,
+        lightColor: <span class="string">'#da1'</span>,
+        darkColor: <span class="string">'#da8'</span>,
+        clockwise: <span class="literal">false</span>,
+        cb: <span class="keyword">function</span>(time){
+          <span class="keyword">if</span>(!<span class="keyword">this</span>.cbLastTime){ <span class="keyword">this</span>.cbLastTime = Date.now(); <span class="keyword">return</span>; }
+          
+          <span class="keyword">if</span>(Date.now() - <span class="keyword">this</span>.cbLastTime &lt; <span class="number">115</span>) <span class="keyword">return</span>;
+          <span class="keyword">else</span> <span class="keyword">this</span>.cbLastTime =  Date.now();
+
+          <span class="keyword">var</span> d = <span class="keyword">this</span>.darkColor.match(<span class="string">'#'</span>) ? parseInt(<span class="keyword">this</span>.darkColor.replace(<span class="string">'#'</span>,<span class="string">''</span>),<span class="number">16</span>) : <span class="string">"aaa"</span>;
+          <span class="keyword">if</span>(parseInt(d) &lt; parseInt(<span class="string">'fff'</span>, <span class="number">16</span>)){
+            d++; <span class="keyword">this</span>.darkColor = <span class="string">'#'</span> + d.toString(<span class="number">16</span>);
+          } <span class="keyword">else</span> <span class="keyword">this</span>.darkColor = <span class="string">'#aaa'</span>;
+        }
+      }));
+
+      <span class="comment">// black gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">215</span>,
+        y: <span class="number">230</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0.22</span>,
+        thetaSpeed: <span class="number">1</span>,
+        lightColor: <span class="string">'#efa'</span>,
+        darkColor: <span class="string">'#ea7'</span>,
+        clockwise: <span class="literal">false</span>,
+        cb: <span class="keyword">function</span>(time){
+          <span class="keyword">if</span>(!<span class="keyword">this</span>.cbLastTime){ <span class="keyword">this</span>.cbLastTime = Date.now(); <span class="keyword">return</span>; }
+          
+          <span class="keyword">if</span>(Date.now() - <span class="keyword">this</span>.cbLastTime &lt; <span class="number">110</span>) <span class="keyword">return</span>;
+          <span class="keyword">else</span> <span class="keyword">this</span>.cbLastTime =  Date.now();
+
+          <span class="keyword">var</span> d = <span class="keyword">this</span>.darkColor.match(<span class="string">'#'</span>) ? parseInt(<span class="keyword">this</span>.darkColor.replace(<span class="string">'#'</span>,<span class="string">''</span>),<span class="number">16</span>) : <span class="string">"aaa"</span>;
+          <span class="keyword">if</span>(parseInt(d) &lt; parseInt(<span class="string">'fff'</span>, <span class="number">16</span>)){
+            d++; <span class="keyword">this</span>.darkColor = <span class="string">'#'</span> + d.toString(<span class="number">16</span>);
+          } <span class="keyword">else</span> <span class="keyword">this</span>.darkColor = <span class="string">'#aaa'</span>;
+        }
+      }));
+
+      <span class="comment">// multicolor gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">215</span>,
+        y: <span class="number">230</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0.22</span>,
+        thetaSpeed: <span class="number">1</span>,
+        lightColor: <span class="string">'#f1d'</span>,
+        darkColor: <span class="string">'#fad'</span>,
+        clockwise: <span class="literal">false</span>,
+        cb: <span class="keyword">function</span>(time){
+          <span class="keyword">if</span>(!<span class="keyword">this</span>.cbLastTime){ <span class="keyword">this</span>.cbLastTime = Date.now(); <span class="keyword">return</span>; }
+          
+          <span class="keyword">if</span>(Date.now() - <span class="keyword">this</span>.cbLastTime &lt; <span class="number">105</span>) <span class="keyword">return</span>;
+          <span class="keyword">else</span> <span class="keyword">this</span>.cbLastTime =  Date.now();
+
+          <span class="keyword">var</span> d = <span class="keyword">this</span>.darkColor.match(<span class="string">'#'</span>) ? parseInt(<span class="keyword">this</span>.darkColor.replace(<span class="string">'#'</span>,<span class="string">''</span>),<span class="number">16</span>) : <span class="string">"aaa"</span>;
+          <span class="keyword">if</span>(parseInt(d) &lt; parseInt(<span class="string">'fff'</span>, <span class="number">16</span>)){
+            d++; <span class="keyword">this</span>.darkColor = <span class="string">'#'</span> + d.toString(<span class="number">16</span>);
+          } <span class="keyword">else</span> <span class="keyword">this</span>.darkColor = <span class="string">'#aaa'</span>;
+        }
+      }));
+
+
+      <span class="comment">// red gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">490</span>,
+        y: <span class="number">190</span>,
+        outerRadius: <span class="number">50</span>,
+        innerRadius: <span class="number">15</span>,
+        midRadius: <span class="number">40</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">12</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">2.2</span>,
+        lightColor: <span class="string">'#fea'</span>,
+        darkColor: <span class="string">'#fda'</span>,
+        clockwise: <span class="literal">true</span>,
+        cb: <span class="keyword">function</span>(time){
+          <span class="keyword">if</span>(!<span class="keyword">this</span>.cbLastTime){ <span class="keyword">this</span>.cbLastTime = Date.now(); <span class="keyword">return</span>; }
+          
+          <span class="keyword">if</span>(Date.now() - <span class="keyword">this</span>.cbLastTime &lt; <span class="number">100</span>) <span class="keyword">return</span>;
+          <span class="keyword">else</span> <span class="keyword">this</span>.cbLastTime =  Date.now();
+
+          <span class="keyword">var</span> d = <span class="keyword">this</span>.darkColor.match(<span class="string">'#'</span>) ? parseInt(<span class="keyword">this</span>.darkColor.replace(<span class="string">'#'</span>,<span class="string">''</span>),<span class="number">16</span>) : <span class="string">"aaa"</span>;
+          <span class="keyword">if</span>(parseInt(d) &lt; parseInt(<span class="string">'fff'</span>, <span class="number">16</span>)){
+            d++; <span class="keyword">this</span>.darkColor = <span class="string">'#'</span> + d.toString(<span class="number">16</span>);
+          } <span class="keyword">else</span> <span class="keyword">this</span>.darkColor = <span class="string">'#aaa'</span>;
+        }
+      }));
+
+      <span class="comment">/*
+       *  Animate
+       */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">animate</span><span class="params">(gears, lastTime)</span> {</span>
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        <span class="comment">// update</span>
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        <span class="keyword">var</span> timeDiff = time - lastTime;
+
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          <span class="keyword">var</span> gear = gears[i];
+
+          <span class="keyword">if</span>(gears[i].clockwise) {
+            gears[i].theta -= (gear.thetaSpeed * timeDiff);
+          }
+          <span class="keyword">else</span> {
+            gears[i].theta += (gear.thetaSpeed * timeDiff);
+          }
+        }
+
+        <span class="comment">// clear</span>
+        context.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+
+        <span class="comment">// draw</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          gears[i].draw();
+
+          <span class="comment">//update Properties</span>
+          <span class="keyword">if</span>(gears[i].cb) gears[i].cb(Date.now());
+        }
+
+        <span class="keyword">if</span>(_stopAnimation === <span class="literal">true</span>) <span class="keyword">return</span>;
+        
+        <span class="comment">// request new frame</span>
+        <span class="comment">//requestAnimFrame(function() { animate(gears, time); });</span>
+        setTimeout(<span class="keyword">function</span>() {
+          animate(gears, time);
+        }, <span class="number">2000</span>/<span class="number">60</span>);
+      }
+      <span class="comment">/*
+       *  Stop Animation
+       */</span>
+       <span class="keyword">var</span> _stopAnimation = <span class="literal">false</span>;
+
+       <span class="function"><span class="keyword">function</span> <span class="title">stopAnimation</span><span class="params">()</span>{</span>
+         _stopAnimation = <span class="literal">true</span>;
+       }
+
+     <span class="comment">/*
+      *  Start Animation
+      */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">startAnimation</span><span class="params">()</span>{</span>
+        _stopAnimation = <span class="literal">false</span>;
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        animate(gears, time);
+      }
+
+      document.getElementById(<span class="string">"start-btn"</span>).onclick = startAnimation;
+      document.getElementById(<span class="string">"stop-btn"</span>).onclick = stopAnimation;
+    
+      (<span class="function"><span class="keyword">function</span> <span class="title">oneDraw</span><span class="params">()</span>{</span>
+        startAnimation();
+        stopAnimation();
+      })();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div>
+    </div>
+  </li>
+  <li>Alterar o tamanho de, pelo menos, uma engrenagem
+    <div class="row">
+      <div class="col-lg-12"><iframe src="/experiences/canvas/canvas01_m5.html" class="col-lg-12" height="270" seamless></iframe>
+        <p><a href="#gears5" class="btn btn-primary show-code"><i class="icon-code"></i> Exibir código</a></p>
+      </div>
+      <div id="gears5" class="col-lg-12 code"><pre class="highlighted"><code class="xml"> <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+      <span class="tag">body</span> <span class="rules">{
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+      <span class="rule">}</span></span>
+    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"myCanvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"250"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"start-btn"</span>&gt;</span>Start<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"stop-btn"</span>&gt;</span>Stop<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+      window.requestAnimFrame = <span class="keyword">new</span> <span class="keyword">function</span>(callback) {
+        <span class="keyword">return</span>(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame);
+      };
+
+      <span class="comment">/*
+       * Gear constructor
+       */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">Gear</span><span class="params">(config)</span> {</span>
+        <span class="keyword">var</span> self = <span class="keyword">this</span>;
+        <span class="keyword">this</span>.x = config.x;
+        <span class="keyword">this</span>.y = config.y;
+        <span class="keyword">this</span>.outerRadius = config.outerRadius;
+        <span class="keyword">this</span>.innerRadius = config.innerRadius;
+        <span class="keyword">this</span>.midRadius = config.midRadius;
+        <span class="keyword">this</span>.holeRadius = config.holeRadius;
+        <span class="keyword">this</span>.numTeeth = config.numTeeth;
+        <span class="keyword">this</span>.theta = config.theta;
+        <span class="keyword">this</span>.thetaSpeed = config.thetaSpeed / <span class="number">1000</span>;
+        <span class="keyword">this</span>.lightColor = config.lightColor;
+        <span class="keyword">this</span>.darkColor = config.darkColor;
+        <span class="keyword">this</span>.clockwise = config.clockwise;
+        <span class="keyword">this</span>.cb = config.cb;
+      }
+
+      <span class="comment">/*
+       * Gear draw method
+       */</span>
+      Gear.prototype.draw = <span class="keyword">function</span>() {
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        context.save();
+        <span class="keyword">var</span> numPoints = <span class="keyword">this</span>.numTeeth * <span class="number">2</span>;
+        <span class="comment">// draw gear teeth</span>
+        context.beginPath();
+        context.lineJoin = <span class="string">'bevel'</span>;
+        <span class="keyword">for</span>(<span class="keyword">var</span> n = <span class="number">0</span>; n &lt; numPoints; n++) {
+
+          <span class="keyword">var</span> radius = <span class="literal">null</span>;
+
+          <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>) {
+            radius = <span class="keyword">this</span>.outerRadius;
+          }
+          <span class="keyword">else</span> {
+            radius = <span class="keyword">this</span>.innerRadius;
+          }
+
+          <span class="keyword">var</span> theta = <span class="keyword">this</span>.theta;
+          theta += ((Math.PI * <span class="number">2</span>) / numPoints) * (n + <span class="number">1</span>);
+
+          <span class="keyword">var</span> x = (radius * Math.sin(theta)) + <span class="keyword">this</span>.x;
+          <span class="keyword">var</span> y = (radius * Math.cos(theta)) + <span class="keyword">this</span>.y;
+
+          <span class="keyword">if</span>(n == <span class="number">0</span>) {
+            context.moveTo(x, y);
+          }
+          <span class="keyword">else</span> {
+            context.lineTo(x, y);
+          }
+        }
+
+        context.closePath();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear body</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.midRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+
+        <span class="keyword">var</span> grd = context.createLinearGradient(<span class="keyword">this</span>.x - <span class="number">100</span>, <span class="keyword">this</span>.y - <span class="number">100</span>, <span class="keyword">this</span>.x + <span class="number">100</span>, <span class="keyword">this</span>.y + <span class="number">100</span>);
+        grd.addColorStop(<span class="number">0</span>, <span class="keyword">this</span>.lightColor);
+        grd.addColorStop(<span class="number">1</span>, <span class="keyword">this</span>.darkColor);
+        context.fillStyle = grd;
+        context.fill();
+        context.lineWidth = <span class="number">5</span>;
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+
+        <span class="comment">// draw gear hole</span>
+        context.beginPath();
+        context.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.holeRadius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+        context.fillStyle = <span class="string">'white'</span>;
+        context.fill();
+        context.strokeStyle = <span class="keyword">this</span>.darkColor;
+        context.stroke();
+        context.restore();
+      };
+
+      
+      <span class="comment">/*
+       *  Gears
+       */</span>
+      <span class="keyword">var</span> gears = [];
+
+      <span class="comment">// green gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">133</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">35</span>,
+        innerRadius: <span class="number">5</span>,
+        midRadius: <span class="number">25</span>,
+        holeRadius: <span class="number">7</span>,
+        numTeeth: <span class="number">6</span>,
+        theta: <span class="number">3</span>,
+        thetaSpeed: <span class="number">2</span>,
+        lightColor: <span class="string">'#8AFF99'</span>,
+        darkColor: <span class="string">'#005C06'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">// orange gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">192</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">28</span>,
+        innerRadius: <span class="number">5</span>,
+        midRadius: <span class="number">18</span>,
+        holeRadius: <span class="number">7</span>,
+        numTeeth: <span class="number">6</span>,
+        theta: <span class="number">2</span>,
+        thetaSpeed: <span class="number">3</span>,
+        lightColor: <span class="string">'#FFDD87'</span>,
+        darkColor: <span class="string">'#D25D00'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// red gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">265</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">50</span>,
+        innerRadius: <span class="number">15</span>,
+        midRadius: <span class="number">40</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">12</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">2.2</span>,
+        lightColor: <span class="string">'#FF9E9D'</span>,
+        darkColor: <span class="string">'#AD0825'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">// blue gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">399</span>,
+        y: <span class="number">90</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">1.1</span>,
+        lightColor: <span class="string">'#B1CCFF'</span>,
+        darkColor: <span class="string">'#3959CC'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// black gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">215</span>,
+        y: <span class="number">230</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0.22</span>,
+        thetaSpeed: <span class="number">1</span>,
+        lightColor: <span class="string">'rgb(121, 121, 121)'</span>,
+        darkColor: <span class="string">'#000000'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+      <span class="comment">// multicolor gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">215</span>,
+        y: <span class="number">230</span>,
+        outerRadius: <span class="number">90</span>,
+        innerRadius: <span class="number">50</span>,
+        midRadius: <span class="number">80</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">24</span>,
+        theta: <span class="number">0.22</span>,
+        thetaSpeed: <span class="number">1</span>,
+        lightColor: <span class="string">'rgb(148, 29, 153)'</span>,
+        darkColor: <span class="string">'rgb(103, 15, 107)'</span>,
+        clockwise: <span class="literal">false</span>
+      }));
+
+
+      <span class="comment">// red gear</span>
+      gears.push(<span class="keyword">new</span> Gear({
+        x: <span class="number">490</span>,
+        y: <span class="number">190</span>,
+        outerRadius: <span class="number">50</span>,
+        innerRadius: <span class="number">15</span>,
+        midRadius: <span class="number">40</span>,
+        holeRadius: <span class="number">10</span>,
+        numTeeth: <span class="number">12</span>,
+        theta: <span class="number">0.1</span>,
+        thetaSpeed: <span class="number">2.2</span>,
+        lightColor: <span class="string">'rgb(94,94,94)'</span>,
+        darkColor: <span class="string">'rgb(0,0,0)'</span>,
+        clockwise: <span class="literal">true</span>
+      }));
+
+      <span class="comment">/*
+       *  Animate
+       */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">animate</span><span class="params">(gears, lastTime)</span> {</span>
+        <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'myCanvas'</span>);
+        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+        <span class="comment">// update</span>
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        <span class="keyword">var</span> timeDiff = time - lastTime;
+
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          <span class="keyword">var</span> gear = gears[i];
+
+          <span class="keyword">if</span>(gears[i].clockwise) {
+            gears[i].theta -= (gear.thetaSpeed * timeDiff);
+          }
+          <span class="keyword">else</span> {
+            gears[i].theta += (gear.thetaSpeed * timeDiff);
+          }
+        }
+
+        <span class="comment">// clear</span>
+        context.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+
+        <span class="comment">// draw</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; gears.length; i++) {
+          gears[i].draw();
+
+          <span class="comment">//update Properties</span>
+          <span class="keyword">if</span>(gears[i].cb) gears[i].cb(Date.now());
+        }
+        
+        <span class="keyword">if</span>(_stopAnimation === <span class="literal">true</span>) <span class="keyword">return</span>;
+        
+        <span class="comment">// request new frame</span>
+        <span class="comment">//requestAnimFrame(function() { animate(gears, time); });</span>
+        setTimeout(<span class="keyword">function</span>() {
+          animate(gears, time);
+        }, <span class="number">2000</span>/<span class="number">60</span>);
+      }
+
+      <span class="comment">/*
+       *  Stop Animation
+       */</span>
+       <span class="keyword">var</span> _stopAnimation = <span class="literal">false</span>;
+
+       <span class="function"><span class="keyword">function</span> <span class="title">stopAnimation</span><span class="params">()</span>{</span>
+         _stopAnimation = <span class="literal">true</span>;
+       }
+
+     <span class="comment">/*
+      *  Start Animation
+      */</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">startAnimation</span><span class="params">()</span>{</span>
+        _stopAnimation = <span class="literal">false</span>;
+        <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime();
+        animate(gears, time);
+      }
+
+      document.getElementById(<span class="string">"start-btn"</span>).onclick = startAnimation;
+      document.getElementById(<span class="string">"stop-btn"</span>).onclick = stopAnimation;
+    
+      (<span class="function"><span class="keyword">function</span> <span class="title">oneDraw</span><span class="params">()</span>{</span>
+        startAnimation();
+        stopAnimation();
+      })();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div>
+    </div>
+  </li>
+</ol>
+<script type="text/javascript">
+var btns = document.getElementsByClassName("show-code");
+for(var i=0; i< btns.length;i++){
+  btns[i].addEventListener("click", showCode, false);
+}
+
+function showCode(e){
+  var id = e.target.hash.replace('#','');
+  document.getElementById(id).style.display="block";
+}
+</script></div>
+</article>
+
+<footer>
+	
+</footer>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+		</footer>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script>
+</body>
+</html>

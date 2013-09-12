@@ -10,6 +10,9 @@
   </head>
   <body>
     <canvas id="myCanvas" width="578" height="250"></canvas>
+    <button id="start-btn">Start</button>
+    <button id="stop-btn">Stop</button>
+
     <script>
       window.requestAnimFrame = (function(callback) {
         return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
@@ -99,6 +102,11 @@
         context.stroke();
         context.restore();
       };
+
+
+      /*
+       *  Animation
+       */ 
       function animate(gears, lastTime) {
         var canvas = document.getElementById('myCanvas');
         var context = canvas.getContext('2d');
@@ -126,11 +134,14 @@
           gears[i].draw();
         }
 
+        if(_stopAnimation === true) return;
+
         // request new frame
         requestAnimFrame(function() {
           animate(gears, time);
         });
       }
+      
       var gears = [];
 
       // blue gear
@@ -197,9 +208,31 @@
         clockwise: true
       }));
 
-      var time = (new Date()).getTime();
-      animate(gears, time);
+      /*
+       *  Stop Animation
+       */
+       var _stopAnimation = false;
 
+       function stopAnimation(){
+         _stopAnimation = true;
+       }
+
+     /*
+      *  Start Animation
+      */
+      function startAnimation(){
+        _stopAnimation = false;
+        var time = (new Date()).getTime();
+        animate(gears, time);
+      }
+
+      document.getElementById("start-btn").onclick = startAnimation;
+      document.getElementById("stop-btn").onclick = stopAnimation;
+
+      (function oneDraw(){
+        startAnimation();
+        stopAnimation();
+      })();
     </script>
   </body>
 </html>

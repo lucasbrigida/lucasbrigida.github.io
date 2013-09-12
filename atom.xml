@@ -3,7 +3,7 @@
 	<title>Lucas P. Brígida</title>
 	<link href="http://lucasbrigida.github.io/atom.xml" rel="self"/>
 	<link href="http://lucasbrigida.github.io"/>
-	<updated>2013-09-12T01:40:13.565Z</updated>
+	<updated>2013-09-12T09:40:04.517Z</updated>
 	<id>http://lucasbrigida.github.io</id>
 	<author>
 		<name>Lucas P. Brígida</name>
@@ -52,7 +52,7 @@
 	&lt;![endif]--&gt;
 
 	&lt;!-- Styles --&gt;
-	&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/twitter-bootstrap.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/style.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css&quot; /&gt;
+	&lt;link  rel=&quot;stylesheet&quot; href=&quot;//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/twitter-bootstrap.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/style.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/vendor/highlightjs/monokai_sublime.css&quot; /&gt;
 &lt;/head&gt;
 &lt;body&gt;
 	&lt;!-- Menu --&gt;
@@ -171,7 +171,7 @@
 	&lt;![endif]--&gt;
 
 	&lt;!-- Styles --&gt;
-	&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/twitter-bootstrap.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/style.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css&quot; /&gt;
+	&lt;link  rel=&quot;stylesheet&quot; href=&quot;//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/twitter-bootstrap.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/style.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/vendor/highlightjs/monokai_sublime.css&quot; /&gt;
 &lt;/head&gt;
 &lt;body&gt;
 	&lt;!-- Menu --&gt;
