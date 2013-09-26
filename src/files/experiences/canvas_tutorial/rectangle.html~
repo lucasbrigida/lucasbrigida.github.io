@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rectangle Demo | Collie library</title>
+	<script type="text/javascript" src="/experiences/canvas_tutorial/libs/collie/collie.min.js"></script>
+</head>
+<body>    
+	<div id="container" class="container"></div>
+	<script type="text/javascript">
+	    var layer = new collie.Layer({
+	        width : 300,
+	        height : 300
+	    });
+	     
+	    var box = new collie.DisplayObject({
+	        width : 50,
+	        height : 50,
+	        x : 10,
+	        y : 10,
+	        backgroundColor : 'red'
+	    }).addTo(layer);
+	     
+	    collie.Renderer.addLayer(layer);
+	    collie.Renderer.load(document.getElementById("container"));
+	    collie.Renderer.start();
+	</script>
+</body>
+</html>

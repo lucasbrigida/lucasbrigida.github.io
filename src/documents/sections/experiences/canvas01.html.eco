@@ -4,8 +4,6 @@ layout: experience
 sections: ['experiences']
 tags: ['canvas', 'gears']
 ---
-<!-- Hide source codes -->
-<style type="text/css">.code{display: none;}</style>
 
 <h4>Exemplo</h4>
 <iframe src="/experiences/canvas/canvas01.html" class="col-lg-12" height="260" seamless></iframe>
@@ -53,14 +51,3 @@ tags: ['canvas', 'gears']
     </div>
   </li>
 </ol>
-<script type="text/javascript">
-var btns = document.getElementsByClassName("show-code");
-for(var i=0; i< btns.length;i++){
-  btns[i].addEventListener("click", showCode, false);
-}
-
-function showCode(e){
-  var id = e.target.hash.replace('#','');
-  document.getElementById(id).style.display="block";
-}
-</script>

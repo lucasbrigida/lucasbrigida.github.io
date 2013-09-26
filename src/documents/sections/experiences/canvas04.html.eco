@@ -1,0 +1,147 @@
+---
+title: Experimento com canvas - cilindro
+layout: experience
+sections: ['experiences']
+tags: ['canvas', 'tutorial']
+---
+
+<div class="container">
+	<h3><i class="icon-beaker"></i> Cilindro</h3>
+	<p>Baseando nesse <a href="http://www.html5canvastutorials.com/three/html5-canvas-webgl-cylinder-with-three-js" target="_blank">exemplo</a> de animação de um cilindro utilizando <a href="http://threejs.org/" target="_blank"> Three.js</a>, iremos fazer o cilindro ficar em outra perspectiva e direcionar um feixe luz à ele.</p>
+
+	<h4>Primeiro passo</h4>
+	<p>Iremos remover as seguintes linhas.</p>
+	<pre><code class="lang-javascript">
+	...
+	var timeDiff = time - lastTime;
+	var angleChange = angularSpeed * timeDiff * 2 * Math.PI / 1000;
+	cylinder.rotation.x += angleChange;
+	cylinder.rotation.z += angleChange;
+	</code></pre>
+
+	<h4>Segundo passo</h4>
+	<p>Iremos mudar a perspectiva da câmera. Substitua o trecho abaixo</p>
+	<pre><code class="lang-javascript">
+	...
+	// camera
+	var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+	</code></pre>
+
+	por esse
+	<pre><code class="lang-javascript">
+	...
+	// camera
+	var camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 1000);
+	</code></pre>
+
+	<h4>Terceiro passo</h4>
+	<p>Iremos modificar a cor do cilindro, rotaciona-lo e em seguida direcionar uma luz.</p>
+	<pre><code class="lang-javascript">
+	...
+	var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(100, 100, 400, 50, 50, false), new THREE.MeshNormalMaterial());
+	cylinder.overdraw = true;
+	scene.add(cylinder);
+
+	// start animation
+	animate();
+	</code></pre>
+
+	por esse
+	<pre><code class="lang-javascript">
+	var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(100, 100, 400, 50, 50, false), new THREE.MeshPhongMaterial({
+	// light
+	specular: '#CA978A',
+	// intermediate
+	color: '#D3755D',
+	// dark
+	emissive: '#E45C3A',
+	shininess: 100 
+	}));
+	cylinder.overdraw = true;
+	cylinder.rotation.x = 11;
+	cylinder.rotation.z = 4;
+
+	scene.add(cylinder);
+
+	// add subtle ambient lighting
+	var ambientLight = new THREE.AmbientLight(0x222222);
+	scene.add(ambientLight);
+
+	// directional lighting
+	var directionalLight = new THREE.DirectionalLight(0xffffff);
+	directionalLight.position.set(1, 1, 1).normalize();
+	scene.add(directionalLight);
+
+	// start animation
+	animate();
+	</code></pre>
+
+	<h4>Resultado</h4>	
+	<p><i class="icon-code"></i> <a href="#cylinder" class="show-code">Código-fonte</a></p>
+	<div id="cylinder" class="code">
+		<pre><code class="lang-javascript">// revolutions per second
+	var angularSpeed = 0.2; 
+	var lastTime = 0;
+
+	// this function is executed on each animation frame
+	function animate(){
+	// update
+	var time = (new Date()).getTime();
+	lastTime = time;
+
+	// render
+	renderer.render(scene, camera);
+
+	// request new frame
+	requestAnimationFrame(function(){
+	    animate();
+	});
+	}
+
+	// renderer
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	document.body.appendChild(renderer.domElement);
+
+	// camera
+	var camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 1000);
+	camera.position.z = 700;
+
+	// scene
+	var scene = new THREE.Scene();
+	        
+	// cylinder
+	// API: THREE.CylinderGeometry(bottomRadius, topRadius, height, segmentsRadius, segmentsHeight)
+	var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(100, 100, 400, 50, 50, false), new THREE.MeshPhongMaterial({
+	// light
+	specular: '#CA978A',
+	// intermediate
+	color: '#D3755D',
+	// dark
+	emissive: '#E45C3A',
+	shininess: 100 
+	}));
+	cylinder.overdraw = true;
+	cylinder.rotation.x = 11;
+	cylinder.rotation.z = 4;
+
+	scene.add(cylinder);
+
+	// add subtle ambient lighting
+	var ambientLight = new THREE.AmbientLight(0x222222);
+	scene.add(ambientLight);
+
+	// directional lighting
+	var directionalLight = new THREE.DirectionalLight(0xffffff);
+	directionalLight.position.set(1, 1, 1).normalize();
+	scene.add(directionalLight);
+
+	// start animation
+	animate();
+		</code></pre>
+	</div>
+
+	<strong>Screenshot</strong>
+	<p><img class="col-lg-12" src="/experiences/canvas/img/canvas03.png"></p>
+	<p><a href="/experiences/canvas/canvas03.html" target="_blank" class="btn btn-primary"><i class="icon-eye-open"></i> Exibir resultado</a></p>
+</div>

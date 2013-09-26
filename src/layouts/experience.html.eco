@@ -2,6 +2,9 @@
 layout: default
 ---
 
+<!-- Hide source codes -->
+<style type="text/css">.code{display: none;}</style>
+
 <article id="post" class="post">
 	<h1><%= @document.title %></h1>
 	<div class="post-content"><%- @content %></div>
@@ -21,3 +24,24 @@ layout: default
 	</section>
 	<% end %>
 </footer>
+
+<!-- Toggle Source Codes -->
+<script type="text/javascript">
+(function(document){
+	var btns = document.getElementsByClassName("show-code");
+	for(var i=0; i< btns.length;i++){
+	  btns[i].addEventListener("click", function (e){
+	  	  var elem = document.getElementById(e.target.hash.replace('#',''));
+
+	  	  if(elem.getAttribute("hide-code") === null || elem.getAttribute("hide-code") === "true"){
+	  	  	elem.style.display="block";
+	  	  	elem.setAttribute("hide-code", "false");
+	  	  }
+	  	  else if(elem.getAttribute("hide-code") === "false"){
+	  	  	elem.style.display="none";
+	  	  	elem.setAttribute("hide-code", "true");
+	  	  }
+	  },false);
+	}
+})(document);
+</script>

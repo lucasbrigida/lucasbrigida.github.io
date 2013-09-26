@@ -1,0 +1,100 @@
+---
+title: Getting Start with Canvas
+layout: experience
+sections: ['experiences']
+tags: ['canvas', 'tutorial']
+---
+
+<div class="container">
+	<h3><i class="icon-comment-alt"></i> O que é Canvas</h3>
+	<p><blockquote> É uma especificação que define o contexto 2D no browser, implementando um elemento HTML que provê métodos e propriedades e métodos para desenhar e manipular gráficos.
+	- <a href="http://www.w3.org/TR/2dcontext/"> W3C 2D Context</a></blockquote></p>
+
+	<p><blockquote>Canvas é um elemento da HTML5 destinado a delimitar uma área para renderização dinâmica de gráficos. Todo o trabalho de criação e animação é realizado atráves de linguagens de programação dinâmica (usualmente Javascript).O elemento foi originalmente introduzido pela Apple Inc. para o navegador Safari. As aplicações da Mozilla ganharam suporte ao canvas começando pelo Gecko 1.8 (Firefox 1.5). O Internet Explorer possui suporte ao elemento a partir da versão 10. Para adicionar suporte as versões anteriores desse navegador, basta incluir um script feito pela Google chamado Explorer Canvas. Google Chrome e Opera também suportam o canvas. -<a href="http://pt.wikipedia.org/wiki/Canvas_(HTML5)"> Wikipedia</a></blockquote></p>
+</div>
+
+<div class="container">
+	<h3><i class="icon-wrench"></i> Funções Básicas</h3>
+</div>
+
+<div class="container">
+	<h3><i class="icon-wrench"></i> Funções Avançadas</h3>
+</div>
+
+<div class="container">
+	<h3><i class="icon-book"></i> Bibliotecas</h3>
+	<p>As bibliotecas para desenvolvimento de aplicações em Canvas tornam a manipulação de objetos primitivos(quadrado, círculo, triângulo, retângulo) mais intuitiva e prática além de permitir o uso de recursos físicos(simulação de gravidade e monitoramento de colisão). É importante salientar que para aplicações com um nível de complexidade pequeno não é recomendado o uso de bibliotecas pois será um gasto de recursos computacionais desnecessário. Existem dois tipos de bibliotecas para desenvolvimento de aplicações e jogos, especificamente para jogos podemos dividi-las em "game makers libraries" e "game engine libraries".</p>
+
+	<h4>Game makers Libraries</h4>
+	<p>Estas bibliotecas permitem o desenvolvimento rápido de aplicações, disponibilizando elementos gráficos prontos para o desenvolvedor, porém deixa o desenvolvimento limitado aos recursos que a biblioteca oferece. Um ótimo "game maker" é o <a href="https://www.scirra.com/construct2">Construct 2</a>.</p>
+
+	<h4>Game engine libraries</h4>
+	<p>São bibliotecas que oferecem em sua maioria suporte para desenvolvimento de aplicações em 2D e 3D, com suporte para carregamento de conteúdo, sprites de imagem e áudio, recursos físicos(colisão) e objetos primitivos prontos(círculo, quadrado e etc).</p>
+
+	<div>
+		<h4>Bibliotecas populares</h4>
+		<p><iframe src="http://html5gameengine.com/" class="col-lg-12" height="600"></iframe>
+			via <a href="http://html5gameengine.com/" target="_blank">HTML5 Engine</a>
+		</p>
+	</div>
+
+	<div>
+		<h4>Bibliotecas recomendadas (Game engines)</h4>
+		<p><ul>
+			<li><a href="http://jindo.dev.naver.com/collie/" target="_blank">Collie</a></li>
+			<li><a href="http://craftyjs.com/" target="_blank">Crafty</a></li>
+			<li><a href="http://canvace.com/" target="_blank">Canvace</a></li>
+			<li><a href="http://ocanvas.org/" target="_blank">oCanvas</a></li>
+			<li><a href="http://kineticjs.com/" target="_blank">KinecticJS</a></li>
+			<li><a href="http://www.cocos2d-x.org/wiki/Cocos2d-html5" target="_blank">Cocos-2D-HTML5</a></li>
+			<li><a href="https://github.com/bebraw/jswiki/wiki/Game-Engines" target="_blank">Mais bibliotecas</a></li>
+		</ul>
+		</p>
+	</div>
+
+	<div>
+		<h4>Iniciando em canvas usando biblioteca</h4>
+		
+		<strong>Collie</strong>
+		<ul>
+			<li><a href="#rectangle" class="show-code">Criando um quadrado</a>
+				<div id="rectangle" class="code">
+					<iframe src="/experiences/canvas_tutorial/rectangle.html" class="col-lg-12"></iframe>
+					<pre><code class="lang-html"> <%- @include("experiences/canvas_tutorial/rectangle.html") %></code></pre>
+				</div>
+			</li>
+			<li><a href="#background-repeat" class="show-code">Repetindo plano de fundo</a>
+				<div id="background-repeat" class="code">
+					<iframe src="/experiences/canvas_tutorial/background-repeat.html" class="col-lg-12" height="360"></iframe>
+					<pre><code class="lang-html"> <%- @include("experiences/canvas_tutorial/background-repeat.html") %></code></pre>
+				</div>
+			</li>
+		</ul>
+
+		<strong>Crafty</strong>
+		<ul>
+			<li><a href="#pong" class="show-code">Pong</a>
+				<div id="pong" class="code">
+					<iframe src="/experiences/canvas_tutorial/pong.html" class="col-lg-12" height="300"></iframe>
+					<pre><code class="lang-html"> <%- @include("experiences/canvas_tutorial/pong.html") %></code></pre>
+				</div>
+			</li>
+			<li><a href="#village-game" class="show-code">Village Game</a>
+				<div id="village-game" class="code">
+					<p>Leia o <a href="http://buildnewgames.com/introduction-to-crafty/" target="_blank">tutorial</a> passo a passo de como criar o jogo.</p>
+					<p><a href=""> Baixar código-fonte</a> ou <a href="http://buildnewgames.com/assets/article//introduction-to-crafty/tut_bng/index.html" target="_blank">Jogue online</a></p>
+				</div>
+			</li>
+		</ul>
+		<p>Para conhecer melhor a biblioteca(<a href="http://jindo.dev.naver.com/collie">Collie</a>)</p>
+	</div>
+
+</div>
+
+<div class="container">
+	<h3><i class="icon-legal"></i> Conclusões</h3>
+</div>
+
+<div class="container">
+	<h3><i class="icon-bookmark"></i> Referências</h3>
+</div>
