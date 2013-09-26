@@ -5,8 +5,19 @@ layout: page
 
 <nav class="linklist">
   <% for document in @getCollection('codes').toJSON(): %>
-    <li><span><%= document.date.toDateString() %></span>
-    &raquo;
-    <a href="<%= document.url %>"><%= document.title %></a></li>
-  <% end %>
+		<li class="list-unstyled">
+			<div class="col-lg-8">
+				<h4><a href="<%= document.url %>"> <%= document.title %></a></h4>
+				<small><time><%= document.date.toDateString() %></time></small>
+			</div>
+			<div class="row">
+				<div class="col-lg-8">
+					<% if(document.banner): %>
+					<div class="col-lg-3"><img src="/blog/images/banner/<%=document.banner%>" width="150"></div>
+					<% end %>
+					<div><%= document.description%>. <a href="<%= document.url %>">Leia mais</a></div>
+				</div>
+			</div>
+		</li>
+	<% end %>
 </nav>
