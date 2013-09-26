@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Background Repeat Demo | Collie library</title>
+	<script type="text/javascript" src="/experiences/canvas_tutorial/libs/collie/collie.min.js"></script>
+</head>
+<body>
+	<div id="container" class="container"></div>
+	<button id="start-btn">Iniciar</button>
+	<script type="text/javascript">
+	var layer = new collie.Layer({
+		width : 300,
+		height : 300
+	});
+	collie.ImageManager.add({
+		"ground" : "/experiences/canvas_tutorial/img/background-repeat/ground.png",
+		"sky" : "/experiences/canvas_tutorial/img/background-repeat/sky.png"
+	});
+	var oBackground = new collie.DisplayObject({
+		x : 0,
+		y : 0,
+		width : 300,
+		height : 300,
+		backgroundRepeat : "repeat", // Repeat X-Axis
+		backgroundImage : "sky"
+	}).addTo(layer);
+	var oGround = new collie.DisplayObject({
+		x : 0,
+		width : 320 * 2, // Using Double width for continuously horizontal move.
+		height : 88,
+		velocityX : -80,
+		backgroundRepeat : "repeat-x", // Repeat X-Axis
+		rangeX : [-320, 0], // This object can move from first position to second position.
+		positionRepeat : true, // This object move the other side when It's on one end of the edge.
+		backgroundImage : "ground"
+	}).bottom(0).addTo(layer);
+
+	collie.Renderer.addLayer(layer);
+	collie.Renderer.load(document.getElementById("container"));
+	//collie.Renderer.start();
+	</script>
+
+	<!-- Start/pause animation -->
+	<script type="text/javascript">
+		document.getElementById("start-btn").addEventListener("click", function(e){
+			var elem = e.target;
+
+			if(elem.getAttribute("started") === null || elem.getAttribute("started") === "false"){
+				collie.Renderer.start();
+				elem.textContent = "Parar";
+				elem.setAttribute("started", "true");	
+			} else {
+				collie.Renderer.stop();
+				elem.textContent = "Iniciar";
+				elem.setAttribute("started", "false");
+			}
+		}, false);
+	</script>
+</body>
+</html>

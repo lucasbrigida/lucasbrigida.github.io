@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Getting Start with Canvas | Lucas P. Brígida</title>
+	<meta name="description" content="Lucas P. Brígida personal website." />
+	<meta name="keywords" content="It's place where I publish my ideas, codes, news and projects." />
+	<meta name="author" content="Lucas P. Brígida" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.52.1" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+		<link rel="shortcut icon" href="images/icons/favicon.ico">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" /><link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/vendor/highlightjs/monokai_sublime.css" />
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><i class="icon-home"></i></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/pages/about"><i class="icon-user"></i> About me</a></li>
+					<li><a href="/pages/blog"><i class="icon-pencil"></i> Blog</a></li>	
+					<li><a href="/pages/experiences"><i class="icon-beaker"></i> Experiences</a></li>	
+					<li><a href="/pages/codes"><i class="icon-terminal"></i> Tricks & codes</a></li>
+					<li><a href="//github.com/lucasbrigida" alt="github" target="_blank"><i class="icon-github-alt"></i></a></li>	
+				</ul>
+			</div><!--/.navbar-collapse -->
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<!-- Hide source codes -->
+<style type="text/css">.code{display: none;}</style>
+
+<article id="post" class="post">
+	<h1>Getting Start with Canvas</h1>
+	<div class="post-content"><div class="container">
+	<h3><i class="icon-comment-alt"></i> O que é Canvas</h3>
+	<p><blockquote> É uma especificação que define o contexto 2D no browser, implementando um elemento HTML que provê métodos e propriedades e métodos para desenhar e manipular gráficos.
+	- <a href="http://www.w3.org/TR/2dcontext/"> W3C 2D Context</a></blockquote></p>
+
+	<p><blockquote>Canvas é um elemento da HTML5 destinado a delimitar uma área para renderização dinâmica de gráficos. Todo o trabalho de criação e animação é realizado atráves de linguagens de programação dinâmica (usualmente Javascript).O elemento foi originalmente introduzido pela Apple Inc. para o navegador Safari. As aplicações da Mozilla ganharam suporte ao canvas começando pelo Gecko 1.8 (Firefox 1.5). O Internet Explorer possui suporte ao elemento a partir da versão 10. Para adicionar suporte as versões anteriores desse navegador, basta incluir um script feito pela Google chamado Explorer Canvas. Google Chrome e Opera também suportam o canvas. -<a href="http://pt.wikipedia.org/wiki/Canvas_(HTML5)"> Wikipedia</a></blockquote></p>
+</div>
+
+<div class="container">
+	<h3><i class="icon-wrench"></i> Funções Básicas</h3>
+</div>
+
+<div class="container">
+	<h3><i class="icon-wrench"></i> Funções Avançadas</h3>
+</div>
+
+<div class="container">
+	<h3><i class="icon-book"></i> Bibliotecas</h3>
+	<p>As bibliotecas para desenvolvimento de aplicações em Canvas tornam a manipulação de objetos primitivos(quadrado, círculo, triângulo, retângulo) mais intuitiva e prática além de permitir o uso de recursos físicos(simulação de gravidade e monitoramento de colisão). É importante salientar que para aplicações com um nível de complexidade pequeno não é recomendado o uso de bibliotecas pois será um gasto de recursos computacionais desnecessário. Existem dois tipos de bibliotecas para desenvolvimento de aplicações e jogos, especificamente para jogos podemos dividi-las em "game makers libraries" e "game engine libraries".</p>
+
+	<h4>Game makers Libraries</h4>
+	<p>Estas bibliotecas permitem o desenvolvimento rápido de aplicações, disponibilizando elementos gráficos prontos para o desenvolvedor, porém deixa o desenvolvimento limitado aos recursos que a biblioteca oferece. Um ótimo "game maker" é o <a href="https://www.scirra.com/construct2">Construct 2</a>.</p>
+
+	<h4>Game engine libraries</h4>
+	<p>São bibliotecas que oferecem em sua maioria suporte para desenvolvimento de aplicações em 2D e 3D, com suporte para carregamento de conteúdo, sprites de imagem e áudio, recursos físicos(colisão) e objetos primitivos prontos(círculo, quadrado e etc).</p>
+
+	<div>
+		<h4>Bibliotecas populares</h4>
+		<p><iframe src="http://html5gameengine.com/" class="col-lg-12" height="600"></iframe>
+			via <a href="http://html5gameengine.com/" target="_blank">HTML5 Engine</a>
+		</p>
+	</div>
+
+	<div>
+		<h4>Bibliotecas recomendadas (Game engines)</h4>
+		<p><ul>
+			<li><a href="http://jindo.dev.naver.com/collie/" target="_blank">Collie</a></li>
+			<li><a href="http://craftyjs.com/" target="_blank">Crafty</a></li>
+			<li><a href="http://canvace.com/" target="_blank">Canvace</a></li>
+			<li><a href="http://ocanvas.org/" target="_blank">oCanvas</a></li>
+			<li><a href="http://kineticjs.com/" target="_blank">KinecticJS</a></li>
+			<li><a href="http://www.cocos2d-x.org/wiki/Cocos2d-html5" target="_blank">Cocos-2D-HTML5</a></li>
+			<li><a href="https://github.com/bebraw/jswiki/wiki/Game-Engines" target="_blank">Mais bibliotecas</a></li>
+		</ul>
+		</p>
+	</div>
+
+	<div>
+		<h4>Iniciando em canvas usando biblioteca</h4>
+		
+		<strong>Collie</strong>
+		<ul>
+			<li><a href="#rectangle" class="show-code">Criando um quadrado</a>
+				<div id="rectangle" class="code">
+					<iframe src="/experiences/canvas_tutorial/rectangle.html" class="col-lg-12"></iframe>
+					<pre class="highlighted"><code class="xml"> <span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Rectangle Demo | Collie library<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"/experiences/libs/collie/collie.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>    
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+        <span class="keyword">var</span> layer = <span class="keyword">new</span> collie.Layer({
+            width : <span class="number">300</span>,
+            height : <span class="number">300</span>
+        });
+         
+        <span class="keyword">var</span> box = <span class="keyword">new</span> collie.DisplayObject({
+            width : <span class="number">50</span>,
+            height : <span class="number">50</span>,
+            x : <span class="number">10</span>,
+            y : <span class="number">10</span>,
+            backgroundColor : <span class="string">'red'</span>
+        }).addTo(layer);
+         
+        collie.Renderer.addLayer(layer);
+        collie.Renderer.load(document.getElementById(<span class="string">"container"</span>));
+        collie.Renderer.start();
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</code></pre>
+				</div>
+			</li>
+			<li><a href="#background-repeat" class="show-code">Repetindo plano de fundo</a>
+				<div id="background-repeat" class="code">
+					<iframe src="/experiences/canvas_tutorial/background-repeat.html" class="col-lg-12" height="360"></iframe>
+					<pre class="highlighted"><code class="xml"> <span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Background Repeat Demo | Collie library<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"/experiences/libs/collie/collie.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"start-btn"</span>&gt;</span>Iniciar<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="keyword">var</span> layer = <span class="keyword">new</span> collie.Layer({
+        width : <span class="number">300</span>,
+        height : <span class="number">300</span>
+    });
+    collie.ImageManager.add({
+        <span class="string">"ground"</span> : <span class="string">"/experiences/canvas_tutorial/img/background-repeat/ground.png"</span>,
+        <span class="string">"sky"</span> : <span class="string">"/experiences/canvas_tutorial/img/background-repeat/sky.png"</span>
+    });
+    <span class="keyword">var</span> oBackground = <span class="keyword">new</span> collie.DisplayObject({
+        x : <span class="number">0</span>,
+        y : <span class="number">0</span>,
+        width : <span class="number">300</span>,
+        height : <span class="number">300</span>,
+        backgroundRepeat : <span class="string">"repeat"</span>, <span class="comment">// Repeat X-Axis</span>
+        backgroundImage : <span class="string">"sky"</span>
+    }).addTo(layer);
+    <span class="keyword">var</span> oGround = <span class="keyword">new</span> collie.DisplayObject({
+        x : <span class="number">0</span>,
+        width : <span class="number">320</span> * <span class="number">2</span>, <span class="comment">// Using Double width for continuously horizontal move.</span>
+        height : <span class="number">88</span>,
+        velocityX : -<span class="number">80</span>,
+        backgroundRepeat : <span class="string">"repeat-x"</span>, <span class="comment">// Repeat X-Axis</span>
+        rangeX : [-<span class="number">320</span>, <span class="number">0</span>], <span class="comment">// This object can move from first position to second position.</span>
+        positionRepeat : <span class="literal">true</span>, <span class="comment">// This object move the other side when It's on one end of the edge.</span>
+        backgroundImage : <span class="string">"ground"</span>
+    }).bottom(<span class="number">0</span>).addTo(layer);
+
+    collie.Renderer.addLayer(layer);
+    collie.Renderer.load(document.getElementById(<span class="string">"container"</span>));
+    <span class="comment">//collie.Renderer.start();</span>
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+
+    <span class="comment">&lt;!-- Start/pause animation --&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+        document.getElementById(<span class="string">"start-btn"</span>).addEventListener(<span class="string">"click"</span>, <span class="keyword">function</span>(e){
+            <span class="keyword">var</span> elem = e.target;
+
+            <span class="keyword">if</span>(elem.getAttribute(<span class="string">"started"</span>) === <span class="literal">null</span> || elem.getAttribute(<span class="string">"started"</span>) === <span class="string">"false"</span>){
+                collie.Renderer.start();
+                elem.textContent = <span class="string">"Parar"</span>;
+                elem.setAttribute(<span class="string">"started"</span>, <span class="string">"true"</span>);    
+            } <span class="keyword">else</span> {
+                collie.Renderer.stop();
+                elem.textContent = <span class="string">"Iniciar"</span>;
+                elem.setAttribute(<span class="string">"started"</span>, <span class="string">"false"</span>);
+            }
+        }, <span class="literal">false</span>);
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</code></pre>
+				</div>
+			</li>
+		</ul>
+
+		<strong>Crafty</strong>
+		<ul>
+			<li><a href="#pong" class="show-code">Pong</a>
+				<div id="pong" class="code">
+					<iframe src="/experiences/canvas_tutorial/pong.html" class="col-lg-12" height="300"></iframe>
+					<pre class="highlighted"><code class="xml"> <span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Pong Demo | Crafty<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"/experiences/libs/crafty/crafty-min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+        <span class="tag">body</span>, <span class="tag">html</span> <span class="rules">{ <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span>;</span></span> <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>;</span></span> <span class="rule"><span class="attribute">overflow</span>:<span class="value">hidden;</span></span> <span class="rule"><span class="attribute">font-family</span>:<span class="value">Arial;</span></span> <span class="rule"><span class="attribute">font-size</span>:<span class="value"><span class="number">20</span>px }</span></span></span>
+        <span class="id">#cr-stage</span> <span class="rules">{ <span class="rule"><span class="attribute">color</span>:<span class="value">white }</span></span></span>
+    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+    Crafty.init(<span class="number">600</span>, <span class="number">300</span>);
+    Crafty.background(<span class="string">'rgb(127,127,127)'</span>);
+
+    Crafty.scene(<span class="string">"game"</span>, <span class="keyword">function</span>() {
+        <span class="comment">//Paddles</span>
+        Crafty.e(<span class="string">"Paddle, 2D, DOM, Color, Multiway"</span>)
+            .color(<span class="string">'rgb(255,0,0)'</span>)
+            .attr({ x: <span class="number">20</span>, y: <span class="number">100</span>, w: <span class="number">10</span>, h: <span class="number">100</span> })
+            .multiway(<span class="number">4</span>, { W: -<span class="number">90</span>, S: <span class="number">90</span> });
+        Crafty.e(<span class="string">"Paddle, 2D, DOM, Color, Multiway"</span>)
+            .color(<span class="string">'rgb(0,255,0)'</span>)
+            .attr({ x: <span class="number">580</span>, y: <span class="number">100</span>, w: <span class="number">10</span>, h: <span class="number">100</span> })
+            .multiway(<span class="number">4</span>, { UP_ARROW: -<span class="number">90</span>, DOWN_ARROW: <span class="number">90</span> });
+
+        <span class="comment">//Ball</span>
+        Crafty.e(<span class="string">"2D, DOM, Color, Collision"</span>)
+            .color(<span class="string">'rgb(0,0,255)'</span>)
+            .attr({ x: <span class="number">300</span>, y: <span class="number">150</span>, w: <span class="number">10</span>, h: <span class="number">10</span>, 
+                    dX: Crafty.math.randomInt(<span class="number">2</span>, <span class="number">5</span>), 
+                    dY: Crafty.math.randomInt(<span class="number">2</span>, <span class="number">5</span>) })
+            .bind(<span class="string">'EnterFrame'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+                <span class="comment">//hit floor or roof</span>
+                <span class="keyword">if</span> (<span class="keyword">this</span>.y &lt;= <span class="number">0</span> || <span class="keyword">this</span>.y &gt;= <span class="number">290</span>)
+                    <span class="keyword">this</span>.dY *= -<span class="number">1</span>;
+
+                <span class="keyword">if</span> (<span class="keyword">this</span>.x &gt; <span class="number">600</span>) {
+                    <span class="keyword">this</span>.x = <span class="number">300</span>;
+                    Crafty(<span class="string">"LeftPoints"</span>).each(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span> 
+                        <span class="keyword">this</span>.text(++<span class="keyword">this</span>.points + <span class="string">" Points"</span>) });
+                }
+                <span class="keyword">if</span> (<span class="keyword">this</span>.x &lt; <span class="number">10</span>) {
+                    <span class="keyword">this</span>.x = <span class="number">300</span>;
+                    Crafty(<span class="string">"RightPoints"</span>).each(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span> 
+                        <span class="keyword">this</span>.text(++<span class="keyword">this</span>.points + <span class="string">" Points"</span>) });
+                }
+
+                <span class="keyword">this</span>.x += <span class="keyword">this</span>.dX;
+                <span class="keyword">this</span>.y += <span class="keyword">this</span>.dY;
+            })
+            .onHit(<span class="string">'Paddle'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+            <span class="keyword">this</span>.dX *= -<span class="number">1</span>;
+        })
+
+        <span class="comment">//Score boards</span>
+        Crafty.e(<span class="string">"LeftPoints, DOM, 2D, Text"</span>)
+            .attr({ x: <span class="number">20</span>, y: <span class="number">20</span>, w: <span class="number">100</span>, h: <span class="number">20</span>, points: <span class="number">0</span> })
+            .text(<span class="string">"0 Points"</span>);
+        Crafty.e(<span class="string">"RightPoints, DOM, 2D, Text"</span>)
+            .attr({ x: <span class="number">515</span>, y: <span class="number">20</span>, w: <span class="number">100</span>, h: <span class="number">20</span>, points: <span class="number">0</span> })
+            .text(<span class="string">"0 Points"</span>);
+    })
+    Crafty.e(<span class="string">"2D, DOM, Text"</span>).attr({x:<span class="number">250</span>, y:<span class="number">130</span>, w: <span class="number">300</span> }).text(<span class="string">"Click to play..."</span>);
+    Crafty.e(<span class="string">"2D, DOM, Mouse"</span>).attr({x:<span class="number">0</span>, y:<span class="number">0</span>, h:<span class="number">300</span>, w:<span class="number">600</span> }).bind(<span class="string">"Click"</span>, <span class="keyword">function</span>() { Crafty.scene(<span class="string">"game"</span>);})
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</code></pre>
+				</div>
+			</li>
+			<li><a href="#village-game" class="show-code">Village Game</a>
+				<div id="village-game" class="code">
+					<p>Leia o <a href="http://buildnewgames.com/introduction-to-crafty/" target="_blank">tutorial</a> passo a passo de como criar o jogo.</p>
+					<p><a href=""> Baixar código-fonte</a> ou <a href="http://buildnewgames.com/assets/article//introduction-to-crafty/tut_bng/index.html" target="_blank">Jogue online</a></p>
+				</div>
+			</li>
+		</ul>
+		<p>Para conhecer melhor a biblioteca(<a href="http://jindo.dev.naver.com/collie">Collie</a>)</p>
+	</div>
+
+</div>
+
+<div class="container">
+	<h3><i class="icon-legal"></i> Conclusões</h3>
+</div>
+
+<div class="container">
+	<h3><i class="icon-bookmark"></i> Referências</h3>
+</div></div>
+</article>
+
+<footer>
+	
+	<section id="related">
+		<h3>Related Posts</h3>
+		<nav class="linklist">
+			
+				<li><span>Wed Sep 25 2013</span>
+				&raquo;
+				<a href="/sections/experiences/canvas01">Playing with Canvas - Gears</a></li>
+			
+				<li><span>Wed Sep 25 2013</span>
+				&raquo;
+				<a href="/sections/experiences/canvas03">Experimento com canvas - cubo</a></li>
+			
+				<li><span>Wed Sep 25 2013</span>
+				&raquo;
+				<a href="/sections/experiences/canvas04">Experimento com canvas - cilindro</a></li>
+			
+		</nav>
+	</section>
+	
+</footer>
+
+<!-- Toggle Source Codes -->
+<script type="text/javascript">
+(function(document){
+	var btns = document.getElementsByClassName("show-code");
+	for(var i=0; i< btns.length;i++){
+	  btns[i].addEventListener("click", function (e){
+	  	  var elem = document.getElementById(e.target.hash.replace('#',''));
+
+	  	  if(elem.getAttribute("hide-code") === null || elem.getAttribute("hide-code") === "true"){
+	  	  	elem.style.display="block";
+	  	  	elem.setAttribute("hide-code", "false");
+	  	  }
+	  	  else if(elem.getAttribute("hide-code") === "false"){
+	  	  	elem.style.display="none";
+	  	  	elem.setAttribute("hide-code", "true");
+	  	  }
+	  },false);
+	}
+})(document);
+</script>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+		</footer>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script>
+</body>
+</html>
