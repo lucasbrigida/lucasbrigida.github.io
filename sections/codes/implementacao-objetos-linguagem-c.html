@@ -10,8 +10,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<!-- Our site title and description -->
-	<title>This is a Hello Blog Post | Lucas P. Brígida</title>
-	<meta name="description" content="Lucas P. Brígida personal website." />
+	<title>Implementação de objetos em linguagem C | Lucas P. Brígida</title>
+	<meta name="description" content="Os desenvolvedores hoje contam com inúmeras linguagens orientadas à objeto, como Java, Python, Ruby, Javascript. Mas como isso funciona, acho que boa parte dos desenvolvedores já fizeram esta pergunta e não souberam responder. Realizando algumas buscas descobri como métodos são adicionados em uma estrutura em C" />
 	<meta name="keywords" content="It's place where I publish my ideas, codes, news and projects." />
 	<meta name="author" content="Lucas P. Brígida" />
 
@@ -65,9 +65,30 @@
 		<!-- Content -->
 		<section id="content" class="content">
 			<article id="post" class="post">
-	<h1>This is a Hello Blog Post</h1>
-	<div class="post-content"><p>This is a hello <strong>blog post</strong></p>
-</div>
+	<h1>Implementação de objetos em linguagem C</h1>
+	<div class="post-content"><p>Os desenvolvedores hoje contam com inúmeras linguagens orientadas à objeto, como Java, Python, Ruby, Javascript. Mas como isso funciona, acho que boa parte dos desenvolvedores já fizeram esta pergunta e não souberam responder.
+Realizando algumas buscas descobri como métodos são adicionados em uma estrutura em C, linguagem base para desenvolvimento de interpretadores e compiladores de linguagens orientadas a objeto.</p>
+<pre class="highlighted"><code class="cpp"><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="keyword">void</span> name(){
+    printf(<span class="string">"Rex"</span>);
+}
+
+<span class="keyword">typedef</span> <span class="keyword">struct</span>{
+    <span class="keyword">char</span> *_name;
+    <span class="keyword">void</span> (*name)(<span class="keyword">void</span>);
+}Animal;
+
+
+<span class="keyword">int</span> main()
+{
+
+    Animal dog;
+    dog.name = &amp;name;
+    dog.name();
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre></div>
 
 	<!-- Disqus
 	-->
@@ -90,9 +111,9 @@
 		<h3>Related Posts</h3>
 		<nav class="linklist">
 			
-				<li><span>Tue Sep 10 2013</span>
+				<li><span>Thu Sep 26 2013</span>
 				&raquo;
-				<a href="/sections/blog/bye">This is a Goodbye Blog Post</a></li>
+				<a href="/sections/codes/callback-linguagem-c">Callback em linguagem C</a></li>
 			
 		</nav>
 	</section>

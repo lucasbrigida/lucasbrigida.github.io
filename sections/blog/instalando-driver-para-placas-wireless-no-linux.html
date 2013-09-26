@@ -10,8 +10,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<!-- Our site title and description -->
-	<title>Experiences | Lucas P. Brígida</title>
-	<meta name="description" content="Lucas P. Brígida personal website." />
+	<title>Instalando driver para placas wireless no linux | Lucas P. Brígida</title>
+	<meta name="description" content="Placas wireless sempre são problemas, quando não há suporte padrão em distribuições linux. Um tutorial rápido de como resolver este problema." />
 	<meta name="keywords" content="It's place where I publish my ideas, codes, news and projects." />
 	<meta name="author" content="Lucas P. Brígida" />
 
@@ -64,24 +64,55 @@
 	<div class="container">
 		<!-- Content -->
 		<section id="content" class="content">
-			<article id="page" class="page">
-	<h1>Experiences</h1>
-	<div class="page-content"><nav class="linklist">
-  
-	<li class="list-unstyled">
-      <h4><i class="icon-beaker"></i><a href="/sections/experiences/canvas03"> Experimento com canvas - cubo</a></h4>
-	
-	<li class="list-unstyled">
-      <h4><i class="icon-beaker"></i><a href="/sections/experiences/canvas04"> Experimento com canvas - cilindro</a></h4>
-	
-	<li class="list-unstyled">
-      <h4><i class="icon-beaker"></i><a href="/sections/experiences/canvas02"> Getting Start with Canvas</a></h4>
-	
-	<li class="list-unstyled">
-      <h4><i class="icon-beaker"></i><a href="/sections/experiences/canvas01"> Playing with Canvas - Gears</a></h4>
-	
-</nav></div>
+			<article id="post" class="post">
+	<h1>Instalando driver para placas wireless no linux</h1>
+	<div class="post-content"><p>Placas wireless sempre são problemas, quando não há suporte padrão em distribuições linux.</p>
+<p>Um tutorial rápido de como resolver este problema.</p>
+<h4>1º Passo</h4>
+<p>Abra o terminal, obtenha acesso de root com o comando “su” e execute:</p>
+<pre class="highlighted"><code class="bash">lshw -C network</code></pre>
+
+<p>Caso o programa não esteja instalado. Execute:</p>
+<pre class="highlighted"><code class="bash">apt-get install lshw</code></pre>
+
+<p>Após instalar, execute:,</p>
+<pre class="highlighted"><code class="bash">lswh -C network</code></pre>
+
+<p>Deverá aparecer as placas reconhecidas pelo sistema
+Na descrição de sua placa wireless, guarde o nome do módulo e do fabricante, vem logo após as palavras “product” e “vendor“. Acesse o site do fabricante do módulo e baixe o driver correspondente ao módulo.</p>
+<h4>2º Passo</h4>
+<p>Abra o terminal novamente e execute:</p>
+<pre class="highlighted"><code class="bash">su
+apt-get install ndiswrapper-utils-1.9
+apt-get install ndisgtk
+</code></pre>
+
+<h4>3º Passo</h4>
+<p>Após instalados, execute:</p>
+<p><pre class="highlighted"><code class="bash">ndisgtk</code></pre>
+Clique no botão instalar driver e escolha o arquivo correspondente ao driver (as extensões dos arquivos de driver geralmente são .inf .sys).</p>
+<p>Seu driver após este passo estará instalado com sucesso.</p>
+<p>Agora abra seu gerenciador de redes e espere até achar uma rede Wifi, caso o gerenciador não detecte a presença da placa reinice o sistema.</p>
+</div>
+
+	<!-- Disqus
+	-->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'lucaspereirabrigida'; // required: replace example with your forum shortname
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>  
 </article>
+
+<footer>
+	
+</footer>
 		</section>
 
 		<!-- Footer -->

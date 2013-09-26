@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Desenvolvendo aplicativos multiplataforma com phonegap | Lucas P. Brígida</title>
+	<meta name="description" content="Como o uso do PhoneGap pode ser muito melhor para a criação de aplicativos, ao invés de utilizarmos o SDK padrão do fabricante de cada SO? Em primeiro lugar está o custo para a compra de licenças e softwares para o desenvolvimento para os sistemas móveis que possuem maior número de usuários, em segundo lugar está a dificuldade em achar profissionais..." />
+	<meta name="keywords" content="It's place where I publish my ideas, codes, news and projects." />
+	<meta name="author" content="Lucas P. Brígida" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.52.1" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+		<link rel="shortcut icon" href="images/icons/favicon.ico">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" /><link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/vendor/highlightjs/monokai_sublime.css" />
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><i class="icon-home"></i></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/pages/about"><i class="icon-user"></i> About me</a></li>
+					<li><a href="/pages/blog"><i class="icon-pencil"></i> Blog</a></li>	
+					<li><a href="/pages/experiences"><i class="icon-beaker"></i> Experiences</a></li>	
+					<li><a href="/pages/codes"><i class="icon-terminal"></i> Tricks & codes</a></li>
+					<li><a href="//github.com/lucasbrigida" alt="github" target="_blank"><i class="icon-github-alt"></i></a></li>	
+				</ul>
+			</div><!--/.navbar-collapse -->
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="post" class="post">
+	<h1>Desenvolvendo aplicativos multiplataforma com phonegap</h1>
+	<div class="post-content"><center><img src="/blog/images/banner/diagram_web_tech.png"></center>
+
+<p>Ao começar a desenvolver uma aplicação para sistemas móveis é comum ficar na dúvida entre desenvolver um aplicativo para determinado sistema móvel ou um Web App (Página na web com layout para dispositivos móveis), para acabar com esta dúvida é necessário responder as seguintes perguntas:</p>
+<ul>
+<li><p>A aplicação necessita utilizar recursos diferentes de (localização e armazenamento) no aparelho do usuário?</p>
+</li>
+<li><p>A aplicação, possuirá demanda de informações pelo usuário mais de uma vez por semana?</p>
+</li>
+<li><p>O público alvo da aplicação, possui o costume de instalar aplicativos ou de acessar versões móveis de sites?</p>
+</li>
+</ul>
+<p>Caso a resposta para uma dessas perguntas seja negativa, provavelmente não será necessário criar um aplicativo para sistemas móveis, do contrário será interessante conhecer o <a href="http://phonegap.com/">PhoneGap</a>.</p>
+<p><center><iframe class="youtube-player" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/E0UV5i5jY50?version=3&amp;rel=1&amp;fs=1&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=1&amp;wmode=transparent" frameborder="0"></iframe></center><br></p>
+<p>PhoneGap é um framework de código livre desenvolvido pela <a href="http://www.adobe.com/aboutadobe/pressroom/pressreleases/201110/AdobeAcquiresNitobi.html">Nitobi</a>, com a função de “empacotar” uma aplicação web para os diversos sistemas operacionais móveis e permitindo o acesso da aplicação aos recursos nativos do sistemas através de uma API em javascript.
+Como o uso do PhoneGap pode ser muito melhor para a criação de aplicativos, ao invés de utilizarmos o SDK padrão do fabricante de cada SO? Em primeiro lugar está o custo para a compra de licenças e softwares para o desenvolvimento para os sistemas móveis que possuem maior número de usuários, em segundo lugar está a dificuldade em achar profissionais qualificados para desenvolver a mesma aplicação para os diversos sistemas com o mesmo nível de qualidade, em terceiro lugar, a falta uniformidade da aparência do aplicativo nos diferentes sistemas, podendo comprometer a “imagem” do produto e da empresa, em quarto e último lugar o tempo elevado de desenvolvimento e manutenção do produto.
+Com o PhoneGap para desenvolver um aplicativo é necessário apenas conhecer os padrões utilizados pela WEB, html5,css e javascript. Padrões muito bem conhecidos por desenvolvedores web, agregando um maior número de profissionais na área de desenvolvimento para dispositivos móveis, uma área do mercado de TI que anda aquecida na data presente.
+Na produção de aplicativos a preocupação com a Interface do usuário (UI), é muito importante para o perfil de usuários que utilizam esses dispositivos, para a criação da UI é comumente utilizado <a href="http://www.sencha.com/products/touch">Sencha Touch</a>, <a href="http://jquerymobile.com/">Jquery Mobile</a>, <a href="http://www.jqtouch.com/">JQtouch</a>, frameworks para produzir interfaces gráficas ricas que adequam-se as diferentes características dos dispositivos móveis.</p>
+<p>Todas as informações que recomendo a leitura estão abaixo em escala de prioridade. (Ordem crescente, de cima p/ baixo)</p>
+<ul>
+<li><p>Caso não conheça HTML5, CSS, JAVASCRIPT, JQuery, AJAX.</p>
+<ul>
+<li><a href="https://developer.mozilla.org/‎">Mozilla developer network</a></li>
+<li><a href="http://w3schools.com/">W3Schools</a></li>
+<li><a href="http://jquery.com/">JQuery</a></li>
+</ul>
+</li>
+<li><p>Mais sobre o uso do PhoneGap e UI frameworks.</p>
+<ul>
+<li><a href="http://www.thecodebakers.org/">Thecodebakers</a></li>
+<li><a href="http://itweb.com.br/blogs/construindo-mobile-apps-com-sencha-touch-2-e-phonegap-parte-10/">ITWeb (Zaedy Sayão)</a></li>
+<li><a href="http://www.sencha.com/products/touch">Sencha Touch</a></li>
+<li><a href="http://jquerymobile.com/">JQuery Mobile</a></li>
+<li><a href="http://www.jqtouch.com/">JQtouch</a>.</li>
+</ul>
+</li>
+<li><p>Configurando o ambiente de desenvolvimento.</p>
+<ul>
+<li><a href="http://nativebuild.com/2013/como-instalar-phonegap-no-ubuntu.html">http://nativebuild.com/2013/como-instalar-phonegap-no-ubuntu.html</a></li>
+</ul>
+</li>
+</ul>
+<p>Minha apresentação  sobre desenvolvimento de app com phonegap no We Web Conf 2012</p>
+<iframe src="http://www.slideshare.net/slideshow/embed_code/14753046" width="476" height="390" scrolling="no"></iframe>
+
+<ul>
+<li>Textos onde discute-se quando desenvolver uma aplicação com o código nativo ou com frameworks como o PhoneGap que disponibilizam uma WebView que provê acesso aos recursos dos dispositivos.</li>
+<li><a href="http://debulhado.wordpress.com/2012/05/01/na-crista-da-onda-web-mobile-apps-ou-native-apps/">http://debulhado.wordpress.com/2012/05/01/na-crista-da-onda-web-mobile-apps-ou-native-apps/</a></li>
+<li><a href="http://www.devmedia.com.br/phonegap-com-android-revista-mobile-magazine-39/23128">http://www.devmedia.com.br/phonegap-com-android-revista-mobile-magazine-39/23128</a></li>
+</ul>
+</div>
+
+	<!-- Disqus
+	-->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'lucaspereirabrigida'; // required: replace example with your forum shortname
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>  
+</article>
+
+<footer>
+	
+</footer>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+		</footer>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script>
+</body>
+</html>

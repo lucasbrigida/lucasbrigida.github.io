@@ -10,8 +10,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<!-- Our site title and description -->
-	<title>This is a Goodbye Blog Post | Lucas P. Brígida</title>
-	<meta name="description" content="Lucas P. Brígida personal website." />
+	<title>Callback em linguagem C | Lucas P. Brígida</title>
+	<meta name="description" content="Ultimamente tenho trabalhado com Node JS, e os conceitos de processamento assíncrono  do javascript em  uma event machine como a V8  são espetaculares no navegador e nativo com Node JS. Abordando apenas o conceito de callback" />
 	<meta name="keywords" content="It's place where I publish my ideas, codes, news and projects." />
 	<meta name="author" content="Lucas P. Brígida" />
 
@@ -65,9 +65,34 @@
 		<!-- Content -->
 		<section id="content" class="content">
 			<article id="post" class="post">
-	<h1>This is a Goodbye Blog Post</h1>
-	<div class="post-content"><p>This is a goodbye <strong>blog post</strong></p>
-</div>
+	<h1>Callback em linguagem C</h1>
+	<div class="post-content"><p>Ultimamente tenho trabalhado com Node JS, e os conceitos de processamento assíncrono  do javascript em  uma event machine como a V8  são espetaculares   no navegador e nativo com Node JS.
+Abordando apenas o conceito de callback, onde uma função A recebe como parâmetro uma outra função B que será invocada após ou durante a execução de A. Abaixo está um código que fiz.</p>
+<pre class="highlighted"><code class="cpp"><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="keyword">void</span> foo(<span class="keyword">int</span>);
+<span class="keyword">void</span> testCallback(<span class="keyword">int</span>, <span class="keyword">void</span> (*)(<span class="keyword">int</span>));
+
+<span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv){
+
+  testCallback(<span class="number">1000000</span>, &amp;foo);
+  printf(<span class="string">"[Main function]: I'm main function!\n"</span>);
+    testCallback(<span class="number">100000</span>, &amp;foo);
+
+  <span class="keyword">return</span>(<span class="number">0</span>);
+}
+
+<span class="keyword">void</span> foo(<span class="keyword">int</span> num){
+  printf(<span class="string">"[foo function]: I'm callback!, Parameters[ num=%d ]\n"</span>,num);
+}
+
+<span class="keyword">void</span> testCallback(<span class="keyword">int</span> num, <span class="keyword">void</span> (*callback)(<span class="keyword">int</span>)){
+   <span class="keyword">int</span> i;
+
+   <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; num; i++);
+
+  <span class="keyword">return</span>(callback(num));
+}</code></pre></div>
 
 	<!-- Disqus
 	-->
@@ -90,9 +115,9 @@
 		<h3>Related Posts</h3>
 		<nav class="linklist">
 			
-				<li><span>Tue Sep 10 2013</span>
+				<li><span>Thu Sep 26 2013</span>
 				&raquo;
-				<a href="/sections/blog/hello">This is a Hello Blog Post</a></li>
+				<a href="/sections/codes/implementacao-objetos-linguagem-c">Implementação de objetos em linguagem C</a></li>
 			
 		</nav>
 	</section>

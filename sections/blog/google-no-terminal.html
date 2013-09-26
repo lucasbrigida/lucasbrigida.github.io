@@ -10,8 +10,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<!-- Our site title and description -->
-	<title>Experiences | Lucas P. Brígida</title>
-	<meta name="description" content="Lucas P. Brígida personal website." />
+	<title>Google no terminal | Lucas P. Brígida</title>
+	<meta name="description" content="É comum principalmente quando não conhecemos um programa e várias saídas de erro desconhecidas aparecem no terminal buscarmos  no Google." />
 	<meta name="keywords" content="It's place where I publish my ideas, codes, news and projects." />
 	<meta name="author" content="Lucas P. Brígida" />
 
@@ -64,24 +64,65 @@
 	<div class="container">
 		<!-- Content -->
 		<section id="content" class="content">
-			<article id="page" class="page">
-	<h1>Experiences</h1>
-	<div class="page-content"><nav class="linklist">
-  
-	<li class="list-unstyled">
-      <h4><i class="icon-beaker"></i><a href="/sections/experiences/canvas03"> Experimento com canvas - cubo</a></h4>
-	
-	<li class="list-unstyled">
-      <h4><i class="icon-beaker"></i><a href="/sections/experiences/canvas04"> Experimento com canvas - cilindro</a></h4>
-	
-	<li class="list-unstyled">
-      <h4><i class="icon-beaker"></i><a href="/sections/experiences/canvas02"> Getting Start with Canvas</a></h4>
-	
-	<li class="list-unstyled">
-      <h4><i class="icon-beaker"></i><a href="/sections/experiences/canvas01"> Playing with Canvas - Gears</a></h4>
-	
-</nav></div>
+			<article id="post" class="post">
+	<h1>Google no terminal</h1>
+	<div class="post-content"><center><img src="/blog/images/banner/google.gif" height="200px"></center>
+
+<p>É comum principalmente quando não conhecemos um programa e várias saídas de erro desconhecidas aparecem no terminal buscarmos  no Google.</p>
+<p>Vamos à um simples tutorial de como fazer esta mágica (Google no terminal).</p>
+<p>Abra o editor de texto de sua preferência o arquivo “~/.bashrc”</p>
+<pre class="highlighted"><code class="bash">gedit ~/.bashrc</code></pre>
+
+<p>Ao final do arquivo adicione as seguintes linhas e salve:</p>
+<pre class="highlighted"><code class="undefined">google() {
+search=”"
+echo “$1″
+for term in $*; do
+search=”$search%20$term”
+done
+xdg-open “http://www.google.com/search?q=$search”
+}
+</code></pre>
+
+<p>Agora execute no terminal:</p>
+<pre class="highlighted"><code class="bash">source ~/.bashrc</code></pre>
+
+<p>Vamos testar! Abra o terminal.</p>
+<pre class="highlighted"><code class="bash">google google no terminal</code></pre>
+
+<p>Se ocorreu algum problema e nenhum navegador apareceu no site do google com a frase à ser pesquisada. Então troque no código que adicionamos no ~/.bashrc os seguintes termos:</p>
+<p>“xdg-open” por mozilla ou google chrome</p>
+<p>Execute novamente o comando:</p>
+<pre class="highlighted"><code class="bash">source ~/.bashrc</code></pre>
+
+<p>E teste novamente:</p>
+<pre class="highlighted"><code class="bash">google codebroken google no terminal</code></pre>
+
+<p>Para pesquisar a saída de erro direto sem precisar copiar a saída de erro e digitar google no terminal, não fazendo sentido fazer este processo.</p>
+<p>Então, execute o comando abaixo junto com as crases, substituindo a palavra command pelo nome do programa que está apresentando erros.</p>
+<pre class="highlighted"><code class="bash">google `command`</code></pre>
+
+<p>Caso apareça várias saídas e você deseja pesquisar uma delas, é interessante utilzar o grep com expressão regular ou alguma palavra que diferencie das outras saídas de erro:</p>
+<pre class="highlighted"><code class="bash">google `command | grep erro 01`</code></pre></div>
+
+	<!-- Disqus
+	-->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'lucaspereirabrigida'; // required: replace example with your forum shortname
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>  
 </article>
+
+<footer>
+	
+</footer>
 		</section>
 
 		<!-- Footer -->
