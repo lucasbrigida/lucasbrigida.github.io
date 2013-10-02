@@ -10,7 +10,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<!-- Our site title and description -->
-	<title>Getting Start with Canvas | Lucas P. Brígida</title>
+	<title>Iniciando com Canvas | Lucas P. Brígida</title>
 	<meta name="description" content="Lucas P. Brígida personal website." />
 	<meta name="keywords" content="It's place where I publish my ideas, codes, news and projects." />
 	<meta name="author" content="Lucas P. Brígida" />
@@ -68,7 +68,7 @@
 <style type="text/css">.code{display: none;}</style>
 
 <article id="post" class="post">
-	<h1>Getting Start with Canvas</h1>
+	<h1>Iniciando com Canvas</h1>
 	<div class="post-content"><div class="container">
 	<h3><i class="icon-comment-alt"></i> O que é Canvas</h3>
 	<p><blockquote> É uma especificação que define o contexto 2D no browser, implementando um elemento HTML que provê métodos e propriedades e métodos para desenhar e manipular gráficos.
@@ -79,10 +79,589 @@
 
 <div class="container">
 	<h3><i class="icon-wrench"></i> Funções Básicas</h3>
+	<p>O Canvas é um elemento HTML uma <cite>tag Html</cite> como também é conhecido, é nesse elemento em que os contextos 2D e 3D serão instanciados. É importante salientar que o elemento canvas não refere-se ao contexto 2D mas a área do documento será dedicada a apresentar conteúdo seja ele 2D ou 3D.</p>
+
+	<p>O contexto pode ser <code>2d</code> ou <code>webgl</code> (3D), cada elemento canvas pode ter somente um contexto. Para criar um contexto, chamamos o método do <code>getContext()</code>.</p>
+
+	<h4>Primeiro passo</h4>
+	<div>
+		<pre class="highlighted"><code class="xml">    <span class="doctype">&lt;!DOCTYPE html&gt;</span>
+    <span class="tag">&lt;<span class="title">html</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"200"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+            <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'canvas'</span>);
+            <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+        </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+        </code></pre>
+	</div>
+
+	<h4>Segundo passo</h4>
+	<p>Iremos começar desenhando uma linha, nós iremos usar os seguintes métodos para essa tarefa: <code>beginPath()</code> <code>moveTo()</code> <code>lineTo()</code> <code>stroke()</code>.</p>
+
+	<p>O método<code>beginTo()</code> serve para declarar que vamos desenhar um novo traço. O <code>moveTo()</code> tem a função de mudar a posição do cursor do contexto, por fim <code>stroke()</code> usamos esse método para torna o que desenhamos visível, como se disséssemos ao browser <cite>desenhe no elemento <strong>canvas</strong>. <a href="#canvas-line" class="show-code">Ver código</a>.</p>
+
+	<div id="canvas-line" class="code">
+		<pre class="highlighted"><code class="xml">    <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+        <span class="tag">&lt;<span class="title">html</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+              <span class="tag">body</span> <span class="rules">{
+                <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+                <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+              <span class="rule">}</span></span>
+            </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"200"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+              <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'canvas'</span>);
+              <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+              context.beginPath();
+              context.moveTo(<span class="number">100</span>, <span class="number">150</span>);
+              context.lineTo(<span class="number">450</span>, <span class="number">50</span>);
+              context.stroke();
+            </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+        </code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-line-example" class="span12"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas-line-example');
+		      var context = canvas.getContext('2d');
+
+		      context.beginPath();
+		      context.moveTo(100, 150);
+		      context.lineTo(450, 50);
+		      context.stroke();
+		    </script>
+		</div>
+	</div>
+
+	<h4>Terceiro passo</h4>
+	<p>Iremos agora criar linhas com estilos diferentes. Para isso vamos alterar a propriedade <code>lineCap</code> com um dos seguintes parâmetros: <code>butt</code>, <code>round</code> e <code>square</code>. <a href="#canvas-lines" class="show-code">Ver código</a>.</p>
+
+	<div id="canvas-lines" class="code">
+		<pre class="highlighted"><code class="xml">    <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+        <span class="tag">&lt;<span class="title">html</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+              <span class="tag">body</span> <span class="rules">{
+                <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+                <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+              <span class="rule">}</span></span>
+            </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"200"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+              <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'canvas'</span>);
+              <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+              <span class="comment">// butt line cap (top line)</span>
+              context.beginPath();
+              context.moveTo(<span class="number">200</span>, canvas.height / <span class="number">2</span> - <span class="number">50</span>);
+              context.lineTo(canvas.width - <span class="number">200</span>, canvas.height / <span class="number">2</span> - <span class="number">50</span>);
+              context.lineWidth = <span class="number">20</span>;
+              context.strokeStyle = <span class="string">'#FF9900'</span>;
+              context.lineCap = <span class="string">'butt'</span>;
+              context.stroke();
+
+              <span class="comment">// round line cap (middle line)</span>
+              context.beginPath();
+              context.moveTo(<span class="number">200</span>, canvas.height / <span class="number">2</span>);
+              context.lineTo(canvas.width - <span class="number">200</span>, canvas.height / <span class="number">2</span>);
+              context.lineWidth = <span class="number">20</span>;
+              context.strokeStyle = <span class="string">'#52FF00'</span>;
+              context.lineCap = <span class="string">'round'</span>;
+              context.stroke();
+
+              <span class="comment">// square line cap (bottom line)</span>
+              context.beginPath();
+              context.moveTo(<span class="number">200</span>, canvas.height / <span class="number">2</span> + <span class="number">50</span>);
+              context.lineTo(canvas.width - <span class="number">200</span>, canvas.height / <span class="number">2</span> + <span class="number">50</span>);
+              context.lineWidth = <span class="number">20</span>;
+              context.strokeStyle = <span class="string">'#FF0047'</span>;
+              context.lineCap = <span class="string">'square'</span>;
+              context.stroke();
+            </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+        </code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-lines-example" class="span12"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas-lines-example');
+		      var context = canvas.getContext('2d');
+
+		      // butt line cap (top line)
+		      context.beginPath();
+		      context.moveTo(200, canvas.height / 2 - 50);
+		      context.lineTo(canvas.width - 200, canvas.height / 2 - 50);
+		      context.lineWidth = 20;
+		      context.strokeStyle = '#FF9900';
+		      context.lineCap = 'butt';
+		      context.stroke();
+
+		      // round line cap (middle line)
+		      context.beginPath();
+		      context.moveTo(200, canvas.height / 2);
+		      context.lineTo(canvas.width - 200, canvas.height / 2);
+		      context.lineWidth = 20;
+		      context.strokeStyle = '#52FF00';
+		      context.lineCap = 'round';
+		      context.stroke();
+
+		      // square line cap (bottom line)
+		      context.beginPath();
+		      context.moveTo(200, canvas.height / 2 + 50);
+		      context.lineTo(canvas.width - 200, canvas.height / 2 + 50);
+		      context.lineWidth = 20;
+		      context.strokeStyle = '#FF0047';
+		      context.lineCap = 'square';
+		      context.stroke();
+		    </script>
+		</div>
+	</div>
+
+	<h4>Quarto passo</h4>
+	<p>Agora vamos criar <cite>desenhar</cite> mais complexo utilizando <a href="http://www.html5canvastutorials.com/tutorials/html5-canvas-quadratic-curves/">curva quadrática</a> e <a href="http://www.html5canvastutorials.com/tutorials/html5-canvas-bezier-curves/">curva de bezier</a>.</p>
+
+	<p>Será necessário utilizar os seguintes métodos: <code>lineTo()</code>, <code>arcTo()</code>, <code>quadraticCurveTo()</code> e <code>bezierCurveTo()</code>, para <cite>desenhar</cite> cada parte. <a href="#canvas-curves" class="show-code"> Ver código</a>.</p>
+
+	<div id="canvas-curves" class="code">
+		<pre class="highlighted"><code class="xml"><span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+        <span class="tag">&lt;<span class="title">html</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+              <span class="tag">body</span> <span class="rules">{
+                <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+                <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+              <span class="rule">}</span></span>
+            </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"200"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+              <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'canvas'</span>);
+              <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+              context.beginPath();
+              context.moveTo(<span class="number">100</span>, <span class="number">20</span>);
+
+              <span class="comment">// line 1</span>
+              context.lineTo(<span class="number">200</span>, <span class="number">160</span>);
+
+              <span class="comment">// quadratic curve</span>
+              context.quadraticCurveTo(<span class="number">230</span>, <span class="number">200</span>, <span class="number">250</span>, <span class="number">120</span>);
+
+              <span class="comment">// bezier curve</span>
+              context.bezierCurveTo(<span class="number">290</span>, -<span class="number">40</span>, <span class="number">300</span>, <span class="number">200</span>, <span class="number">400</span>, <span class="number">150</span>);
+
+              <span class="comment">// line 2</span>
+              context.lineTo(<span class="number">500</span>, <span class="number">90</span>);
+
+              context.lineWidth = <span class="number">2</span>;
+              context.strokeStyle = <span class="string">'orange'</span>;
+              context.stroke();
+            </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+        </code></pre>
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-curves-example" width="578" height="200"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas-curves-example');
+		      var context = canvas.getContext('2d');
+
+		      context.beginPath();
+		      context.moveTo(100, 20);
+
+		      // line 1
+		      context.lineTo(200, 160);
+
+		      // quadratic curve
+		      context.quadraticCurveTo(230, 200, 250, 120);
+
+		      // bezier curve
+		      context.bezierCurveTo(290, -40, 300, 200, 400, 150);
+
+		      // line 2
+		      context.lineTo(500, 90);
+
+		      context.lineWidth = 2;
+		      context.strokeStyle = 'orange';
+		      context.stroke();
+		    </script>
+		</div>
+	</div>
+
+	<h4>Quinto Passo</h4>
+	<p>Nesse passo vamos criar um retângulo, para isso iremos utilizar o método <code>rect()</code>, definir a posição do quadrado no modelo cartesiano alterando as propriedades <code>x</code> e <code>y</code> e por fim definindo a largura (<code>width</code>) e altura (<code>height</code>). <a href="#canvas-rectangle" class="show-code">Ver código</a>.</p>
+
+	<div id="canvas-rectangle" class="code">
+		<pre class="highlighted"><code class="xml">    <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+        <span class="tag">&lt;<span class="title">html</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+              <span class="tag">body</span> <span class="rules">{
+                <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+                <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+              <span class="rule">}</span></span>
+            </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"200"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+              <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'canvas'</span>);
+              <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+              context.beginPath();
+              context.rect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">40</span>);
+              context.fillStyle = <span class="string">'orange'</span>;
+              context.fill();
+              context.lineWidth = <span class="number">2</span>;
+              context.strokeStyle = <span class="string">'grey'</span>;
+              context.stroke();
+            </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+        </code></pre>
+	
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-rectangle-example" class="span12"></canvas>
+			<script>
+		      var canvas = document.getElementById('canvas-rectangle-example');
+		      var context = canvas.getContext('2d');
+
+		      context.beginPath();
+		      context.rect(10, 10, 50, 40);
+		      context.fillStyle = 'orange';
+		      context.fill();
+		      context.lineWidth = 2;
+		      context.strokeStyle = 'grey';
+		      context.stroke();
+		    </script>
+		</div>
+	</div>
+
+	<h4>Sexto passo</h4>
+	<p>Vamos <cite>desenhar</cite> um círculo, para isso iremos usar a função <code>arc()</code>. iniciando no ângulo de 0º até 2*PI. <a href="#canvas-circle" class="show-code">Ver código</a>.</p>
+
+	<div id="canvas-circle" class="code">
+		<pre class="highlighted"><code class="xml">    <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+        <span class="tag">&lt;<span class="title">html</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+              <span class="tag">body</span> <span class="rules">{
+                <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+                <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+              <span class="rule">}</span></span>
+            </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"200"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+              <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'canvas'</span>);
+              <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+              <span class="keyword">var</span> centerX = canvas.width / <span class="number">2</span>;
+              <span class="keyword">var</span> centerY = canvas.height / <span class="number">2</span>;
+              <span class="keyword">var</span> radius = <span class="number">70</span>;
+
+              context.beginPath();
+              context.arc(centerX, centerY, radius, <span class="number">0</span>, <span class="number">2</span> * Math.PI, <span class="literal">false</span>);
+              context.fillStyle = <span class="string">'magenta'</span>;
+              context.fill();
+              context.lineWidth = <span class="number">2</span>;
+              context.strokeStyle = <span class="string">'#003300'</span>;
+              context.stroke();
+            </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+        </code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-circle-example" class="span12"></canvas>
+			<script>
+		      var canvas = document.getElementById('canvas-circle-example');
+		      var context = canvas.getContext('2d');
+		      var centerX = canvas.width / 2;
+		      var centerY = canvas.height / 2;
+		      var radius = 70;
+
+		      context.beginPath();
+		      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+		      context.fillStyle = 'magenta';
+		      context.fill();
+		      context.lineWidth = 2;
+		      context.strokeStyle = '#003300';
+		      context.stroke();
+		    </script>
+		</div>
+	</div>
 </div>
 
 <div class="container">
 	<h3><i class="icon-wrench"></i> Funções Avançadas</h3>
+	<p>Com base do que vimos, vamos manipular o elemento canvas com exemplos mais difíceis.</p>
+
+	<h4>Primeiro Passo</h4>
+	<p><cite>Escrevendo</cite> com canvas, para realizar essa tarefa iremos alterar a propriedade <code>strokeStyle</code> e chamar o método<code>strokeText()</code> <a href="#canvas-text" class="show-code"> Ver código</a>.</p>
+
+	<div id="canvas-text" class="code">
+		<pre class="highlighted"><code class="xml">    <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+        <span class="tag">&lt;<span class="title">html</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+              <span class="tag">body</span> <span class="rules">{
+                <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+                <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+              <span class="rule">}</span></span>
+            </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"200"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+              <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'canvas'</span>);
+              <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+              <span class="keyword">var</span> x = <span class="number">80</span>;
+              <span class="keyword">var</span> y = <span class="number">110</span>;
+
+              context.font = <span class="string">'60pt Verdana'</span>;
+              context.lineWidth = <span class="number">3</span>;
+              <span class="comment">// stroke color</span>
+              context.strokeStyle = <span class="string">'green'</span>;
+              context.strokeText(<span class="string">'Olá Mundo!'</span>, x, y);
+            </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+        </code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-text-example" width="578" height="200"></canvas>
+			<script>
+		      var canvas = document.getElementById('canvas-text-example');
+		      var context = canvas.getContext('2d');
+		      var x = 80;
+		      var y = 110;
+
+		      context.font = '60pt Calibri';
+		      context.lineWidth = 3;
+		      // stroke color
+		      context.strokeStyle = 'green';
+		      context.strokeText('Olá Mundo!', x, y);
+		    </script>
+		</div>
+	</div>
+
+	<h4>Segundo Passo</h4>
+	<p>Rotacionando um retângulo, iremos utilizar o método <code>rotate()</code> <a href="#canvas-rotate" class="show-code">Ver código</a>.</p>
+	<div id="canvas-rotate" class="code">
+		<pre class="highlighted"><code class="xml">    <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+        <span class="tag">&lt;<span class="title">html</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+              <span class="tag">body</span> <span class="rules">{
+                <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+                <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+              <span class="rule">}</span></span>
+            </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"200"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+              <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'canvas'</span>);
+              <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+              <span class="keyword">var</span> rectWidth = <span class="number">150</span>;
+              <span class="keyword">var</span> rectHeight = <span class="number">75</span>;
+
+              <span class="comment">// translate context to center of canvas</span>
+              context.translate(canvas.width / <span class="number">2</span>, canvas.height / <span class="number">2</span>);
+
+              <span class="comment">// rotate 45 degrees clockwise</span>
+              context.rotate(Math.PI * <span class="number">1.5</span>);
+
+              context.fillStyle = <span class="string">'orange'</span>;
+              context.fillRect(rectWidth / -<span class="number">2</span>, rectHeight / -<span class="number">2</span>, rectWidth, rectHeight);
+            </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+        </code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-rotate-example" width="578" height="200"></canvas>
+			<script>
+		      var canvas = document.getElementById('canvas-rotate-example');
+		      var context = canvas.getContext('2d');
+		      var rectWidth = 150;
+		      var rectHeight = 75;
+
+		      // translate context to center of canvas
+		      context.translate(canvas.width / 2, canvas.height / 2);
+
+		      // rotate 45 degrees clockwise
+		      context.rotate(Math.PI*1.5);
+
+		      context.fillStyle = 'orange';
+		      context.fillRect(rectWidth / -2, rectHeight / -2, rectWidth, rectHeight);
+		    </script>
+		</div>
+	</div>
+
+	<h4>Terceiro passo</h4>
+	<p>Vamos animar um retângulo, oscilando ele de um lado para o outro, para definir cada posição iremos utilizar a seguinte equação: <strong>x(t) = amplitude * sin(t * 2PI / period) + x0</strong> <a href="#canvas-rectangle-osc" class="show-code">. Ver código</a>.</p>
+
+	<div id="canvas-rectangle-osc" class="code">
+		<pre class="highlighted"><code class="xml">    <span class="doctype">&lt;!DOCTYPE HTML&gt;</span>
+        <span class="tag">&lt;<span class="title">html</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+              <span class="tag">body</span> <span class="rules">{
+                <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+                <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>px;</span></span>
+              <span class="rule">}</span></span>
+            </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"578"</span> <span class="attribute">height</span>=<span class="value">"200"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+              window.requestAnimFrame = (<span class="keyword">function</span>(callback) {
+                <span class="keyword">return</span> window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+                <span class="keyword">function</span>(callback) {
+                  window.setTimeout(callback, <span class="number">1000</span> / <span class="number">60</span>);
+                };
+              })();
+
+              <span class="function"><span class="keyword">function</span> <span class="title">drawRectangle</span><span class="params">(myRectangle, context)</span> {</span>
+                context.beginPath();
+                context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
+                context.fillStyle = <span class="string">'#8ED6FF'</span>;
+                context.fill();
+                context.lineWidth = myRectangle.borderWidth;
+                context.strokeStyle = <span class="string">'black'</span>;
+                context.stroke();
+              }
+              <span class="function"><span class="keyword">function</span> <span class="title">animate</span><span class="params">(myRectangle, canvas, context, startTime)</span> {</span>
+                <span class="comment">// update</span>
+                <span class="keyword">var</span> time = (<span class="keyword">new</span> Date()).getTime() - startTime;
+                <span class="keyword">var</span> amplitude = <span class="number">150</span>;
+
+                <span class="comment">// in ms</span>
+                <span class="keyword">var</span> period = <span class="number">2000</span>;
+                <span class="keyword">var</span> centerX = canvas.width / <span class="number">2</span> - myRectangle.width / <span class="number">2</span>;
+                <span class="keyword">var</span> nextX = amplitude * Math.sin(time * <span class="number">2</span> * Math.PI / period) + centerX;
+                myRectangle.x = nextX;
+
+                <span class="comment">// clear</span>
+                context.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+
+                <span class="comment">// draw</span>
+                drawRectangle(myRectangle, context);
+
+                <span class="comment">// request new frame</span>
+                requestAnimFrame(<span class="keyword">function</span>() {
+                  animate(myRectangle, canvas, context, startTime);
+                });
+              }
+              <span class="keyword">var</span> canvas = document.getElementById(<span class="string">'canvas'</span>);
+              <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);
+
+              <span class="keyword">var</span> myRectangle = {
+                x: <span class="number">250</span>,
+                y: <span class="number">70</span>,
+                width: <span class="number">100</span>,
+                height: <span class="number">50</span>,
+                borderWidth: <span class="number">5</span>
+              };
+
+              drawRectangle(myRectangle, context);
+
+              <span class="comment">// wait one second before starting animation</span>
+              setTimeout(<span class="keyword">function</span>() {
+                <span class="keyword">var</span> startTime = (<span class="keyword">new</span> Date()).getTime();
+                animate(myRectangle, canvas, context, startTime);
+              }, <span class="number">1000</span>);
+            </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+        </code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-rect-osc-example" width="578" height="200"></canvas>
+			<script>
+		      window.requestAnimFrame = (function(callback) {
+		        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+		        function(callback) {
+		          window.setTimeout(callback, 1000 / 60);
+		        };
+		      })();
+
+		      function drawRectangle(myRectangle, context) {
+		        context.beginPath();
+		        context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
+		        context.fillStyle = '#8ED6FF';
+		        context.fill();
+		        context.lineWidth = myRectangle.borderWidth;
+		        context.strokeStyle = 'black';
+		        context.stroke();
+		      }
+		      function animate(myRectangle, canvas, context, startTime) {
+		        // update
+		        var time = (new Date()).getTime() - startTime;
+		        var amplitude = 150;
+
+		        // in ms
+		        var period = 2000;
+		        var centerX = canvas.width / 2 - myRectangle.width / 2;
+		        var nextX = amplitude * Math.sin(time * 2 * Math.PI / period) + centerX;
+		        myRectangle.x = nextX;
+
+		        // clear
+		        context.clearRect(0, 0, canvas.width, canvas.height);
+
+		        // draw
+		        drawRectangle(myRectangle, context);
+
+		        // request new frame
+		        requestAnimFrame(function() {
+		          animate(myRectangle, canvas, context, startTime);
+		        });
+		      }
+		      var canvas = document.getElementById('canvas-rect-osc-example');
+		      var context = canvas.getContext('2d');
+
+		      var myRectangle = {
+		        x: 250,
+		        y: 70,
+		        width: 100,
+		        height: 50,
+		        borderWidth: 5
+		      };
+
+		      drawRectangle(myRectangle, context);
+
+		      // wait one second before starting animation
+		      setTimeout(function() {
+		        var startTime = (new Date()).getTime();
+		        animate(myRectangle, canvas, context, startTime);
+		      }, 1000);
+		    </script>
+		</div>
+	</div>
 </div>
 
 <div class="container">
@@ -314,10 +893,17 @@
 
 <div class="container">
 	<h3><i class="icon-legal"></i> Conclusões</h3>
+	<p>A formalização do elemento canvas pela W3C, está refolucionando a Web como conhecemos, sendo um meio onde uma aplicação pode funcionar em diversas plataformas (Sitemas operacionais e arquiteturas), sem a necessidade do desenvolvedor se preocupar com os recursos necessários para executar sua aplicação. Este elemento tornou-se possível criar software que só eram possíveis no desktop, atualmente ferramentas CAD são criadas a partir de canvas, jogos 2D e 3D e animações, recursos disponíveis somente através de plugins como Silverlight e Flash.</p>
 </div>
 
 <div class="container">
 	<h3><i class="icon-bookmark"></i> Referências</h3>
+	<ul>
+		<li><a href="https://hacks.mozilla.org/2013/09/getting-started-with-html5-game-development/"> Blog Mozilla</a></li>
+		<li><a href="http://www.html5canvastutorials.com/tutorials/html5-canvas-tutorials-introduction/">HTML5 Canvas Tutorial</a></li>
+		<li><a href="http://www.w3.org/TR/2dcontext/">W3C</a></li>
+		<li><a href="http://pt.wikipedia.org/wiki/Canvas_(HTML5)">Canvas - Wikipedia</a></li>
+	</ul>
 </div></div>
 </article>
 
