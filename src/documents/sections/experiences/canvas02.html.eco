@@ -1,5 +1,5 @@
 ---
-title: Getting Start with Canvas
+title: Iniciando com Canvas
 layout: experience
 sections: ['experiences']
 tags: ['canvas', 'tutorial']
@@ -15,10 +15,609 @@ tags: ['canvas', 'tutorial']
 
 <div class="container">
 	<h3><i class="icon-wrench"></i> Funções Básicas</h3>
+	<p>O Canvas é um elemento HTML uma <cite>tag Html</cite> como também é conhecido, é nesse elemento em que os contextos 2D e 3D serão instanciados. É importante salientar que o elemento canvas não refere-se ao contexto 2D mas a área do documento será dedicada a apresentar conteúdo seja ele 2D ou 3D.</p>
+
+	<p>O contexto pode ser <code>2d</code> ou <code>webgl</code> (3D), cada elemento canvas pode ter somente um contexto. Para criar um contexto, chamamos o método do <code>getContext()</code>.</p>
+
+	<h4><i class="icon-puzzle-piece"></i> Primeiro passo</h4>
+	<div>
+		<pre><code class="lang-html">	<!DOCTYPE html>
+	<html>
+	<body>
+		<canvas id="canvas" width="578" height="200"></canvas>
+		<script>
+			var canvas = document.getElementById('canvas');
+			var context = canvas.getContext('2d');
+		</script>
+	</body>
+	</html>
+		</code></pre>
+	</div>
+
+	<h4><i class="icon-puzzle-piece"></i> Segundo passo</h4>
+	<p>Iremos começar desenhando uma linha, nós iremos usar os seguintes métodos para essa tarefa: <code>beginPath()</code> <code>moveTo()</code> <code>lineTo()</code> <code>stroke()</code>.</p>
+
+	<p>O método<code>beginTo()</code> serve para declarar que vamos desenhar um novo traço. O <code>moveTo()</code> tem a função de mudar a posição do cursor do contexto, por fim <code>stroke()</code> usamos esse método para torna o que desenhamos visível, como se disséssemos ao browser <cite>desenhe no elemento <strong>canvas</strong>. <a href="#canvas-line" class="show-code">Ver código</a>.</p>
+
+	<div id="canvas-line" class="code">
+		<pre><code class="lang-html">	<!DOCTYPE HTML>
+		<html>
+		  <head>
+		    <style>
+		      body {
+		        margin: 0px;
+		        padding: 0px;
+		      }
+		    </style>
+		  </head>
+		  <body>
+		    <canvas id="canvas" width="578" height="200"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas');
+		      var context = canvas.getContext('2d');
+
+		      context.beginPath();
+		      context.moveTo(100, 150);
+		      context.lineTo(450, 50);
+		      context.stroke();
+		    </script>
+		  </body>
+		</html>
+		</code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-line-example" class="span12"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas-line-example');
+		      var context = canvas.getContext('2d');
+
+		      context.beginPath();
+		      context.moveTo(100, 150);
+		      context.lineTo(450, 50);
+		      context.stroke();
+		    </script>
+		</div>
+	</div>
+
+	<h4><i class="icon-puzzle-piece"></i> Terceiro passo</h4>
+	<p>Iremos agora criar linhas com estilos diferentes. Para isso vamos alterar a propriedade <code>lineCap</code> com um dos seguintes parâmetros: <code>butt</code>, <code>round</code> e <code>square</code>. <a href="#canvas-lines" class="show-code">Ver código</a>.</p>
+
+	<div id="canvas-lines" class="code">
+		<pre><code class="lang-html">	<!DOCTYPE HTML>
+		<html>
+		  <head>
+		    <style>
+		      body {
+		        margin: 0px;
+		        padding: 0px;
+		      }
+		    </style>
+		  </head>
+		  <body>
+		    <canvas id="canvas" width="578" height="200"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas');
+		      var context = canvas.getContext('2d');
+
+		      // butt line cap (top line)
+		      context.beginPath();
+		      context.moveTo(200, canvas.height / 2 - 50);
+		      context.lineTo(canvas.width - 200, canvas.height / 2 - 50);
+		      context.lineWidth = 20;
+		      context.strokeStyle = '#FF9900';
+		      context.lineCap = 'butt';
+		      context.stroke();
+
+		      // round line cap (middle line)
+		      context.beginPath();
+		      context.moveTo(200, canvas.height / 2);
+		      context.lineTo(canvas.width - 200, canvas.height / 2);
+		      context.lineWidth = 20;
+		      context.strokeStyle = '#52FF00';
+		      context.lineCap = 'round';
+		      context.stroke();
+
+		      // square line cap (bottom line)
+		      context.beginPath();
+		      context.moveTo(200, canvas.height / 2 + 50);
+		      context.lineTo(canvas.width - 200, canvas.height / 2 + 50);
+		      context.lineWidth = 20;
+		      context.strokeStyle = '#FF0047';
+		      context.lineCap = 'square';
+		      context.stroke();
+		    </script>
+		  </body>
+		</html>
+		</code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-lines-example" class="span12"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas-lines-example');
+		      var context = canvas.getContext('2d');
+
+		      // butt line cap (top line)
+		      context.beginPath();
+		      context.moveTo(200, canvas.height / 2 - 50);
+		      context.lineTo(canvas.width - 200, canvas.height / 2 - 50);
+		      context.lineWidth = 20;
+		      context.strokeStyle = '#FF9900';
+		      context.lineCap = 'butt';
+		      context.stroke();
+
+		      // round line cap (middle line)
+		      context.beginPath();
+		      context.moveTo(200, canvas.height / 2);
+		      context.lineTo(canvas.width - 200, canvas.height / 2);
+		      context.lineWidth = 20;
+		      context.strokeStyle = '#52FF00';
+		      context.lineCap = 'round';
+		      context.stroke();
+
+		      // square line cap (bottom line)
+		      context.beginPath();
+		      context.moveTo(200, canvas.height / 2 + 50);
+		      context.lineTo(canvas.width - 200, canvas.height / 2 + 50);
+		      context.lineWidth = 20;
+		      context.strokeStyle = '#FF0047';
+		      context.lineCap = 'square';
+		      context.stroke();
+		    </script>
+		</div>
+	</div>
+
+	<h4><i class="icon-puzzle-piece"></i> Quarto passo</h4>
+	<p>Agora vamos criar <cite>desenhar</cite> mais complexo utilizando <a href="http://www.html5canvastutorials.com/tutorials/html5-canvas-quadratic-curves/">curva quadrática</a> e <a href="http://www.html5canvastutorials.com/tutorials/html5-canvas-bezier-curves/">curva de bezier</a>.</p>
+
+	<p>Será necessário utilizar os seguintes métodos: <code>lineTo()</code>, <code>arcTo()</code>, <code>quadraticCurveTo()</code> e <code>bezierCurveTo()</code>, para <cite>desenhar</cite> cada parte. <a href="#canvas-curves" class="show-code"> Ver código</a>.</p>
+
+	<div id="canvas-curves" class="code">
+		<pre><code class="lang-html"><!DOCTYPE HTML>
+		<html>
+		  <head>
+		    <style>
+		      body {
+		        margin: 0px;
+		        padding: 0px;
+		      }
+		    </style>
+		  </head>
+		  <body>
+		    <canvas id="canvas" width="578" height="200"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas');
+		      var context = canvas.getContext('2d');
+
+		      context.beginPath();
+		      context.moveTo(100, 20);
+
+		      // line 1
+		      context.lineTo(200, 160);
+
+		      // quadratic curve
+		      context.quadraticCurveTo(230, 200, 250, 120);
+
+		      // bezier curve
+		      context.bezierCurveTo(290, -40, 300, 200, 400, 150);
+
+		      // line 2
+		      context.lineTo(500, 90);
+
+		      context.lineWidth = 2;
+		      context.strokeStyle = 'orange';
+		      context.stroke();
+		    </script>
+		  </body>
+		</html>
+		</code></pre>
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-curves-example" width="578" height="200"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas-curves-example');
+		      var context = canvas.getContext('2d');
+
+		      context.beginPath();
+		      context.moveTo(100, 20);
+
+		      // line 1
+		      context.lineTo(200, 160);
+
+		      // quadratic curve
+		      context.quadraticCurveTo(230, 200, 250, 120);
+
+		      // bezier curve
+		      context.bezierCurveTo(290, -40, 300, 200, 400, 150);
+
+		      // line 2
+		      context.lineTo(500, 90);
+
+		      context.lineWidth = 2;
+		      context.strokeStyle = 'orange';
+		      context.stroke();
+		    </script>
+		</div>
+	</div>
+
+	<h4><i class="icon-puzzle-piece"></i> Quinto Passo</h4>
+	<p>Nesse passo vamos criar um retângulo, para isso iremos utilizar o método <code>rect()</code>, definir a posição do quadrado no modelo cartesiano alterando as propriedades <code>x</code> e <code>y</code> e por fim definindo a largura (<code>width</code>) e altura (<code>height</code>). <a href="#canvas-rectangle" class="show-code">Ver código</a>.</p>
+
+	<div id="canvas-rectangle" class="code">
+		<pre><code class="lang-html">	<!DOCTYPE HTML>
+		<html>
+		  <head>
+		    <style>
+		      body {
+		        margin: 0px;
+		        padding: 0px;
+		      }
+		    </style>
+		  </head>
+		  <body>
+		    <canvas id="canvas" width="578" height="200"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas');
+		      var context = canvas.getContext('2d');
+
+		      context.beginPath();
+		      context.rect(10, 10, 50, 40);
+		      context.fillStyle = 'orange';
+		      context.fill();
+		      context.lineWidth = 2;
+		      context.strokeStyle = 'grey';
+		      context.stroke();
+		    </script>
+		  </body>
+		</html>
+		</code></pre>
+	
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-rectangle-example" class="span12"></canvas>
+			<script>
+		      var canvas = document.getElementById('canvas-rectangle-example');
+		      var context = canvas.getContext('2d');
+
+		      context.beginPath();
+		      context.rect(10, 10, 50, 40);
+		      context.fillStyle = 'orange';
+		      context.fill();
+		      context.lineWidth = 2;
+		      context.strokeStyle = 'grey';
+		      context.stroke();
+		    </script>
+		</div>
+	</div>
+
+	<h4><i class="icon-puzzle-piece"></i> Sexto passo</h4>
+	<p>Vamos <cite>desenhar</cite> um círculo, para isso iremos usar a função <code>arc()</code>. iniciando no ângulo de 0º até 2*PI. <a href="#canvas-circle" class="show-code">Ver código</a>.</p>
+
+	<div id="canvas-circle" class="code">
+		<pre><code class="lang-html">	<!DOCTYPE HTML>
+		<html>
+		  <head>
+		    <style>
+		      body {
+		        margin: 0px;
+		        padding: 0px;
+		      }
+		    </style>
+		  </head>
+		  <body>
+		    <canvas id="canvas" width="578" height="200"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas');
+		      var context = canvas.getContext('2d');
+		      var centerX = canvas.width / 2;
+		      var centerY = canvas.height / 2;
+		      var radius = 70;
+
+		      context.beginPath();
+		      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+		      context.fillStyle = 'magenta';
+		      context.fill();
+		      context.lineWidth = 2;
+		      context.strokeStyle = '#003300';
+		      context.stroke();
+		    </script>
+		  </body>
+		</html>
+		</code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-circle-example" class="span12"></canvas>
+			<script>
+		      var canvas = document.getElementById('canvas-circle-example');
+		      var context = canvas.getContext('2d');
+		      var centerX = canvas.width / 2;
+		      var centerY = canvas.height / 2;
+		      var radius = 70;
+
+		      context.beginPath();
+		      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+		      context.fillStyle = 'magenta';
+		      context.fill();
+		      context.lineWidth = 2;
+		      context.strokeStyle = '#003300';
+		      context.stroke();
+		    </script>
+		</div>
+	</div>
 </div>
 
 <div class="container">
 	<h3><i class="icon-wrench"></i> Funções Avançadas</h3>
+	<p>Com base do que vimos, vamos manipular o elemento canvas com exemplos mais difíceis.</p>
+
+	<h4><i class="icon-puzzle-piece"></i> Primeiro Passo</h4>
+	<p><cite>Escrevendo</cite> com canvas, para realizar essa tarefa iremos alterar a propriedade <code>strokeStyle</code> e chamar o método<code>strokeText()</code> <a href="#canvas-text" class="show-code"> Ver código</a>.</p>
+
+	<div id="canvas-text" class="code">
+		<pre><code class="lang-html">	<!DOCTYPE HTML>
+		<html>
+		  <head>
+		    <style>
+		      body {
+		        margin: 0px;
+		        padding: 0px;
+		      }
+		    </style>
+		  </head>
+		  <body>
+		    <canvas id="canvas" width="578" height="200"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas');
+		      var context = canvas.getContext('2d');
+		      var x = 80;
+		      var y = 110;
+
+		      context.font = '60pt Verdana';
+		      context.lineWidth = 3;
+		      // stroke color
+		      context.strokeStyle = 'green';
+		      context.strokeText('Olá Mundo!', x, y);
+		    </script>
+		  </body>
+		</html>
+		</code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-text-example" width="578" height="200"></canvas>
+			<script>
+		      var canvas = document.getElementById('canvas-text-example');
+		      var context = canvas.getContext('2d');
+		      var x = 80;
+		      var y = 110;
+
+		      context.font = '60pt Calibri';
+		      context.lineWidth = 3;
+		      // stroke color
+		      context.strokeStyle = 'green';
+		      context.strokeText('Olá Mundo!', x, y);
+		    </script>
+		</div>
+	</div>
+
+	<h4><i class="icon-puzzle-piece"></i> Segundo Passo</h4>
+	<p>Rotacionando um retângulo, iremos utilizar o método <code>rotate()</code> <a href="#canvas-rotate" class="show-code">Ver código</a>.</p>
+	<div id="canvas-rotate" class="code">
+		<pre><code class="lang-html">	<!DOCTYPE HTML>
+		<html>
+		  <head>
+		    <style>
+		      body {
+		        margin: 0px;
+		        padding: 0px;
+		      }
+		    </style>
+		  </head>
+		  <body>
+		    <canvas id="canvas" width="578" height="200"></canvas>
+		    <script>
+		      var canvas = document.getElementById('canvas');
+		      var context = canvas.getContext('2d');
+		      var rectWidth = 150;
+		      var rectHeight = 75;
+
+		      // translate context to center of canvas
+		      context.translate(canvas.width / 2, canvas.height / 2);
+
+		      // rotate 45 degrees clockwise
+		      context.rotate(Math.PI * 1.5);
+
+		      context.fillStyle = 'orange';
+		      context.fillRect(rectWidth / -2, rectHeight / -2, rectWidth, rectHeight);
+		    </script>
+		  </body>
+		</html>
+		</code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-rotate-example" width="578" height="200"></canvas>
+			<script>
+		      var canvas = document.getElementById('canvas-rotate-example');
+		      var context = canvas.getContext('2d');
+		      var rectWidth = 150;
+		      var rectHeight = 75;
+
+		      // translate context to center of canvas
+		      context.translate(canvas.width / 2, canvas.height / 2);
+
+		      // rotate 45 degrees clockwise
+		      context.rotate(Math.PI*1.5);
+
+		      context.fillStyle = 'orange';
+		      context.fillRect(rectWidth / -2, rectHeight / -2, rectWidth, rectHeight);
+		    </script>
+		</div>
+	</div>
+
+	<h4><i class="icon-puzzle-piece"></i> Terceiro passo</h4>
+	<p>Vamos animar um retângulo, oscilando ele de um lado para o outro, para definir cada posição iremos utilizar a seguinte equação: <strong>x(t) = amplitude * sin(t * 2PI / period) + x0</strong> <a href="#canvas-rectangle-osc" class="show-code">. Ver código</a>.</p>
+
+	<div id="canvas-rectangle-osc" class="code">
+		<pre><code class="lang-html">	<!DOCTYPE HTML>
+		<html>
+		  <head>
+		    <style>
+		      body {
+		        margin: 0px;
+		        padding: 0px;
+		      }
+		    </style>
+		  </head>
+		  <body>
+		    <canvas id="canvas" width="578" height="200"></canvas>
+		    <script>
+		      window.requestAnimFrame = (function(callback) {
+		        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+		        function(callback) {
+		          window.setTimeout(callback, 1000 / 60);
+		        };
+		      })();
+
+		      function drawRectangle(myRectangle, context) {
+		        context.beginPath();
+		        context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
+		        context.fillStyle = '#8ED6FF';
+		        context.fill();
+		        context.lineWidth = myRectangle.borderWidth;
+		        context.strokeStyle = 'black';
+		        context.stroke();
+		      }
+		      function animate(myRectangle, canvas, context, startTime) {
+		        // update
+		        var time = (new Date()).getTime() - startTime;
+		        var amplitude = 150;
+
+		        // in ms
+		        var period = 2000;
+		        var centerX = canvas.width / 2 - myRectangle.width / 2;
+		        var nextX = amplitude * Math.sin(time * 2 * Math.PI / period) + centerX;
+		        myRectangle.x = nextX;
+
+		        // clear
+		        context.clearRect(0, 0, canvas.width, canvas.height);
+
+		        // draw
+		        drawRectangle(myRectangle, context);
+
+		        // request new frame
+		        requestAnimFrame(function() {
+		          animate(myRectangle, canvas, context, startTime);
+		        });
+		      }
+		      var canvas = document.getElementById('canvas');
+		      var context = canvas.getContext('2d');
+
+		      var myRectangle = {
+		        x: 250,
+		        y: 70,
+		        width: 100,
+		        height: 50,
+		        borderWidth: 5
+		      };
+
+		      drawRectangle(myRectangle, context);
+
+		      // wait one second before starting animation
+		      setTimeout(function() {
+		        var startTime = (new Date()).getTime();
+		        animate(myRectangle, canvas, context, startTime);
+		      }, 1000);
+		    </script>
+		  </body>
+		</html>
+		</code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<div class="well">
+			<canvas id="canvas-rect-osc-example" width="578" height="200"></canvas>
+			<script>
+		      window.requestAnimFrame = (function(callback) {
+		        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+		        function(callback) {
+		          window.setTimeout(callback, 1000 / 60);
+		        };
+		      })();
+
+		      function drawRectangle(myRectangle, context) {
+		        context.beginPath();
+		        context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
+		        context.fillStyle = '#8ED6FF';
+		        context.fill();
+		        context.lineWidth = myRectangle.borderWidth;
+		        context.strokeStyle = 'black';
+		        context.stroke();
+		      }
+		      function animate(myRectangle, canvas, context, startTime) {
+		        // update
+		        var time = (new Date()).getTime() - startTime;
+		        var amplitude = 150;
+
+		        // in ms
+		        var period = 2000;
+		        var centerX = canvas.width / 2 - myRectangle.width / 2;
+		        var nextX = amplitude * Math.sin(time * 2 * Math.PI / period) + centerX;
+		        myRectangle.x = nextX;
+
+		        // clear
+		        context.clearRect(0, 0, canvas.width, canvas.height);
+
+		        // draw
+		        drawRectangle(myRectangle, context);
+
+		        // request new frame
+		        requestAnimFrame(function() {
+		          animate(myRectangle, canvas, context, startTime);
+		        });
+		      }
+		      var canvas = document.getElementById('canvas-rect-osc-example');
+		      var context = canvas.getContext('2d');
+
+		      var myRectangle = {
+		        x: 250,
+		        y: 70,
+		        width: 100,
+		        height: 50,
+		        borderWidth: 5
+		      };
+
+		      drawRectangle(myRectangle, context);
+
+		      // wait one second before starting animation
+		      setTimeout(function() {
+		        var startTime = (new Date()).getTime();
+		        animate(myRectangle, canvas, context, startTime);
+		      }, 1000);
+		    </script>
+		</div>
+	</div>
+
+	<h4><i class="icon-puzzle-piece"></i> Quarto passo</h4>
+	<p>Criando uma foto a partir da câmera usando o elemento <code>canvas</code>, <code>video</code> o método <code>getUserMedia()</code> presente no DOM e objeto chamado <code>Blob</code> para armazenar dados de stream, que no nosso caso será a foto gerada, os dados presente no objeto do tipo Blob permitem que nós enviemos para um servidor que irá armazena-la. <a href="#canvas-camera" class="show-code"> Ver código</a>.</p>
+
+	<div id="canvas-camera" class="code">
+		<pre><code class="lang-html"><%- @include("experiences/canvas_tutorial/camera.html") %></code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<iframe src="/experiences/canvas_tutorial/camera.html" class="col-lg-12" height="620px"></iframe>
+	</div>
+
+	<h4><i class="icon-puzzle-piece"></i> Quinto passo</h4>
+	<p>Utilizando o exemplo acima, iremos deixar a foto gerada em preto e branco. <a href="#canvas-camera-grayscale" class="show-code"> Ver código</a>.</p>
+
+	<div id="canvas-camera-grayscale" class="code">
+		<pre><code class="lang-html"><%- @include("experiences/canvas_tutorial/camera_grayscale.html") %></code></pre>
+
+		<h4><i class="icon-beaker"></i> Resultado</h4>
+		<iframe src="/experiences/canvas_tutorial/camera_grayscale.html" class="col-lg-12" height="620px"></iframe>
+	</div>
 </div>
 
 <div class="container">
@@ -33,9 +632,8 @@ tags: ['canvas', 'tutorial']
 
 	<div>
 		<h4>Bibliotecas populares</h4>
-		<p><iframe src="http://html5gameengine.com/" class="col-lg-12" height="600"></iframe>
-			via <a href="http://html5gameengine.com/" target="_blank">HTML5 Engine</a>
-		</p>
+		<p><a href="http://html5gameengine.com/" target="_blank"><img src="data:image/jpg;base64,<%- @include('experiences/canvas_tutorial/img/html5_engine.jpg.base64')%>"></a></p>
+		<p>via <a href="http://html5gameengine.com/" target="_blank">HTML5 Engine</a></p>
 	</div>
 
 	<div>
@@ -53,7 +651,7 @@ tags: ['canvas', 'tutorial']
 	</div>
 
 	<div>
-		<h4>Iniciando em canvas usando biblioteca</h4>
+		<h4>Iniciando em canvas usando bibliotecas</h4>
 		
 		<strong>Collie</strong>
 		<ul>
@@ -86,15 +684,122 @@ tags: ['canvas', 'tutorial']
 				</div>
 			</li>
 		</ul>
-		<p>Para conhecer melhor a biblioteca(<a href="http://jindo.dev.naver.com/collie">Collie</a>)</p>
+
+		<strong>oCanvas</strong>
+		<ul>
+			<li><a href="#planets" class="show-code">Planetas</a>
+				<div id="planets" class="code">
+					<a href="http://ocanvas.org/example/101" target="_blank">Veja o exemplo</a>
+
+					<pre><code class="lang-javascript">	var canvas = oCanvas.create({ canvas: "#canvas", background: "#222" });
+
+	// Center planet
+	var center = canvas.display.ellipse({
+		x: canvas.width / 2, y: canvas.height / 2,
+		radius: canvas.width / 20,
+		fill: "#fff"
+	}).add();
+
+	// Prototype objects that will be used to instantiate the others
+	var satelliteProto = canvas.display.ellipse({ fill: "#eee" });
+	var pathProto = canvas.display.ellipse({ stroke: "1px #999" });
+
+	// Set up data
+	var satellites = [], depth = 3;
+	var satelliteColors = ["#107B99", "#5F92C0", "#c7509f"];
+	var pathColors = ["#666", "#107B99", "#5F92C0"];
+
+	// Create seven satellites and paths. Definition is further down.
+	for (var i = 0, l = 7; i < l; i++) {
+		createSatellite({
+			parent: center, depth: 1,
+			distance: (i + 1) * canvas.width / 6,
+			radius: canvas.width / 100,
+			speed: 1
+		});
+	}
+
+	// Set up a tick function that will move all satellites each frame
+	canvas.setLoop(function () {
+		for (var i = 0, l = satellites.length; i < l; i++) {
+			satellites[i].rotation += satellites[i].speed;
+		}
+	});
+
+	// Definition for a satellite and its corresponding path
+	function createSatellite (options) {
+
+		// Create the path that the satellite will follow
+		var path = pathProto.clone({
+			radius: options.distance,
+			x: options.x || 0, y: options.y || 0,
+			strokeColor: pathColors[options.depth - 1]
+		});
+		options.parent.addChild(path);
+
+		// Create a new satellite
+		var satellite = satelliteProto.clone({
+			origin: {
+				x: 0,
+				y: options.distance * (Math.round(Math.random()) ? 1 : -1)
+			},
+			speed: Math.random() * (2 * Math.random() - 0.5) + 0.5,
+			radius: options.radius,
+			x: options.x || 0, y: options.y || 0,
+			fill: satelliteColors[options.depth - 1],
+			rotation: Math.random() * 360
+		});
+		options.parent.addChild(satellite);
+		satellites.push(satellite);
+
+		// Create another satellite that will circle around this satellite
+		if (options.depth < depth) {
+			createSatellite({
+				parent: satellite, depth: options.depth + 1,
+				distance: options.radius * 7,
+				radius: options.radius / 1.5,
+				x: satellite.origin.x * -1, y: satellite.origin.y * -1,
+				speed: 10
+			});
+		}
+	}
+					</code></pre>
+				</div>
+			</li>
+		</ul>
 	</div>
 
 </div>
 
 <div class="container">
+	<h3><i class="icon-bullhorn"></i> Som</h3>
+	<p>Em aplicações onde utiliza-se o recurso de animação, geralmente faz-se necessário o uso de sons que são reproduzidos de acordo com as ações do usuário por exemplo. Abaixo está uma lista de biblioteca que fazem <cite>"sprite"</cite> de um arquivo de áudio e bibliotecas que sintetizam o áudio.</p>
+
+	<ul>
+		<li><a href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library" target="_blank">Howler.js</a></li>
+		<li><a href="http://buzz.jaysalvat.com/" target="_blank">Buzz</a></li>
+		<li><a href="http://www.createjs.com/#!/SoundJS" target="_blank">SoundJS</a></li>
+		<li><a href="http://mohayonao.github.io/timbre.js/" target="_blank">Timbre.js (Sintetiza o som)</a></li>
+		<li><a href="https://github.com/oampo/audiolet" target="_blank">Audiolet (Sintetiza o som)</a></li>
+		<li><a href="http://flockingjs.org/" target="_blank">Flocking (Sintetiza o som)</a></li>
+	</ul>
+</div>
+
+<div class="container">
 	<h3><i class="icon-legal"></i> Conclusões</h3>
+	<p>A formalização do elemento canvas pela W3C, está refolucionando a Web como conhecemos, sendo um meio onde uma aplicação pode funcionar em diversas plataformas (Sitemas operacionais e arquiteturas), sem a necessidade do desenvolvedor se preocupar com os recursos necessários para executar sua aplicação. Este elemento tornou-se possível criar softwares que só eram possíveis no desktop, atualmente <a href="http://www.autodesk.com/360-cloud" target="_blank">ferramentas CAD online</a> são criadas a partir de canvas, jogos 2D e 3D e animações, recursos disponíveis antes somente através de plugins como Silverlight e Flash e com um diferencial da <a href="http://en.wikipedia.org/wiki/Cloud_computing" target="_blank">soluções em nuvem</a>.</p>
+	<p>Com o <code>canvas</code> o desenvolvedor web tem a possibilidade de criar algoritmos para processamento de um arquivo que não há suporte nativo do browser e usar o <cite>contexto</cite> 2D ou 3D para exibir um determinado arquivo, os exemplos de aplicações que utilizam isso, são os <a href="http://mozilla.github.io/pdf.js/web/viewer.html" target="_blank">leitores de PDF</a> nativos dos browsers(Chrome e Firefox) e a <a href="https://github.com/mozilla/shumway" target="_blank">Flash VM</a> que tem como objetivo processar arquivos flash sem a necessidade do plugin com praticamente a mesma performance, como nesse <a href="http://mozilla.github.io/shumway/examples/racing/" target="_blank">jogo de corrida</a>.</p>
+	<p>Além do <code>canvas</code> muitas aplicações vem utilizando <a href="http://en.wikipedia.org/wiki/CSS" target="_blank">CSS3</a>(Cascading Style Sheets) para realizar animações não havendo a necessidade da utilização da Web API de canvas. Essa abordagem trás um performance um pouco maior devido a inexistência do processamento do código em javascript pela <a href="http://en.wikipedia.org/wiki/JavaScript_engine" target="_blank">js engine</a>, uma aplicação muito interessante dessa técnica é uma outra ferramenta CAD online chamada <a href="http://tridiv.com/" target="_blank">Tridiv</a>.</p>
 </div>
 
 <div class="container">
 	<h3><i class="icon-bookmark"></i> Referências</h3>
+	<ul>
+		<li><a href="https://hacks.mozilla.org/2013/09/getting-started-with-html5-game-development/"> Blog Mozilla</a></li>
+		<li><a href="http://www.html5canvastutorials.com/tutorials/html5-canvas-tutorials-introduction/">HTML5 Canvas Tutorial</a></li>
+		<li><a href="http://www.w3.org/TR/2dcontext/">W3C</a></li>
+		<li><a href="http://pt.wikipedia.org/wiki/Canvas_(HTML5)">Canvas - Wikipedia</a></li>
+		<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">Canvas Rendering Context 2D</a></li>
+		<li><a href="https://github.com/bebraw/jswiki/wiki/Audio-libraries" target="_blank">Audio libraries</a></li>
+	</ul>
 </div>
