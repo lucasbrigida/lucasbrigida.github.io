@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css">
+
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	 <style type="text/css">
+		.hide { display:none; }
+	</style>
+
+<div class="container">
+	<div class="hide cam-disable">
+		<p><i class="icon-camera-retro icon-4x"></i> Habilitar camera</p>	
+	</div>
+	<div id="cam-preview-container">
+		<h2>Sorria!</h2>
+		<div class="row-fluid">
+			<div id="cam-preview" class="span12">
+				<video id="video" width="640" height="480" autoplay></video>
+				<canvas id="canvas" class="hide" width="640" height="480"></canvas>
+			</div>
+			<div class="span12">
+				<a id="snap" class="btn btn-large btn-success "><i class="icon-camera-retro"></i> Tirar foto</a>
+				<span class="pull-left offset1">
+					<span>1 s</span> <input id="delay" type="range" min='1' max="15" value="3"> <span>15 s</span>
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="photo-preview-container" class="hide">
+		<h1>Sorria!</h1>
+		<div class="row-fluid">
+			<div class="span12">
+				<img id="latest-photo" src="" width="640" height="480">
+			</div>
+		
+			<div class="span12">
+				<span class="pull-left offset2"><a id="other-photo-btn" class="btn btn-large btn-primary"><i class="icon-camera-retro"></i> Tirar outra foto</a></span>
+			</div>
+		</div>
+	</div>
+
+	<a id='toggle-cam-status-btn' class="cam-stop-btn" onclick="App.controller.dashboard.toogleCam(this);"><i class="icon-eye-close"></i> <span>Desligar camera</span></a>
+
+	</div>
+
+	<script type="text/javascript">
+		if(!App) var App = new function(){ return(this); }
+		if(!App.controller) App.controller = new function(){ return(this); }
+
+		App.controller.dashboard = new (function(){
+	
+		var self = this;
+		this.localMediaStream = null;
+
+		this.toogleCam = function(e){
+			if($(e).attr('class') === 'cam-stop-btn'){
+				self.stop(); $(e).text('').attr('class', 'cam-start-btn');
+				$('<i class="icon-eye-open"></i> <span>Open Camera</span>').appendTo($(e));
+				return;
+			}
+			if($(e).attr('class') === 'cam-start-btn'){
+				self.start(); $(e).text('').attr('class', 'cam-stop-btn');
+				$('<i class="icon-eye-close"></i> <span>Close Camera</span>').appendTo($(e));
+				return;
+			}
+		}
+
+		this.stop = function(){
+			if(self.video) self.video.pause();
+			
+			if(self.localMediaStream){
+				self.localMediaStream.stop();
+				self.localMediaStream = null;
+			}
+		}
+
+		this.start = function(response){
+			
+			// Grab elements, create settings, etc.
+			var canvas = self.canvas = document.getElementById("canvas"),
+			context = self.context = canvas.getContext("2d"),
+			video =  self.video = document.getElementById("video"),
+			videoObj = { "video": true };
+			
+			function errBack(error) {
+				console.log("Video capture error: ", error.code); 
+
+				$("#cam-preview-container").hide();
+				$(".cam-disable").show();
+			};
+
+			if(self.localMediaStream === null){
+				// Put video listeners into place
+				if(navigator.getUserMedia) { // Standard
+					navigator.getUserMedia(videoObj, function(stream) {
+						video.src = self.localMediaStream = stream;
+						video.play();
+					}, errBack);
+				} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+					navigator.webkitGetUserMedia(videoObj, function(stream){
+						self.localMediaStream = stream;
+						video.src = window.webkitURL.createObjectURL(stream);
+						video.play();
+					}, errBack);
+				} else if(navigator.mozGetUserMedia){ //Moz-prefixed
+					navigator.mozGetUserMedia(videoObj, function(stream){
+						video.mozSrcObject = self.localMediaStream = stream;
+						video.play();
+					}, errBack);
+				}
+			} else {
+				if(navigator.getUserMedia) video.src = self.localMediaStream;
+				if(navigator.mozGetUserMedia) video.src = self.localMediaStream;
+				if(navigator.webkitGetUserMedia) video.src = window.webkitURL.createObjectURL(self.localMediaStream);
+				video.play();
+			}
+
+
+			function snap() {
+				context.drawImage(video, 0, 0, 640, 480);
+				//document.getElementById('latest-photo').src = canvas.toDataURL('image/jpeg', 0.5);
+
+				//Transform image color to grayscale
+				var imageObj = new Image();
+				imageObj.src = canvas.toDataURL('image/jpeg', 0.5);
+				imageObj.onload = function() {
+					(function(imageObj){
+						var canvas = document.createElement('canvas');
+						canvas.width = 640;
+						canvas.height = 480;
+        				var context = canvas.getContext('2d');
+						var x,y; x=y=0;
+
+				        context.drawImage(imageObj, x, y);
+
+				        var imageData = context.getImageData(x, y, imageObj.width, imageObj.height);
+				        var data = imageData.data;
+
+				        for(var i = 0; i < data.length; i += 4) {
+				          var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+				          // red
+				          data[i] = brightness;
+				          // green
+				          data[i + 1] = brightness;
+				          // blue
+				          data[i + 2] = brightness;
+				        }
+
+				        // overwrite original image
+				        context.putImageData(imageData, x, y);
+
+				        document.getElementById('latest-photo').src = canvas.toDataURL('image/jpeg', 0.5);
+					})(this);
+				};
+				
+
+
+				self.video.pause();
+				$("#cam-preview-container").hide();
+				$("#photo-preview-container").show();
+			}
+
+			// Trigger photo take
+			$("#snap").click(function(){
+				var delay = parseInt($("#delay").val());
+				setTimeout(snap, delay*1000);
+			});
+
+			$("#other-photo-btn").click(function(){
+				self.video.play();
+				$("#cam-preview-container").show();
+				$("#photo-preview-container").hide();
+			});
+		}
+
+
+		/*
+		*	Implementation of toBlob(dataURI, mimetype)
+		*
+		*	- Convert DataURI in Blob object.
+		*	- Return Blob
+		*/
+		function toBlob(dataURI, mimetype) {
+		  if (!dataURI) {
+		    return new Uint8Array(0);
+		  }
+
+		  var BASE64_MARKER = ';base64,';
+		  var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+		  var base64 = dataURI.substring(base64Index);
+		  var raw = window.atob(base64);
+		  var uInt8Array = new Uint8Array(raw.length);
+
+		  for (var i = 0; i < uInt8Array.length; ++i) {
+		    uInt8Array[i] = raw.charCodeAt(i);
+		  }
+
+		  return new Blob([uInt8Array], {type: mimetype});
+		}
+
+		//Append function in Window tree
+		window.toBlob = toBlob;
+
+		return(this);
+		});
+	</script>
+
+	<!-- See My Party -->
+	<script type="text/javascript">
+	//Start Camera
+	App.controller.dashboard.start();
+
+	//For share photo
+	$("#share-photo-btn").click(App.controller.dashboard.publishPhoto);
+
+	//For Preferennces
+	$("#config-btn").click(function(){
+		$('#preferences').modal({show: true});
+	});
+	</script>
+</body>
+</html>
