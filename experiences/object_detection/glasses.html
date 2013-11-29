@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Pick Your Glasses</title>
+</head>
+<body>
+	<h1>Pick Your Glasses</h1>
+	<video id="video" style="float:left; margin-right:1em;"></video>
+	<div id="list">
+		<img src="img/sunglasses_0.png" style="display:box; width:117px;">
+		<img src="img/sunglasses_1.png" style="display:box; width:117px;">
+		<img src="img/sunglasses_2.png" style="display:box; width:117px;">
+		<img src="img/sunglasses_3.png" style="display:box; width:117px;">
+		<img src="img/sunglasses_4.png" style="display:box; width:117px;">
+		<img src="img/sunglasses_5.png" style="display:box; width:117px;">
+		<img src="img/sunglasses_6.png" style="display:box; width:117px;">
+		<img src="img/sunglasses_7.png" style="display:box; width:117px;">
+	</div>
+	<img id="glasses" src="img/sunglasses_0.png" style="position:absolute; display:none">
+
+
+	<!--OBJECT DETECT - SCRIPTS-->
+	<script src="js/objectdetect/compatibility.js"></script>
+	<script src="js/objectdetect/smoother.js"></script>
+	
+	<script src="js/objectdetect/objectdetect.js"></script>
+	<script src="js/objectdetect/objectdetect.frontalface.js"></script>
+	
+	<script src="js/objectdetect/jquery.js"></script>
+	<script src="js/objectdetect/jquery.objectdetect.js"></script>
+	
+	<!--APPLICATION - SCRIPTS-->
+	<script src="js/apps/glasses.js"></script>
+</body>
+</html>

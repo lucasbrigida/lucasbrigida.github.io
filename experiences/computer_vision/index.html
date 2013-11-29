@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tomato</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="vendor/bootstrap-3.0.0/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <style type="text/css">
+      #banner{ margin-top: 70px; }
+      #webcam { width:89%; height:476px; }
+      #model { 
+        position: absolute;
+        left: 130px;
+        top: 200px;
+        z-index: 1;
+        width:200px;
+        height:200px; }
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand"><img src="imgs/tomato-icon.png" style="width: 20px;"> Tomato</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <!--<ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a tabindex="-1" href="../default/">Default</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="../amelia/">Amelia</a></li>
+                <li><a tabindex="-1" href="../cerulean/">Cerulean</a></li>
+                <li><a tabindex="-1" href="../cosmo/">Cosmo</a></li>
+                <li><a tabindex="-1" href="../cyborg/">Cyborg</a></li>
+                <li><a tabindex="-1" href="../flatly/">Flatly</a></li>
+                <li><a tabindex="-1" href="../journal/">Journal</a></li>
+                <li><a tabindex="-1" href="../readable/">Readable</a></li>
+                <li><a tabindex="-1" href="../simplex/">Simplex</a></li>
+                <li><a tabindex="-1" href="../slate/">Slate</a></li>
+                <li><a tabindex="-1" href="../spacelab/">Spacelab</a></li>
+                <li><a tabindex="-1" href="../united/">United</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="../help/">Help</a>
+            </li>
+            <li>
+              <a href="http://news.bootswatch.com">Blog</a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Download <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="download">
+                <li><a tabindex="-1" href="./bootstrap.min.css">bootstrap.min.css</a></li>
+                <li><a tabindex="-1" href="./bootstrap.css">bootstrap.css</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="./variables.less">variables.less</a></li>
+                <li><a tabindex="-1" href="./bootswatch.less">bootswatch.less</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+          </ul>-->
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="icon-camera-retro"></i> Camera</h3>
+              </div>
+              <div class="panel-body">
+               <center><video id="webcam"></video></center>
+               <center><canvas id="model"></canvas></center>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="icon-file-alt"></i> Instructions</h3>
+              </div>
+              <div class="panel-body">
+                  <div id="tomato-control-panel">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <p>1. Em frente a câmera faça o mesmo movimento com a mão como na foto abaixo.</p>
+                        <p><center><img src="imgs/handfist.jpg" width="100%"></center></p>
+                        <p>2. Movimente a mão até o objeto 3d ficar na posição desejada.</p>
+                        <p>3. Abra sua a mão, note que o objeto permanecerá no lugar.</p>
+                        <p>4. Com o mouse é possível rotacionar o objeto 3d.</p>
+                        <hr>
+                        <strong>Em breve</strong>
+                        <p>1. Leitura de arquivos 3d armazenados localmente.</p>
+                        <p>2. Transparência no fundo dos modelos 3d.</p>
+                        <p>3. Controles de translação e rotação.</p>
+
+                          <!--<label class="control-label">File(.obj, .3ds)</label>
+                          <div class="input-group">
+                            <input type="file" class="form-control">
+                            <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Update</button>
+                            </span>
+                          </div>-->
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+            <!--<div class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="icon-cog"></i> Controls</h3>
+              </div>
+              <div class="panel-body">
+                  <div id="tomato-control-panel">
+                    <div class="row">
+                      <div class="col-lg-12">
+                          <label class="control-label">Rotate</label>
+                          <div>
+                            <button class="btn btn-default" type="button">↑</button>
+                            <button class="btn btn-default" type="button">←</button>
+                            <button class="btn btn-default" type="button">→</button>
+                            <button class="btn btn-default" type="button">↓</button>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>-->
+          </div>
+        </div>
+        
+        <!--<h1>Slate</h1>
+        <p class="lead">Shades of gunmetal gray</p>-->
+      </div>
+
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="list-unstyled">
+              <!--<li class="pull-right"><a href="#banner">Back to top</a></li>-->
+              <li><a href="https://github.com/lucasbrigida/">GitHub</a></li>
+            </ul>
+            <p>Made by <a href="http://lucasbrigida.github.io">Lucas P. Brígida</a>.</p>
+            <!--<p>Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.</p>-->
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!--JQUERY-->
+    <script type="text/javascript" src="vendor/jquery-2.0.3/jquery-2.0.3.min.js"></script>
+    <!--<script type="text/javascript" src="js/object_detection/jquery.js"></script>-->
+
+    <!--BOOTSTRAP-->
+    <script type="text/javascript" src="vendor/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <!--OBJECT-DETECT-->
+    <script type="text/javascript" src="js/object_detection/compatibility.js"></script>
+    <script type="text/javascript" src="js/object_detection/smoother.js"></script>
+
+    <script type="text/javascript" src="js/object_detection/objectdetect.js"></script>
+
+    <!--<script type="text/javascript" src="js/object_detection/objectdetect.handopen.js"></script>
+    <script type="text/javascript" src="js/object_detection/objectdetect.frontalface.js"></script>-->
+    <script type="text/javascript" src="js/object_detection/objectdetect.handfist.js"></script>
+
+    <script type="text/javascript" src="js/object_detection/jquery.objectdetect.js"></script>
+
+    <!--JSC3D-->
+    <script type="text/javascript" src="js/jsc3d/jsc3d.js"></script>
+
+    <!--APPLICATION - SCRIPTS-->
+    <script src="js/apps/tomato.js"></script>
+    <script type="text/javascript">
+      var model = document.getElementById('model')
+        , viewer = new JSC3D.Viewer(model);
+      
+      (function(options){
+        var viewer = options.viewer;
+
+        viewer.setParameter('SceneUrl', 'js/jsc3d/demos/iphoneg4/iphoneg4.obj');
+        viewer.setParameter('InitRotationX', 50);
+        viewer.setParameter('InitRotationY', 50);
+        viewer.setParameter('InitRotationZ', 20);
+        viewer.setParameter('ModelColor', '#CAA618');
+        viewer.setParameter('BackgroundColor1', '#FFFFFF');
+        viewer.setParameter('BackgroundColor2', '#FFFFFF');
+        viewer.setParameter('RenderMode', 'texturesmooth');
+        //viewer.setParameter('Definition', 'high');
+        viewer.setParameter('MipMapping', 'on');
+        viewer.init();
+        //viewer.update();
+      })({
+        "viewer": viewer
+      });
+    </script>
+  </body>
+</html>

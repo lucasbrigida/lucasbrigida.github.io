@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Visão computacional | Lucas P. Brígida</title>
+	<meta name="description" content="Lucas P. Brígida personal website." />
+	<meta name="keywords" content="It's place where I publish my ideas, codes, news and projects." />
+	<meta name="author" content="Lucas P. Brígida" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.52.1" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+		<link rel="shortcut icon" href="images/icons/favicon.ico">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" /><link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/vendor/highlightjs/monokai_sublime.css" />
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><i class="icon-home"></i></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/pages/about"><i class="icon-user"></i> About me</a></li>
+					<li><a href="/pages/blog"><i class="icon-pencil"></i> Blog</a></li>	
+					<li><a href="/pages/experiences"><i class="icon-beaker"></i> Experiences</a></li>	
+					<li><a href="/pages/codes"><i class="icon-terminal"></i> Tricks & codes</a></li>
+					<li><a href="//github.com/lucasbrigida" alt="github" target="_blank"><i class="icon-github-alt"></i></a></li>	
+				</ul>
+			</div><!--/.navbar-collapse -->
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<!-- Hide source codes -->
+<style type="text/css">.code{display: none;}</style>
+
+<article id="post" class="post">
+	<h1>Visão computacional</h1>
+	<div class="post-content"><div class="container">
+	<h3><i class="icon-eye-open"></i> Definição</h3>
+	<blockquote><p>A visão Computacional tem por finalidade obter, a partir de uma ou várias <em>imagens</em>, informações geométricas, topológicas ou físicas sobre os dados que as originaram. </p>
+	<small>Gomes & Velho, 2008</small></blockquote>
+
+	<h4>Demo</h4>
+	<p>Nesse experimento, é utilizado a <a href="https://code.google.com/p/jsc3d/" target="_blank">jsc3d</a> para renderização de modelos 3d a partir de formatos conhecidos(.obj, .3ds, entre outros); <a href="https://github.com/mtschirs/js-objectdetect" target="_blank">js-objectdetect</a> para detecção de padrões de objetos; <a href="https://developer.mozilla.org/pt-BR/docs/HTML/Canvas" target="_blank">canvas</a> para renderização em 3d e <a href="https://developer.mozilla.org/en-US/docs/WebAPI" target="_blank">Web API</a>  na captura de <em>imagens</em> da câmera.</p>
+
+	<div style="padding-top: 30px;">
+		<center><a href="/experiences/computer_vision/index.html" target="_blank" class="btn btn-success">Iniciar Demo</a></center>
+	</div>
+</div></div>
+</article>
+
+<footer>
+	
+	<section id="related">
+		<h3>Related Posts</h3>
+		<nav class="linklist">
+			
+				<li><span>Wed Sep 25 2013</span>
+				&raquo;
+				<a href="/sections/experiences/canvas01">Playing with Canvas - Gears</a></li>
+			
+				<li><span>Wed Oct 02 2013</span>
+				&raquo;
+				<a href="/sections/experiences/canvas02">Iniciando com Canvas</a></li>
+			
+				<li><span>Wed Sep 25 2013</span>
+				&raquo;
+				<a href="/sections/experiences/canvas03">Experimento com canvas - cubo</a></li>
+			
+				<li><span>Wed Sep 25 2013</span>
+				&raquo;
+				<a href="/sections/experiences/canvas04">Experimento com canvas - cilindro</a></li>
+			
+		</nav>
+	</section>
+	
+</footer>
+
+<!-- Toggle Source Codes -->
+<script type="text/javascript">
+(function(document){
+	var btns = document.getElementsByClassName("show-code");
+	for(var i=0; i< btns.length;i++){
+	  btns[i].addEventListener("click", function (e){
+	  	  var elem = document.getElementById(e.target.hash.replace('#',''));
+
+	  	  if(elem.getAttribute("hide-code") === null || elem.getAttribute("hide-code") === "true"){
+	  	  	elem.style.display="block";
+	  	  	elem.setAttribute("hide-code", "false");
+	  	  }
+	  	  else if(elem.getAttribute("hide-code") === "false"){
+	  	  	elem.style.display="none";
+	  	  	elem.setAttribute("hide-code", "true");
+	  	  }
+	  },false);
+	}
+})(document);
+</script>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+		</footer>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script>
+
+	<!-- Google Analytics -->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-46111923-1', 'lucasbrigida.github.io');
+	  ga('send', 'pageview');
+
+	</script>
+</body>
+</html>
